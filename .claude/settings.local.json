@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sleep 3 && cat /tmp/nextdev.log | grep -E \"Error|error|⨯|warn\" | grep -v \"✓\" | head -30)",
+      "Read(//private/tmp/**)"
+    ]
+  }
+}
