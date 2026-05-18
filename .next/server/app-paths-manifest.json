@@ -1,9 +1,7 @@
 {
+  "/products/[id]/page": "app/products/[id]/page.js",
   "/shop/page": "app/shop/page.js",
-  "/privacy/page": "app/privacy/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/halloween-props/page": "app/halloween-props/page.js",
   "/professional-animatronics/page": "app/professional-animatronics/page.js",
   "/page": "app/page.js",
-  "/products/[id]/page": "app/products/[id]/page.js"
+  "/halloween-props/page": "app/halloween-props/page.js"
 }

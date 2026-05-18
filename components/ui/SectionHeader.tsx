@@ -14,7 +14,7 @@ export default function SectionHeader({
   centered = true,
 }: SectionHeaderProps) {
   return (
-    <div className={`mb-14 ${centered ? "text-center" : ""}`}>
+    <div className={`mb-10 md:mb-14 ${centered ? "text-center" : ""}`}>
       <div
         className={`inline-flex items-center gap-3 mb-5 ${centered ? "justify-center" : ""}`}
       >
@@ -25,7 +25,7 @@ export default function SectionHeader({
         <div className="h-px w-10 bg-horror-orange/50" />
       </div>
 
-      <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-horror-text-primary leading-tight">
+      <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-horror-text-primary leading-tight">
         {title}{" "}
         {titleAccent && (
           <span className="text-horror-orange text-glow">{titleAccent}</span>
@@ -34,7 +34,7 @@ export default function SectionHeader({
 
       {subtitle && (
         <p
-          className={`mt-5 text-horror-text-secondary text-base md:text-lg leading-relaxed max-w-2xl ${
+          className={`mt-4 md:mt-5 text-horror-text-secondary text-sm md:text-base lg:text-lg leading-relaxed max-w-2xl ${
             centered ? "mx-auto" : ""
           }`}
         >

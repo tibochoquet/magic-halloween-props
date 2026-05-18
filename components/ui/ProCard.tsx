@@ -46,7 +46,7 @@ export default function ProCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="flex flex-col flex-1 p-5">
+      <div className="flex flex-col flex-1 p-4 md:p-5">
         <h3 className="font-cinzel text-sm font-bold text-horror-text-primary group-hover:text-horror-orange transition-colors duration-300 leading-snug line-clamp-2 flex-1">
           {product.name}
         </h3>
@@ -54,7 +54,7 @@ export default function ProCard({ product }: { product: Product }) {
         <div className="mt-4 pt-4 border-t border-horror-border flex items-center justify-between gap-3">
           <div className="min-w-0 flex-1">
             <div className="flex items-baseline gap-2 flex-wrap">
-              <span className="font-bold text-lg text-horror-text-primary whitespace-nowrap">
+              <span className="font-bold text-base md:text-lg text-horror-text-primary whitespace-nowrap">
                 € {product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
               </span>
               {product.originalPrice && (
@@ -68,7 +68,7 @@ export default function ProCard({ product }: { product: Product }) {
           <button
             onClick={() => !product.soldOut && addToCart(product)}
             disabled={product.soldOut}
-            className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${
+            className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-3 md:py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${
               product.soldOut
                 ? "border border-horror-border text-horror-text-muted cursor-not-allowed"
                 : "bg-horror-orange/10 border border-horror-orange/30 text-horror-orange hover:bg-horror-orange hover:text-black"

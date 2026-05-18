@@ -10,7 +10,7 @@ export default function Testimonials() {
 
   return (
     <section
-      className="relative py-24 md:py-32 overflow-hidden -mt-px"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden -mt-px"
       style={{ background: "linear-gradient(180deg, #0A0A0A 0%, #0C0A0F 45%, #0A0A0E 75%, #0A0A0A 100%)" }}
     >
       <div className="absolute top-0 left-0 right-0 h-20 pointer-events-none bg-gradient-to-b from-horror-black to-transparent" />

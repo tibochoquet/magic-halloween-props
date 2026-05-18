@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef, useEffect, useCallback } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { products } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import ProductCard from "@/components/ui/ProductCard";
@@ -10,15 +12,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 import type { Product } from "@/types";
 
 const FEATURED_PRO_IDS = ["pro-bloodthirsty-werewolf", "pro-riding-dead"];
-const SPEED = 0.8; // px per frame ≈ 48 px/s at 60 fps
+const DESKTOP_SPEED = 0.8;
 
-export default function FeaturedProducts() {
-  const t = useTranslation();
-
-  const featuredStandard = products.filter((p) => p.featured);
-  const featuredPro = professionalProducts.filter((p) => FEATURED_PRO_IDS.includes(p.id));
-  const allFeatured: Product[] = [...featuredStandard, ...featuredPro];
-
+// ── Desktop: RAF continuous scroll ────────────────────────────────────────────
+function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
   const dragging = useRef(false);
@@ -30,7 +27,7 @@ export default function FeaturedProducts() {
   const tick = useCallback(() => {
     const el = containerRef.current;
     if (el && !paused.current) {
-      el.scrollLeft += SPEED;
+      el.scrollLeft += DESKTOP_SPEED;
       const half = el.scrollWidth / 2;
       if (el.scrollLeft >= half) el.scrollLeft -= half;
     }
@@ -43,10 +40,7 @@ export default function FeaturedProducts() {
   }, [tick]);
 
   const onMouseEnter = () => { paused.current = true; };
-  const onMouseLeave = () => {
-    paused.current = false;
-    dragging.current = false;
-  };
+  const onMouseLeave = () => { paused.current = false; dragging.current = false; };
   const onMouseDown = (e: React.MouseEvent) => {
     dragging.current = true;
     hasDragged.current = false;
@@ -73,9 +67,79 @@ export default function FeaturedProducts() {
   };
 
   return (
+    <div className="relative">
+      <div
+        className="absolute left-0 top-0 bottom-0 w-32 lg:w-48 z-20 pointer-events-none"
+        style={{ background: "linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
+      />
+      <div
+        className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 z-20 pointer-events-none"
+        style={{ background: "linear-gradient(to left, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
+      />
+      <div
+        ref={containerRef}
+        className="overflow-x-hidden py-6 cursor-grab active:cursor-grabbing select-none"
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onClickCapture={onClickCapture}
+      >
+        <div className="flex gap-5" style={{ width: "max-content" }}>
+          {[...allFeatured, ...allFeatured].map((product, i) => (
+            <div key={`${product.id}-${i}`} className="w-[280px] flex-shrink-0">
+              {product.id.startsWith("pro-")
+                ? <ProCard product={product} />
+                : <ProductCard product={product} />}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Mobile: Embla touch carousel ──────────────────────────────────────────────
+function MobileCarousel({ allFeatured }: { allFeatured: Product[] }) {
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, dragFree: true, align: "start" },
+    [Autoplay({ delay: 2800, stopOnInteraction: false, stopOnMouseEnter: true })]
+  );
+
+  return (
+    <div className="relative">
+      <div
+        className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
+        style={{ background: "linear-gradient(to left, #0A0A0A 0%, transparent 100%)" }}
+      />
+      <div ref={emblaRef} className="overflow-hidden py-4">
+        <div className="flex gap-4 pl-5 pr-2">
+          {allFeatured.map((product) => (
+            <div key={product.id} className="flex-[0_0_82%] sm:flex-[0_0_46%] min-w-0">
+              {product.id.startsWith("pro-")
+                ? <ProCard product={product} />
+                : <ProductCard product={product} />}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Section ───────────────────────────────────────────────────────────────────
+export default function FeaturedProducts() {
+  const t = useTranslation();
+
+  const featuredStandard = products.filter((p) => p.featured);
+  const featuredPro = professionalProducts.filter((p) => FEATURED_PRO_IDS.includes(p.id));
+  const allFeatured: Product[] = [...featuredStandard, ...featuredPro];
+
+  return (
     <section
       id="featured"
-      className="relative py-24 md:py-32 overflow-hidden -mt-px"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden -mt-px"
       style={{ background: "linear-gradient(180deg, #0A0A0A 0%, #0D0A0C 35%, #0B0B0D 65%, #0A0A0A 100%)" }}
     >
       {/* Top blend */}
@@ -111,43 +175,18 @@ export default function FeaturedProducts() {
         />
       </div>
 
-      {/* Carousel */}
-      <div className="relative z-10">
-        {/* Edge fades */}
-        <div
-          className="absolute left-0 top-0 bottom-0 w-32 md:w-48 z-20 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
-        />
-        <div
-          className="absolute right-0 top-0 bottom-0 w-32 md:w-48 z-20 pointer-events-none"
-          style={{ background: "linear-gradient(to left, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
-        />
+      {/* Desktop: continuous RAF scroll */}
+      <div className="relative z-10 hidden md:block">
+        <DesktopCarousel allFeatured={allFeatured} />
+      </div>
 
-        {/* Scrollable track */}
-        <div
-          ref={containerRef}
-          className="overflow-x-hidden py-6 cursor-grab active:cursor-grabbing select-none"
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          onMouseDown={onMouseDown}
-          onMouseMove={onMouseMove}
-          onMouseUp={onMouseUp}
-          onClickCapture={onClickCapture}
-        >
-          <div className="flex gap-5" style={{ width: "max-content" }}>
-            {[...allFeatured, ...allFeatured].map((product, i) => (
-              <div key={`${product.id}-${i}`} className="w-[280px] flex-shrink-0">
-                {product.id.startsWith("pro-")
-                  ? <ProCard product={product} />
-                  : <ProductCard product={product} />}
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Mobile/tablet: Embla swipe carousel */}
+      <div className="relative z-10 md:hidden">
+        <MobileCarousel allFeatured={allFeatured} />
       </div>
 
       {/* CTA */}
-      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 mt-10 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 mt-8 md:mt-10 text-center">
         <a href="/shop" className="btn-outline">
           {t.featured.viewAll}
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

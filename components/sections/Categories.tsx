@@ -13,7 +13,7 @@ export default function Categories() {
   return (
     <section
       id="categories"
-      className="relative py-24 md:py-32 overflow-hidden -mt-px"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden -mt-px"
       style={{ background: `linear-gradient(rgba(10,10,10,0.78), rgba(10,10,10,0.78)), url('/chains-divider-bg.png') center bottom / cover no-repeat #0A0A0A` }}
     >
       <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(139,0,0,0.07) 0%, transparent 65%)" }} />

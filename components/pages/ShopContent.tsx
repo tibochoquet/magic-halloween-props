@@ -42,7 +42,7 @@ export default function ShopContent() {
   return (
     <>
       {/* Page header */}
-      <section className="relative pt-36 pb-0 overflow-hidden">
+      <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,107,0,0.07) 0%, transparent 60%)" }} />
         <div className="max-w-7xl mx-auto px-5 md:px-8">
           <SectionHeader eyebrow={s.eyebrow} title={s.title} titleAccent={s.titleAccent} subtitle={s.subtitle} />

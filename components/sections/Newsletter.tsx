@@ -20,7 +20,7 @@ export default function Newsletter() {
 
   return (
     <section
-      className="relative py-24 md:py-32 overflow-hidden -mt-px"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden -mt-px"
       style={{ background: `linear-gradient(rgba(10,10,10,0.58), rgba(10,10,10,0.58)), url('/footer-atmosphere-bg.png') center / cover no-repeat #0A0A0A` }}
     >
       <div className="absolute top-0 left-0 right-0 h-20 pointer-events-none bg-gradient-to-b from-horror-black to-transparent" />
@@ -33,7 +33,7 @@ export default function Newsletter() {
           <div className="h-px w-10 bg-horror-orange/50" />
         </div>
 
-        <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-horror-text-primary leading-tight mb-4">
+        <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-horror-text-primary leading-tight mb-4">
           {n.title}{" "}
           <span className="text-horror-orange text-glow">{n.titleAccent}</span>
         </h2>

@@ -11,7 +11,7 @@ export default function ProfessionalCollection({ pageMode = false }: { pageMode?
   return (
     <section
       id="professional"
-      className={`relative overflow-hidden ${pageMode ? "pt-36 pb-24" : "py-24 md:py-32 -mt-px"}`}
+      className={`relative overflow-hidden ${pageMode ? "pt-28 md:pt-36 pb-16 md:pb-24" : "py-16 md:py-24 lg:py-32 -mt-px"}`}
       style={{ background: "linear-gradient(180deg, #0A0A0A 0%, #0E0808 25%, #0C0910 55%, #0A0A0A 100%)" }}
     >
       {!pageMode && (
