@@ -149,7 +149,7 @@ export default function CartDrawer() {
 
                       {/* Line total */}
                       <span className="text-horror-text-primary font-bold text-sm">
-                        ${(product.price * quantity).toLocaleString("en-US", { minimumFractionDigits: 2 })}
+                        €{(product.price * quantity).toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
                       </span>
                     </div>
                   </div>

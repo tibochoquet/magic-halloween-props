@@ -15,7 +15,7 @@ export default function HalloweenPropsPage() {
     <main className="min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <Suspense>
-        <ShopContent />
+        <ShopContent variant="standard" />
       </Suspense>
       <Footer />
     </main>

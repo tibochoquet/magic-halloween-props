@@ -25,7 +25,7 @@ const sections = [
   },
   {
     title: "5. Delen met derden",
-    content: "Uw gegevens worden uitsluitend gedeeld met:\n\n• Bezorgdiensten (DHL, PostNL) voor de uitvoering van uw bestelling\n• Onze betaalprovider voor de verwerking van betalingen\n\nDeze partijen zijn gebonden aan strikte verwerkersovereenkomsten.",
+    content: "Uw gegevens worden uitsluitend gedeeld met:\n\n• Bezorgdiensten (DHL, DPD) voor de uitvoering van uw bestelling\n• Onze betaalprovider voor de verwerking van betalingen\n\nDeze partijen zijn gebonden aan strikte verwerkersovereenkomsten.",
   },
   {
     title: "6. Cookies",

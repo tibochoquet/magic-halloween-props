@@ -1,7 +1,7 @@
 import type { Product, Category, Testimonial, NavLink } from "@/types";
 
 
-const style = {
+export const style = {
   clown:    { bgGradient: "from-purple-950 via-fuchsia-950 to-purple-950", accentColor: "rgba(192,38,211,0.45)",   iconEmoji: "🤡" },
   witch:    { bgGradient: "from-emerald-950 via-teal-950 to-emerald-950",  accentColor: "rgba(20,184,166,0.45)",   iconEmoji: "🧙" },
   zombie:   { bgGradient: "from-green-950 via-lime-950 to-green-950",      accentColor: "rgba(34,197,94,0.35)",    iconEmoji: "🧟" },
@@ -21,7 +21,7 @@ export const products: Product[] = [
     category: "monster",
     price: 79.95,
     description: "Animatronic bezeten kraai in kooi met bewegingssensor en geluid.",
-    height: "32 × 20 × 20 cm",
+    height: "0,32 × 0,20 × 0,20 m",
     features: [],
     image: "/products/animatronic-crow-in-cage.png",
     ...style.monster,
@@ -35,6 +35,7 @@ export const products: Product[] = [
     height: "1,70 m",
     features: [],
     image: "/products/halloween-pop-chainsaw-killer.png",
+    video: "/products/Halloween%20pop%20Chainsaw%20Killer.mp4",
     ...style.zombie,
   },
   {
@@ -46,6 +47,7 @@ export const products: Product[] = [
     height: "1,80 m",
     features: [],
     image: "/products/halloween-pop-evil-mummy.png",
+    video: "/products/Halloween%20pop%20Evil%20Mummy.mp4",
     ...style.mummy,
   },
   {
@@ -135,6 +137,7 @@ export const products: Product[] = [
     height: "1,50 m",
     features: [],
     image: "/products/halloween-pop-old-wailing-ghost.png",
+    video: "/products/Halloween%20pop%20Old%20Wailing%20Ghost.mp4",
     ...style.ghost,
   },
   {
@@ -157,6 +160,7 @@ export const products: Product[] = [
     height: "1,70 m",
     features: [],
     image: "/products/halloween-pop-psycho-clown.png",
+    video: "/products/Halloween%20pop%20Psycho%20Clown.mp4",
     ...style.clown,
   },
   {
@@ -212,6 +216,7 @@ export const products: Product[] = [
     height: "1,80 m",
     features: [],
     image: "/products/halloween-pop-screaming-witch.png",
+    video: "/products/Halloween%20pop%20Screaming%20Witch.mp4",
     ...style.witch,
   },
   {
@@ -234,6 +239,7 @@ export const products: Product[] = [
     height: "1,50 m",
     features: [],
     image: "/products/halloween-pop-spinning-head-witch.png",
+    video: "/products/Halloween%20pop%20Spinning%20head%20witch.mp4",
     ...style.witch,
   },
   {
@@ -256,6 +262,7 @@ export const products: Product[] = [
     height: "1,50 m",
     features: [],
     image: "/products/halloween-pop-spooky-ghost.png",
+    video: "/products/Halloween%20pop%20Spooky%20Ghost.mp4",
     ...style.ghost,
   },
   {
@@ -268,6 +275,7 @@ export const products: Product[] = [
     height: "1,50 m",
     features: [],
     image: "/products/halloween-pop-terrifying-witch.png",
+    video: "/products/Halloween%20pop%20Terrifying%20Witch.mp4",
     ...style.witch,
   },
   {
@@ -280,6 +288,7 @@ export const products: Product[] = [
     height: "1,70 m",
     features: [],
     image: "/products/halloween-pop-terror-clown.png",
+    video: "/products/Halloween%20pop%20Terror%20Clown.mp4",
     ...style.clown,
   },
   {
@@ -291,6 +300,7 @@ export const products: Product[] = [
     height: "1,80 m",
     features: [],
     image: "/products/halloween-pop-terror-creep.png",
+    video: "/products/Halloween%20pop%20Terror%20Creep.mp4",
     ...style.zombie,
   },
   {
@@ -327,6 +337,54 @@ export const products: Product[] = [
     features: [],
     image: "/products/the-creepy-wizard.png",
     ...style.wizard,
+  },
+  {
+    id: "evil-pirate",
+    name: "Evil Pirate",
+    category: "skeleton",
+    price: 159.95,
+    description: "Stap aan boord van een vervloekt piratenschip met de angstaanjagende Evil Pirate Animatronic. Deze levensechte ondode piraat vertelt het duistere verhaal over zijn leven op een spookschip, waar hij eeuwen geleden stierf maar nooit echt is verdwenen.",
+    features: ["Bewegend hoofd en lichaam voor realistisch effect", "Fel rood oplichtende schedel tijdens animatie", "Inclusief groot piratenzwaard", "Werkt op batterijen (draadloos)"],
+    height: "1,83 m",
+    ...style.skeleton,
+  },
+  {
+    id: "flying-skeleton-creep",
+    name: "Flying Skeleton Creep",
+    category: "skeleton",
+    price: 149.95,
+    description: "Laat de duisternis tot leven komen met de indrukwekkende Flying Skeleton Creep Animatronic. Dit angstaanjagende vliegende skelet lijkt rechtstreeks uit de onderwereld te zijn opgestegen en zweeft dreigend boven zijn slachtoffers.",
+    features: ["Bewegende vleugels voor een realistisch vliegend effect", "Bewegend lichaam tijdens de animatie", "Kwaadaardige lach en angstaanjagende schreeuwgeluiden", "Fel groen oplichtende ogen"],
+    ...style.skeleton,
+  },
+  {
+    id: "horror-clown",
+    name: "Horror Clown",
+    category: "clown",
+    price: 159.95,
+    description: "Stap binnen in een vervloekt circus met de angstaanjagende Horror Clown Animatronic. Deze gestoorde clown lijkt rechtstreeks uit een verlaten horrorcircus te zijn ontsnapt en staat klaar om iedere bezoeker de stuipen op het lijf te jagen.",
+    features: ["Bewegend lichaam voor een realistisch effect", "Fel rood oplichtende ogen", "Kwaadaardige en gemene clownslach", "Griezelige circusmuziek op de achtergrond"],
+    height: "1,73 m",
+    ...style.clown,
+  },
+  {
+    id: "poison-apple-witch",
+    name: "Poison Apple Witch",
+    category: "witch",
+    price: 149.95,
+    description: "Durf jij de vergiftigde appel aan te nemen van de angstaanjagende Poison Apple Witch? Deze kwaadaardige heks lijkt zo uit een duister sprookje te zijn gestapt en wacht geduldig op haar volgende slachtoffer.",
+    features: ["Ogen lichten fel op tijdens de animatie", "Begint te praten wanneer ze wordt geactiveerd", "Dreigende uitstraling en griezelige geluidseffecten", "Werkt op batterijen (draadloos)"],
+    ...style.witch,
+  },
+  {
+    id: "swamp-ghost",
+    name: "Swamp Ghost",
+    category: "ghost",
+    price: 159.95,
+    description: "Haal de duistere sfeer van een vervloekt moeras in huis met de angstaanjagende Swamp Ghost Animatronic.",
+    features: ["Levensechte Halloween animatronic met volledig groene uitstraling", "Schedel met fel groen oplichtende ogen en verlichting", "Kwaadaardige lach, diepe grom en realistische kettinggeluiden", "Werkt op batterijen (draadloos neer te zetten)"],
+    height: "1,83 m",
+    ...style.ghost,
   },
 ];
 

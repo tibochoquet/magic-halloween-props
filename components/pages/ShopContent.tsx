@@ -1,16 +1,19 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Building2, Package, RotateCcw, Mail } from "lucide-react";
+import { Building2, Package, Star, Mail } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import ProCard from "@/components/ui/ProCard";
+import ScareCard from "@/components/ui/ScareCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CategoryIcon from "@/components/ui/CategoryIcon";
 import { products, categories } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
+import { scareEffectProducts } from "@/data/scareEffectProducts";
 import { useTranslation } from "@/hooks/useTranslation";
 
-export default function ShopContent() {
+type ShopVariant = "all" | "standard" | "premium" | "scare";
+
+export default function ShopContent({ variant = "all" }: { variant?: ShopVariant }) {
   const t = useTranslation();
   const s = t.shop;
   const searchParams = useSearchParams();
@@ -18,16 +21,19 @@ export default function ShopContent() {
 
   const activeCategory = searchParams.get("category") ?? "all";
 
-  const filteredStandard = activeCategory === "all"
+  const filteredStandard = variant !== "all" && variant !== "standard" ? [] : activeCategory === "all"
     ? products
     : products.filter((p) => p.category === activeCategory);
 
-  // Professional products appear when browsing by category (theme-based browsing)
-  const filteredPro = activeCategory === "all"
-    ? []
+  const filteredPro = variant !== "all" && variant !== "premium" ? [] : activeCategory === "all"
+    ? professionalProducts
     : professionalProducts.filter((p) => p.category === activeCategory);
 
-  const totalCount = filteredStandard.length + filteredPro.length;
+  const filteredScare = variant !== "all" && variant !== "scare" ? [] : activeCategory === "all"
+    ? scareEffectProducts
+    : scareEffectProducts.filter((p) => p.category === activeCategory);
+
+  const totalCount = filteredStandard.length + filteredPro.length + filteredScare.length;
 
   function setCategory(id: string) {
     const params = new URLSearchParams(searchParams.toString());
@@ -51,14 +57,14 @@ export default function ShopContent() {
 
       {/* Collection gateway cards */}
       <section className="py-0">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 pb-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 pb-12 md:pb-16">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
 
             {/* Standard Halloween Props */}
             <a
               href="/halloween-props"
-              className="group relative overflow-hidden block"
-              style={{ minHeight: "280px", background: "linear-gradient(135deg, #160C0A 0%, #0E0A14 100%)" }}
+              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px]"
+              style={{ background: "linear-gradient(135deg, #160C0A 0%, #0E0A14 100%)" }}
             >
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 18% 78%, rgba(200,60,0,0.20) 0%, transparent 58%)" }} />
@@ -67,21 +73,24 @@ export default function ShopContent() {
                 <div className="absolute top-14 right-16 w-px h-px rounded-full bg-horror-orange/18 animate-ember" style={{ animationDelay: "2.1s", animationDuration: "6.2s" }} />
               </div>
               <div className="absolute inset-0 border border-horror-border group-hover:border-horror-orange/35 transition-colors duration-500" />
-              <div className="relative z-10 flex flex-col justify-end p-8 h-full" style={{ minHeight: "280px" }}>
+              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-horror-orange/50 text-xs tracking-[0.28em] uppercase block mb-2">Halloween Collection</span>
-                  <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-horror-orange transition-colors duration-300">
+                  <span className="text-horror-orange/50 text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2">Halloween Collection</span>
+                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
                     Standard Halloween Props
                   </h3>
-                  <p className="text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
+                  <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
                     Premium animatronics for home decorations, parties and seasonal events.
                   </p>
-                  <span className="inline-flex items-center gap-2 px-5 py-2.5 border border-horror-orange/35 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/10 transition-colors duration-300">
+                  <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border border-horror-orange/35 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/10 transition-colors duration-300">
                     Browse Collection
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </span>
+                  <svg className="md:hidden w-3 h-3 text-horror-orange/50 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </div>
               </div>
             </a>
@@ -89,8 +98,8 @@ export default function ShopContent() {
             {/* Professional Animatronics */}
             <a
               href="/professional-animatronics"
-              className="group relative overflow-hidden block"
-              style={{ minHeight: "280px", background: "linear-gradient(135deg, #0E0808 0%, #0A0510 100%)" }}
+              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px]"
+              style={{ background: "linear-gradient(135deg, #0E0808 0%, #0A0510 100%)" }}
             >
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 82% 78%, rgba(140,8,0,0.22) 0%, transparent 58%)" }} />
@@ -99,21 +108,59 @@ export default function ShopContent() {
                 <div className="absolute top-14 right-16 w-px h-px rounded-full animate-ember" style={{ background: "rgba(200,150,30,0.20)", animationDelay: "3s", animationDuration: "7.2s" }} />
               </div>
               <div className="absolute inset-0 border border-[rgba(200,150,30,0.18)] group-hover:border-[rgba(200,150,30,0.42)] transition-colors duration-500" />
-              <div className="relative z-10 flex flex-col justify-end p-8 h-full" style={{ minHeight: "280px" }}>
+              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-xs tracking-[0.28em] uppercase block mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>Professional Grade</span>
-                  <h3 className="font-cinzel text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-horror-orange transition-colors duration-300">
+                  <span className="text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>Professional Grade</span>
+                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
                     Professional Animatronics
                   </h3>
-                  <p className="text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
+                  <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
                     High-end animatronics for haunted attractions, escape rooms and professional horror experiences.
                   </p>
-                  <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-horror-orange/10 border border-horror-orange/30 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/20 transition-colors duration-300">
+                  <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-horror-orange/10 border border-horror-orange/30 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/20 transition-colors duration-300">
                     Explore Collection
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </span>
+                  <svg className="md:hidden w-3 h-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: "rgba(200,148,28,0.55)" }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
+            </a>
+
+            {/* Scare Effect Animatronics */}
+            <a
+              href="/scare-effects"
+              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px] col-span-2 lg:col-span-1"
+              style={{ background: "linear-gradient(135deg, #0E0812 0%, #0A0714 100%)" }}
+            >
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 78%, rgba(140,60,220,0.18) 0%, transparent 58%)" }} />
+                <div className="absolute inset-0 animate-fog-medium" style={{ background: "radial-gradient(ellipse at 50% 60%, rgba(100,40,160,0.07) 0%, transparent 55%)", filter: "blur(32px)" }} />
+                <div className="absolute top-4 right-5 w-px h-px rounded-full animate-ember" style={{ background: "rgba(192,132,252,0.28)", animationDelay: "0.8s", animationDuration: "5.8s" }} />
+                <div className="absolute top-14 right-16 w-px h-px rounded-full animate-ember" style={{ background: "rgba(192,132,252,0.20)", animationDelay: "2.6s", animationDuration: "6.8s" }} />
+              </div>
+              <div className="absolute inset-0 border border-[rgba(168,85,247,0.18)] group-hover:border-[rgba(168,85,247,0.42)] transition-colors duration-500" />
+              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
+                <div className="mt-auto">
+                  <span className="text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2" style={{ color: "rgba(192,132,252,0.58)" }}>Jumpscare Line</span>
+                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
+                    Scare Effect Animatronics
+                  </h3>
+                  <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
+                    Poppen met ingebouwd schrikeffect voor het ultieme jumpscare-moment.
+                  </p>
+                  <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border border-[rgba(168,85,247,0.35)] text-[rgba(192,132,252,0.9)] text-xs font-bold tracking-wider uppercase group-hover:bg-[rgba(168,85,247,0.1)] transition-colors duration-300">
+                    Explore Collection
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                  <svg className="md:hidden w-3 h-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: "rgba(192,132,252,0.55)" }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
                 </div>
               </div>
             </a>
@@ -142,15 +189,12 @@ export default function ShopContent() {
               <button
                 key={cat.id}
                 onClick={() => setCategory(cat.id)}
-                className={`flex items-center gap-2 px-4 py-2 border text-xs font-semibold tracking-widest uppercase transition-all duration-200 group ${
+                className={`px-4 py-2 border text-xs font-semibold tracking-widest uppercase transition-all duration-200 ${
                   activeCategory === cat.id
                     ? "border-horror-orange/60 text-horror-orange bg-horror-orange/8"
                     : "border-horror-border text-horror-text-muted hover:border-horror-orange/40 hover:text-horror-orange"
                 }`}
               >
-                <span className={`transition-all duration-200 ${activeCategory === cat.id ? "drop-shadow-[0_0_6px_rgba(255,107,0,0.6)]" : "group-hover:drop-shadow-[0_0_6px_rgba(255,107,0,0.4)]"}`}>
-                  <CategoryIcon id={cat.id} size={14} />
-                </span>
                 {cat.name}
               </button>
             ))}
@@ -159,8 +203,13 @@ export default function ShopContent() {
           {/* Product count */}
           <p className="text-horror-text-muted text-xs tracking-wider mb-6">
             {totalCount} {totalCount === 1 ? "product" : "producten"}
-            {filteredPro.length > 0 && (
-              <span className="ml-2 opacity-60">— incl. {filteredPro.length} professionele animatronics</span>
+            {(filteredPro.length > 0 || filteredScare.length > 0) && (
+              <span className="ml-2 opacity-60">
+                — incl.
+                {filteredPro.length > 0 && ` ${filteredPro.length} professionele animatronics`}
+                {filteredPro.length > 0 && filteredScare.length > 0 && " en"}
+                {filteredScare.length > 0 && ` ${filteredScare.length} scare effect animatronics`}
+              </span>
             )}
           </p>
 
@@ -171,6 +220,9 @@ export default function ShopContent() {
               ))}
               {filteredPro.map((product) => (
                 <ProCard key={product.id} product={product} />
+              ))}
+              {filteredScare.map((product) => (
+                <ScareCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
@@ -184,7 +236,7 @@ export default function ShopContent() {
             {[
               { Icon: Building2, text: s.stock.warehouse },
               { Icon: Package, text: s.stock.delivery },
-              { Icon: RotateCcw, text: s.stock.returns },
+              { Icon: Star, text: s.stock.returns },
               { Icon: Mail, text: s.stock.email },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-2">

@@ -16,6 +16,7 @@ export interface Product {
   bgGradient: string;
   iconEmoji: string;
   image?: string;
+  video?: string;
 }
 
 export interface Category {

@@ -50,7 +50,7 @@ export default function CheckoutContent() {
     }, 1200);
   }
 
-  const shipping = totalPrice >= 500 ? 0 : 14.95;
+  const shipping = 0;
   const total = totalPrice + shipping;
 
   if (items.length === 0 && !submitted) {
@@ -316,11 +316,8 @@ export default function CheckoutContent() {
               </div>
               <div className="flex justify-between text-horror-text-muted">
                 <span>{nl ? "Verzending" : "Shipping"}</span>
-                <span>{shipping === 0 ? (nl ? "Gratis" : "Free") : `€${shipping.toFixed(2)}`}</span>
+                <span className="text-horror-orange">{nl ? "Gratis" : "Free"}</span>
               </div>
-              {shipping === 0 && (
-                <p className="text-horror-orange text-xs">{nl ? "Gratis verzending vanaf €500" : "Free shipping from €500"}</p>
-              )}
               <div className="flex justify-between font-bold text-horror-text-primary text-base pt-2 border-t border-horror-border">
                 <span>{nl ? "Totaal" : "Total"}</span>
                 <span>€{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}</span>

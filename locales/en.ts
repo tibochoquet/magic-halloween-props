@@ -32,7 +32,7 @@ export const en: Translations = {
   },
 
   featured: {
-    eyebrow: "Our Arsenal",
+    eyebrow: "Featured",
     title: "Featured",
     titleAccent: "Horrors",
     subtitle: "Handcrafted animatronics built for maximum impact. Every prop is load-tested for 500+ triggers per night.",
@@ -150,20 +150,20 @@ export const en: Translations = {
     },
     relatedTitle: "More from the",
     relatedAccent: "Arsenal",
-    shippingNote: "In stock at our warehouse in Nederweert · Shipped via DHL/PostNL · Pickup by appointment available",
+    shippingNote: "In stock at our warehouse in Nederweert · Free shipping via DHL/DPD · Pickup by appointment available",
     discount: "off",
   },
 
   shop: {
     eyebrow: "Full Collection",
-    title: "The Entire",
-    titleAccent: "Arsenal",
+    title: "Horror",
+    titleAccent: "Collection",
     subtitle: "All animatronics in stock at our warehouse in Nederweert. Available for immediate delivery or pickup by appointment.",
     filterAll: "All",
     stock: {
       warehouse: "In stock in Nederweert, Netherlands",
-      delivery: "Shipped via DHL / PostNL",
-      returns: "14-day return policy",
+      delivery: "Free shipping via DHL / DPD",
+      returns: "Largest collection in NL",
       email: "info@allseasontoys.nl",
     },
   },
@@ -202,7 +202,7 @@ export const en: Translations = {
     steps: [
       { step: "01", title: "Direct import", body: "We select and import animatronics directly from manufacturers — strictly quality-checked for build quality and durability." },
       { step: "02", title: "Stocked in NL", body: "Products are stored at our warehouse in Nederweert. Stock is always immediately available — no waiting." },
-      { step: "03", title: "Delivery or pickup", body: "Order placed? We ship quickly via DHL or PostNL. Prefer to collect yourself? That's possible — by appointment." },
+      { step: "03", title: "Delivery or pickup", body: "Order placed? We ship free and fast via DHL or DPD. Prefer to collect yourself? That's possible — by appointment." },
     ],
     warehouseEyebrow: "Our Warehouse",
     warehouseTitle: "Visit us",
@@ -310,7 +310,7 @@ export const en: Translations = {
     "animatronic-crow-in-cage": {
       description: "Animatronic possessed crow in cage with motion sensor and sound.",
       features: [],
-      longDescription: `<p>This Animatronic Crow in Cage looks like it came straight out of a nightmare. In its cage, the crow moves lifelike while its beak moves in sync. It makes eerie sounds and talks. Its eyes and cage light up, creating an extra spooky effect.</p><p>With dimensions of 32 × 20 × 20 cm, this is a compact yet chilling addition to your Halloween decoration. Powered by 3× AA batteries, you can place it anywhere – indoors, in shop windows, haunted houses, or at your Halloween party.</p><h4>Why choose the Animatronic Crow in Cage?</h4><ul><li>Possessed crow in cage – lifelike and creepy</li><li>Moves, talks and makes eerie crow sounds</li><li>Beak moves in sync while talking</li><li>Light and sound effects for extra atmosphere</li><li>Compact size: 32 × 20 × 20 cm</li><li>Runs on 3× AA batteries – place it anywhere</li><li>Perfect for Halloween, horror parties and haunted houses</li></ul><p>Let these eerie crow sounds echo through your home and bring your Halloween to life with this terrifying animatronic!</p>`,
+      longDescription: `<p>This Animatronic Crow in Cage looks like it came straight out of a nightmare. In its cage, the crow moves lifelike while its beak moves in sync. It makes eerie sounds and talks. Its eyes and cage light up, creating an extra spooky effect.</p><p>With dimensions of 0.32 × 0.20 × 0.20 m, this is a compact yet chilling addition to your Halloween decoration. Powered by 3× AA batteries, you can place it anywhere – indoors, in shop windows, haunted houses, or at your Halloween party.</p><h4>Why choose the Animatronic Crow in Cage?</h4><ul><li>Possessed crow in cage – lifelike and creepy</li><li>Moves, talks and makes eerie crow sounds</li><li>Beak moves in sync while talking</li><li>Light and sound effects for extra atmosphere</li><li>Compact size: 0.32 × 0.20 × 0.20 m</li><li>Runs on 3× AA batteries – place it anywhere</li><li>Perfect for Halloween, horror parties and haunted houses</li></ul><p>Let these eerie crow sounds echo through your home and bring your Halloween to life with this terrifying animatronic!</p>`,
     },
     "halloween-pop-chainsaw-killer": {
       description: "Standing animatronic Chainsaw Killer at 1.70 m with movement, chainsaw sound and red eyes.",

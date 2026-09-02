@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Product } from "@/types";
@@ -10,46 +11,57 @@ export default function ProCard({ product }: { product: Product }) {
   const { language } = useLanguage();
 
   return (
-    <article className={`group card-horror flex flex-col overflow-hidden${product.soldOut ? " opacity-60" : ""}`}>
-      <div className="relative h-64 bg-gradient-to-br from-[#1c0e0a] to-[#0a0505] overflow-hidden flex items-center justify-center">
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-          style={{ background: "radial-gradient(ellipse at 50% 80%, rgba(180,55,0,0.28) 0%, transparent 65%)" }}
-        />
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
+    <article className={`group card-horror flex flex-col overflow-hidden w-full${product.soldOut ? " opacity-60" : ""}`}>
+      <Link href={`/products/${product.id}`} className="block">
+        <div className="relative h-64 bg-gradient-to-br from-[#1c0e0a] to-[#0a0505] overflow-hidden flex items-center justify-center">
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+            style={{ background: "radial-gradient(ellipse at 50% 80%, rgba(180,55,0,0.28) 0%, transparent 65%)" }}
+          />
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
 
-        <Image
-          src={product.image!}
-          alt={product.name}
-          fill
-          className="object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04]"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
+          <Image
+            src={product.image!}
+            alt={product.name}
+            fill
+            className="object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
 
-        {product.soldOut && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
-            <span className="border border-white/25 text-white text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-2 bg-black/30">
-              {language === "nl" ? "Uitverkocht" : "Sold Out"}
-            </span>
+          {product.soldOut && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
+              <span className="border border-white/25 text-white text-[11px] font-bold tracking-[0.2em] uppercase px-4 py-2 bg-black/30">
+                {language === "nl" ? "Uitverkocht" : "Sold Out"}
+              </span>
+            </div>
+          )}
+
+          {product.originalPrice && !product.soldOut && (
+            <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-horror-orange text-black text-[11px] font-black tracking-widest uppercase z-10">
+              SALE
+            </div>
+          )}
+
+          <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-1.5">
+            {/* Professional collection indicator — subtle gold badge */}
+            <div className="px-1.5 py-0.5 bg-black/75 border border-[rgba(200,150,30,0.38)]">
+              <span className="text-[8px] font-bold tracking-[0.18em] uppercase" style={{ color: "rgba(200,148,28,0.78)" }}>PRO</span>
+            </div>
+            {product.height && (
+              <div className="px-2 py-1 bg-black/60 border border-white/10 text-horror-text-muted text-xs font-mono tracking-wide">
+                {product.height}
+              </div>
+            )}
           </div>
-        )}
-
-        {product.originalPrice && !product.soldOut && (
-          <div className="absolute top-3 left-3 px-2.5 py-0.5 bg-horror-orange text-black text-[11px] font-black tracking-widest uppercase z-10">
-            SALE
-          </div>
-        )}
-
-        {/* Professional collection indicator — subtle gold badge */}
-        <div className="absolute top-3 right-3 z-10 px-1.5 py-0.5 bg-black/75 border border-[rgba(200,150,30,0.38)]">
-          <span className="text-[8px] font-bold tracking-[0.18em] uppercase" style={{ color: "rgba(200,148,28,0.78)" }}>PRO</span>
         </div>
-      </div>
+      </Link>
 
       <div className="flex flex-col flex-1 p-4 md:p-5">
-        <h3 className="font-cinzel text-sm font-bold text-horror-text-primary group-hover:text-horror-orange transition-colors duration-300 leading-snug line-clamp-2 flex-1">
-          {product.name}
-        </h3>
+        <Link href={`/products/${product.id}`} className="flex-1">
+          <h3 className="font-cinzel text-sm font-bold text-horror-text-primary group-hover:text-horror-orange transition-colors duration-300 leading-snug line-clamp-2">
+            {product.name}
+          </h3>
+        </Link>
 
         <div className="mt-4 pt-4 border-t border-horror-border flex items-center justify-between gap-3">
           <div className="min-w-0 flex-1">

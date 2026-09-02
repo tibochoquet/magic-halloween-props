@@ -21,11 +21,11 @@ const articles = [
   },
   {
     title: "Artikel 4 – Prijs",
-    content: "Alle genoemde prijzen zijn inclusief btw. Bezorgkosten worden apart vermeld voor of tijdens het bestelproces. Prijswijzigingen voorbehouden.",
+    content: "Alle genoemde prijzen zijn inclusief btw. Verzending is gratis. Prijswijzigingen voorbehouden.",
   },
   {
     title: "Artikel 5 – Levering",
-    content: "Alle producten zijn op voorraad in ons magazijn in Nederweert. Wij streven ernaar bestellingen zo snel mogelijk te verwerken en te verzenden. Exacte levertijden worden bevestigd bij bestelling. Levering geschiedt via DHL of PostNL. Afhalen op afspraak is mogelijk.",
+    content: "Alle producten zijn op voorraad in ons magazijn in Nederweert. Wij streven ernaar bestellingen zo snel mogelijk te verwerken en te verzenden. Exacte levertijden worden bevestigd bij bestelling. Verzending is gratis en geschiedt via DHL of DPD. Afhalen op afspraak is mogelijk.",
   },
   {
     title: "Artikel 6 – Herroepingsrecht",

@@ -86,9 +86,9 @@ function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
         onMouseUp={onMouseUp}
         onClickCapture={onClickCapture}
       >
-        <div className="flex gap-5" style={{ width: "max-content" }}>
+        <div className="flex items-stretch gap-5" style={{ width: "max-content" }}>
           {[...allFeatured, ...allFeatured].map((product, i) => (
-            <div key={`${product.id}-${i}`} className="w-[280px] flex-shrink-0">
+            <div key={`${product.id}-${i}`} className="w-[280px] flex-shrink-0 flex">
               {product.id.startsWith("pro-")
                 ? <ProCard product={product} />
                 : <ProductCard product={product} />}
@@ -114,9 +114,9 @@ function MobileCarousel({ allFeatured }: { allFeatured: Product[] }) {
         style={{ background: "linear-gradient(to left, #0A0A0A 0%, transparent 100%)" }}
       />
       <div ref={emblaRef} className="overflow-hidden py-4">
-        <div className="flex gap-4 pl-5 pr-2">
+        <div className="flex items-stretch gap-4 pl-5 pr-2">
           {allFeatured.map((product) => (
-            <div key={product.id} className="flex-[0_0_82%] sm:flex-[0_0_46%] min-w-0">
+            <div key={product.id} className="flex-[0_0_82%] sm:flex-[0_0_46%] min-w-0 flex">
               {product.id.startsWith("pro-")
                 ? <ProCard product={product} />
                 : <ProductCard product={product} />}

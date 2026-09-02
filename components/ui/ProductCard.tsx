@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/types";
@@ -11,13 +12,24 @@ import CategoryIcon from "@/components/ui/CategoryIcon";
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const soldOutCls = "border border-horror-border text-horror-text-muted cursor-not-allowed";
   const addCls = "bg-horror-orange/10 border border-horror-orange/30 text-horror-orange hover:bg-horror-orange hover:text-black";
 
   return (
-    <article className={`group card-horror flex flex-col overflow-hidden ${product.soldOut ? "opacity-70" : ""}`}>
-      <Link href={`/products/${product.id}`} className="block">
+    <article className={`group card-horror flex flex-col overflow-hidden w-full ${product.soldOut ? "opacity-70" : ""}`}>
+      <Link
+        href={`/products/${product.id}`}
+        className="block"
+        onMouseEnter={() => videoRef.current?.play()}
+        onMouseLeave={() => {
+          if (videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+          }
+        }}
+      >
         <div className={`relative h-64 bg-gradient-to-br ${product.bgGradient} overflow-hidden flex items-center justify-center`}>
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `radial-gradient(ellipse at 50% 80%, ${product.accentColor} 0%, transparent 65%)` }} />
           <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent" />
@@ -26,13 +38,23 @@ export default function ProductCard({ product }: { product: Product }) {
               src={product.image}
               alt={product.name}
               fill
-              className="object-contain object-center p-4 relative z-10"
+              className={`object-contain object-center p-4 relative z-10 ${product.video ? "transition-opacity duration-300 group-hover:opacity-0" : ""}`}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           ) : (
             <div className="relative z-10 text-horror-text-muted/30">
               <CategoryIcon id={product.category} size={96} />
             </div>
+          )}
+          {product.video && (
+            <video
+              ref={videoRef}
+              src={product.video}
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-contain object-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            />
           )}
 
           {product.soldOut && (
@@ -66,17 +88,6 @@ export default function ProductCard({ product }: { product: Product }) {
             </h3>
           </Link>
         </div>
-
-        {product.features.length > 0 && (
-          <ul className="grid grid-cols-2 gap-x-3 gap-y-1.5 mb-4">
-            {product.features.map((feat) => (
-              <li key={feat} className="flex items-center gap-1.5 text-xs text-horror-text-secondary">
-                <div className="w-1 h-1 rounded-full bg-horror-orange flex-shrink-0" />
-                {feat}
-              </li>
-            ))}
-          </ul>
-        )}
 
         <div className="mt-auto pt-4 border-t border-horror-border flex items-end justify-between">
           <div>

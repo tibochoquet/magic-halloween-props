@@ -30,7 +30,7 @@ export const nl = {
   },
 
   featured: {
-    eyebrow: "Ons Arsenaal",
+    eyebrow: "Uitgelicht",
     title: "Uitgelichte",
     titleAccent: "Horrors",
     subtitle: "Handgemaakte animatronics gebouwd voor maximale impact. Elk prop getest op 500+ activaties per nacht.",
@@ -148,20 +148,20 @@ export const nl = {
     },
     relatedTitle: "Meer uit het",
     relatedAccent: "Arsenaal",
-    shippingNote: "Op voorraad in ons magazijn in Nederweert · Levering via DHL/PostNL · Afhalen op afspraak mogelijk",
+    shippingNote: "Op voorraad in ons magazijn in Nederweert · Gratis verzending via DHL/DPD · Afhalen op afspraak mogelijk",
     discount: "korting",
   },
 
   shop: {
     eyebrow: "Volledige Collectie",
-    title: "Het Hele",
-    titleAccent: "Arsenaal",
+    title: "Horror",
+    titleAccent: "Collectie",
     subtitle: "Alle animatronics op voorraad in ons magazijn in Nederweert. Direct leverbaar of afhalen op afspraak.",
     filterAll: "Alles",
     stock: {
       warehouse: "Op voorraad in Nederweert, Nederland",
-      delivery: "Levering via DHL / PostNL",
-      returns: "14 dagen retourrecht",
+      delivery: "Gratis verzending via DHL / DPD",
+      returns: "Grootste collectie van NL",
       email: "info@allseasontoys.nl",
     },
   },
@@ -200,7 +200,7 @@ export const nl = {
     steps: [
       { step: "01", title: "Directe import", body: "We selecteren en importeren animatronics rechtstreeks bij fabrikanten — streng gecontroleerd op kwaliteit en duurzaamheid." },
       { step: "02", title: "Opslag in NL", body: "Producten worden opgeslagen in ons magazijn in Nederweert. Voorraad is altijd direct beschikbaar, geen wachttijden." },
-      { step: "03", title: "Levering of afhalen", body: "Bestelling geplaatst? We verzenden snel via DHL of PostNL. Liever zelf ophalen? Dat kan — op afspraak." },
+      { step: "03", title: "Levering of afhalen", body: "Bestelling geplaatst? We verzenden gratis en snel via DHL of DPD. Liever zelf ophalen? Dat kan — op afspraak." },
     ],
     warehouseEyebrow: "Ons Magazijn",
     warehouseTitle: "Kom langs",
@@ -308,7 +308,7 @@ export const nl = {
     "animatronic-crow-in-cage": {
       description: "Animatronic bezeten kraai in kooi met bewegingssensor en geluid.",
       features: [],
-      longDescription: `<p>Deze Animatronic Crow in Cage lijkt rechtstreeks uit een nachtmerrie te komen. In zijn kooi beweegt de kraai levensecht terwijl zijn snavel meebeweegt. Hij maakt enge geluiden en praat. Zijn ogen en kooi lichten op, wat zorgt voor een extra spookachtig effect.</p><p>Met een formaat van 32 × 20 × 20 cm is dit een compacte, maar huiveringwekkende toevoeging aan je Halloween-decoratie. Dankzij de voeding op 3× AA-batterijen kun je hem overal neerzetten – in huis, etalages, spookhuizen of bij je Halloween party.</p><h4>Waarom kiezen voor de Animatronic Crow in Cage?</h4><ul><li>Bezeten kraai in kooi – levensecht en creepy</li><li>Beweegt, praat en maakt enge kraaiengeluiden</li><li>Snavel beweegt synchroon tijdens het praten</li><li>Licht- en geluidseffecten voor extra spanning</li><li>Compact formaat: 32 × 20 × 20 cm</li><li>Werkt op 3× AA-batterijen – overal te plaatsen</li><li>Perfect voor Halloween, horrorfeesten en spookhuizen</li></ul><p>Laat dit enge kraaiengeluid door je huis galmen en breng je Halloween tot leven met deze angstaanjagende animatronic!</p>`,
+      longDescription: `<p>Deze Animatronic Crow in Cage lijkt rechtstreeks uit een nachtmerrie te komen. In zijn kooi beweegt de kraai levensecht terwijl zijn snavel meebeweegt. Hij maakt enge geluiden en praat. Zijn ogen en kooi lichten op, wat zorgt voor een extra spookachtig effect.</p><p>Met een formaat van 0,32 × 0,20 × 0,20 m is dit een compacte, maar huiveringwekkende toevoeging aan je Halloween-decoratie. Dankzij de voeding op 3× AA-batterijen kun je hem overal neerzetten – in huis, etalages, spookhuizen of bij je Halloween party.</p><h4>Waarom kiezen voor de Animatronic Crow in Cage?</h4><ul><li>Bezeten kraai in kooi – levensecht en creepy</li><li>Beweegt, praat en maakt enge kraaiengeluiden</li><li>Snavel beweegt synchroon tijdens het praten</li><li>Licht- en geluidseffecten voor extra spanning</li><li>Compact formaat: 0,32 × 0,20 × 0,20 m</li><li>Werkt op 3× AA-batterijen – overal te plaatsen</li><li>Perfect voor Halloween, horrorfeesten en spookhuizen</li></ul><p>Laat dit enge kraaiengeluid door je huis galmen en breng je Halloween tot leven met deze angstaanjagende animatronic!</p>`,
     },
     "halloween-pop-chainsaw-killer": {
       description: "Staande animatronic Chainsaw Killer van 1,70 m met beweging, motorzaag-geluid en rode ogen.",

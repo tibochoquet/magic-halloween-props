@@ -3,7 +3,6 @@
 import Link from "next/link";
 import type { Category } from "@/types";
 import { useTranslation } from "@/hooks/useTranslation";
-import CategoryIcon from "@/components/ui/CategoryIcon";
 
 type CategoryId = "zombie" | "witch" | "clown" | "ghost" | "monster" | "reaper" | "skeleton" | "wizard" | "mummy";
 
@@ -30,31 +29,20 @@ export default function CategoryCard({ category }: { category: Category }) {
         style={{ background: category.accentColor }}
       />
 
-      <div className="relative z-10 p-6 flex flex-col min-h-[180px] md:min-h-[200px]">
-        {/* Lucide icon */}
-        <div
-          className="mb-auto text-horror-text-muted/50 group-hover:text-horror-orange transition-all duration-500 group-hover:drop-shadow-[0_0_10px_rgba(255,107,0,0.5)]"
-        >
-          <CategoryIcon id={category.id} size={40} />
+      <div className="relative z-10 p-4 flex items-center justify-between gap-3">
+        <div>
+          <h3 className="font-cinzel text-base font-bold text-horror-text-primary group-hover:text-white transition-colors duration-300">
+            {name}
+          </h3>
+          <p className="text-horror-text-muted text-xs mt-0.5">{description}</p>
         </div>
 
-        <div className="mt-6">
-          <div className="flex items-end justify-between">
-            <div>
-              <h3 className="font-cinzel text-lg font-bold text-horror-text-primary group-hover:text-white transition-colors duration-300">
-                {name}
-              </h3>
-              <p className="text-horror-text-muted text-xs mt-0.5">{description}</p>
-            </div>
-
-            <div className="flex flex-col items-end gap-1">
-              <span className="text-horror-text-muted text-xs">{category.itemCount} props</span>
-              <div className="w-7 h-7 rounded-full border border-horror-border flex items-center justify-center group-hover:border-horror-orange/50 group-hover:bg-horror-orange/10 transition-all duration-300">
-                <svg className="w-3 h-3 text-horror-text-muted group-hover:text-horror-orange transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
+        <div className="flex flex-col items-end gap-1 flex-shrink-0">
+          <span className="text-horror-text-muted text-xs whitespace-nowrap">{category.itemCount} props</span>
+          <div className="w-6 h-6 rounded-full border border-horror-border flex items-center justify-center group-hover:border-horror-orange/50 group-hover:bg-horror-orange/10 transition-all duration-300">
+            <svg className="w-3 h-3 text-horror-text-muted group-hover:text-horror-orange transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
           </div>
         </div>
       </div>

@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/types";
 import AddToCartButton from "@/components/ui/AddToCartButton";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
+
+type MediaItem = { type: "image"; src: string } | { type: "video"; src: string };
 
 export default function ProductPageContent({ product, related }: { product: Product; related: Product[] }) {
   const t = useTranslation();
@@ -15,6 +18,14 @@ export default function ProductPageContent({ product, related }: { product: Prod
   const description = pd?.description ?? product.description;
   const features: string[] = pd?.features ?? product.features;
   const longDescription = pd?.longDescription;
+
+  const media: MediaItem[] = [
+    ...(product.image ? [{ type: "image" as const, src: product.image }] : []),
+    ...(product.video ? [{ type: "video" as const, src: product.video }] : []),
+  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = media[activeIndex];
+  const goTo = (i: number) => setActiveIndex((i + media.length) % media.length);
 
   return (
     <div className="max-w-7xl mx-auto px-5 md:px-8 pt-32 pb-24">
@@ -35,9 +46,17 @@ export default function ProductPageContent({ product, related }: { product: Prod
             <div className="absolute inset-0" style={{ background: `radial-gradient(ellipse at 50% 80%, ${product.accentColor} 0%, transparent 60%)` }} />
             <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/70 to-transparent" />
             <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-black/40 to-transparent" />
-            {product.image ? (
+            {active?.type === "video" ? (
+              <video
+                key={active.src}
+                src={active.src}
+                className="relative z-10 w-full h-full object-contain object-center bg-black"
+                controls
+                playsInline
+              />
+            ) : active?.type === "image" ? (
               <Image
-                src={product.image}
+                src={active.src}
                 alt={product.name}
                 fill
                 className="object-contain object-center p-8 relative z-10"
@@ -51,7 +70,53 @@ export default function ProductPageContent({ product, related }: { product: Prod
               <div className={`absolute top-5 left-5 px-3 py-1.5 text-xs font-bold tracking-widest ${BADGE_STYLES[product.badge]}`}>{product.badge}</div>
             )}
             <div className="absolute top-5 right-5 px-3 py-1.5 bg-black/60 border border-white/10 text-horror-text-muted text-xs font-mono tracking-wide">{product.height}</div>
+
+            {media.length > 1 && (
+              <>
+                <button
+                  aria-label="Vorige"
+                  onClick={() => goTo(activeIndex - 1)}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center bg-black/60 border border-white/10 text-white hover:bg-black/80 hover:border-horror-orange/50 transition-colors duration-200"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
+                </button>
+                <button
+                  aria-label="Volgende"
+                  onClick={() => goTo(activeIndex + 1)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center bg-black/60 border border-white/10 text-white hover:bg-black/80 hover:border-horror-orange/50 transition-colors duration-200"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
+                </button>
+              </>
+            )}
           </div>
+
+          {media.length > 1 && (
+            <div className="mt-3 flex gap-3">
+              {media.map((item, i) => (
+                <button
+                  key={item.src}
+                  onClick={() => setActiveIndex(i)}
+                  className={`relative w-20 h-20 flex-shrink-0 bg-gradient-to-br ${product.bgGradient} overflow-hidden border transition-colors duration-200 ${
+                    i === activeIndex ? "border-horror-orange" : "border-horror-border hover:border-horror-orange/40"
+                  }`}
+                >
+                  {item.type === "image" ? (
+                    <Image src={item.src} alt="" fill className="object-contain object-center p-1.5" sizes="80px" />
+                  ) : (
+                    <>
+                      <video src={item.src} muted playsInline className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/25">
+                        <div className="w-6 h-6 rounded-full bg-black/70 flex items-center justify-center">
+                          <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="mt-5 grid grid-cols-3 gap-3">
             {[
@@ -154,7 +219,17 @@ export default function ProductPageContent({ product, related }: { product: Prod
               <Link key={r.id} href={`/products/${r.id}`} className="group card-horror flex flex-col overflow-hidden">
                 <div className={`relative h-48 bg-gradient-to-br ${r.bgGradient} flex items-center justify-center overflow-hidden`}>
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: `radial-gradient(ellipse at 50% 80%, ${r.accentColor} 0%, transparent 65%)` }} />
-                  <span className="text-6xl select-none animate-float relative z-10">{r.iconEmoji}</span>
+                  {r.image ? (
+                    <Image
+                      src={r.image}
+                      alt={r.name}
+                      fill
+                      className="object-contain object-center p-4 relative z-10"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <span className="text-6xl select-none animate-float relative z-10">{r.iconEmoji}</span>
+                  )}
                 </div>
                 <div className="p-5">
                   <span className="text-horror-orange-dark text-[10px] font-semibold tracking-wider uppercase">{r.category}</span>
