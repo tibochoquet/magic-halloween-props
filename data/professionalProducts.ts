@@ -22,6 +22,7 @@ export const professionalProducts: Product[] = [
     description: "Levensechte animatronic Carnival Barker Clown of Terror die angstaanjagende zinnen uitspreekt. Realistische bewegende ogen volgen bezoekers, gecombineerd met een dreigende grijns en circussfeer.",
     features: ["Indrukwekkende hoogte van 2,25 m", "Digitale bewegende ogen die bezoekers volgen", "Spreekt angstaanjagende zinnen uit", "Geschikt voor haunted houses, escape rooms en circusthema's"],
     height: "2,25 m",
+    video: "/products/Clown%20of%20terror.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/clownofterror.png",
   },
   {
@@ -32,6 +33,7 @@ export const professionalProducts: Product[] = [
     description: "Dit is waarschijnlijk de engste clown die je ooit tegenkomt. Terwijl hij hard lacht, slingert hij het angstige meisje in zijn hand door de lucht.",
     features: [],
     height: "2,40 m",
+    video: "/products/Clown%20your%20worse%20Nightmare.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/clownyourworstnightmare.png",
   },
   {
@@ -43,6 +45,7 @@ export const professionalProducts: Product[] = [
     description: "Deze vogelverschrikker komt griezelig tot leven en verjaagt iedereen met zijn angstaanjagende uiterlijk.",
     features: ["Ogen lichten op, beweegt en praat"],
     height: "1,80 m",
+    video: "/products/Dark%20Evil%20Scarecrow.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/darkevilscarecrow.png",
   },
   {
@@ -53,6 +56,7 @@ export const professionalProducts: Product[] = [
     description: "Elvira is geen gewoon klein meisje. Eeuwen geleden werd ze door haar ouders in de steek gelaten en nu zint ze op niets anders dan wraak. 's Nachts rijdt ze op haar hobbelpaard terwijl ze griezelige slaapliedjes zingt.",
     features: ["Aanraakactivering met schommelbeweging en rood oplichtende ogen", "Speelt speeldoosmelodieën en praat", "Spookachtig gebarsten babypop-gezicht", "Werkt op 110-240V adapter"],
     height: "0,90 m",
+    video: "/products/Elvira%20animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/elviraanimatronic.png",
   },
   {
@@ -64,6 +68,7 @@ export const professionalProducts: Product[] = [
     description: "Een 2,10 meter hoog schrikbewind rechtstreeks uit een horrorfilm. Deze animatronic buigt dreigend voorover met een grijnzende pompoenlantaarn in zijn klauw en gloeiende gele ogen.",
     features: ["Skeletachtige kop- en lichaamsconstructie", "Gloeiende gele ogen", "Houdt een jack-o-lantern vast", "Geprogrammeerd met beweging en enge uitspraken"],
     height: "2,10 m",
+    video: "/products/Evil%20Pumkin%20Terror%20Monster.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/evilpumpkinterrormonster.png",
   },
   {
@@ -84,6 +89,7 @@ export const professionalProducts: Product[] = [
     price: 579,
     description: "Deze mega grote heks intimideert elke gast met haar dreigende bewegingen en gemene lach.",
     features: [],
+    video: "/products/Extreem%20Mean%20Witch.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/extreemmeanwitch.png",
   },
   {
@@ -106,6 +112,7 @@ export const professionalProducts: Product[] = [
     description: "Deze angstaanjagende zombie is dé blikvanger van je Halloweenfeest. Spreekt met een schorre, droge stem terwijl hoofd en mond bewegen, begeleid door griezelige druppelgeluiden.",
     features: ["3 werkstanden: continu, bewegingsmelder of voetmat", "Oplichtende digitale ogen met geanimeerde beweging", "Gedetailleerde latex gezichtsuitdrukking", "Inclusief activeringsmat en NL-adapter"],
     height: "ca. 2,10 m",
+    video: "/products/Nightmare%20terror%20zombie.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/nightmareterrorzombie.png",
   },
   {
@@ -180,6 +187,7 @@ export const professionalProducts: Product[] = [
     description: "Een imposant doodsengelfiguur met lang grijzend haar, wapperende gewaden en benige handen die naar bezoekers reiken — licht, geluid en beweging voor een zeer indrukwekkende Halloween-decoratie.",
     features: ["Continu, bewegingsmelder of voetmatactivering (mat niet inbegrepen)", "Oplichtende ogen en gedetailleerde gezichtsuitdrukking", "Materiaal: metaal, latex en kunststof", "Inclusief EU-adapter"],
     height: "2,15 m",
+    video: "/products/Screeming%20Angel%20of%20the%20dark.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/screamingangelofthedark.png",
   },
   {
@@ -223,6 +231,7 @@ export const professionalProducts: Product[] = [
     description: "Deze verschrikkelijke weerwolf maakt elke horror-setting compleet: hij beweegt, gromt en zijn ogen lichten op.",
     features: ["Geleverd als bouwpakket met montage-instructies", "Ingebouwde bewegingssensor activeert bij binnenkomst", "Verstelbaar volume aan de achterkant"],
     height: "2,10 m",
+    video: "/products/Weerwolf%20XXL%20animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/weerwolfxxl.png",
   },
   {
@@ -232,6 +241,7 @@ export const professionalProducts: Product[] = [
     price: 379,
     description: "Een gruwelijke, zéér realistische zombie die gromt en beweegt — de kans van je leven voor je horror-setting.",
     features: [],
+    video: "/products/Zombie%20attack%20pro.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/zombieattack.png",
   },
   {

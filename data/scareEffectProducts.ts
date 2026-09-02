@@ -11,6 +11,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Spectaculair schrikeffect met onverwachte draaibeweging", "Bewegend lichaam en trillende vleugels", "Rode LED-ogen die oplichten tijdens de activering", "Angstaanjagende schreeuw en geluidseffecten", "Werkt volledig draadloos op batterijen"],
     height: "1,68 m",
     image: "/products/Angel%20Of%20Dead.png",
+    video: "/products/Angel%20Of%20Dead.mp4",
     ...style.reaper,
   },
   {
@@ -22,6 +23,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Spectaculair schrikeffect met onverwachte draaibeweging", "Bewegend en trillend lichaam", "Rode LED-ogen die oplichten tijdens de activering", "Werkt volledig draadloos op batterijen", "Angstaanjagende schreeuw en geluidseffecten"],
     height: "1,65 m",
     image: "/products/Nun%20From%20Hell.png",
+    video: "/products/Nun%20From%20Hell.mp4",
     ...style.ghost,
   },
   {
@@ -33,6 +35,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Spectaculair pop-up effect waarbij een schedel plotseling omhoog springt", "Oplichtende ogen voor een extra angstaanjagend effect", "Creepy geluiden, kwaadaardig gelach en kraaiengeluiden", "Razendsnelle scare-actie voor maximale schrikreacties"],
     height: "2,00 m",
     image: "/products/Popping%20Pumpkin%20Man.png",
+    video: "/products/Popping%20Pumpkin%20Man.mp4",
     ...style.monster,
   },
   {
@@ -44,6 +47,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Fel rood oplichtende ogen", "IJzingwekkende schreeuw voor maximaal schrikeffect", "Bewegend hoofd dat van links naar rechts draait", "Verborgen tweede gezicht met een angstaanjagende schedel"],
     height: "1,65 m",
     image: "/products/Possessed%20Saint.png",
+    video: "/products/Possessed%20Saint.mp4",
     ...style.monster,
   },
   {
@@ -55,6 +59,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Levensecht zweefeffect", "Ogen lichten fel op tijdens de animatie", "Geluiden van roepende geest en mysterieuze magische effecten", "Ideaal met rookmachine voor extra sfeer"],
     height: "~1,90 m",
     image: "/products/Rising%20Spirit.png",
+    video: "/products/Rising%20Spirit.mp4",
     ...style.ghost,
   },
   {
@@ -66,6 +71,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Roept \"I'm going to get you!\" en \"Where are you?\"", "Ogen lichten fel op tijdens de animatie", "Armen en bovenlichaam schieten omhoog met grote snelheid", "Angstaanjagende schreeuw voor maximaal schrikeffect"],
     height: "1,63 m",
     image: "/products/Screaming%20Little%20Girl.png",
+    video: "/products/Screaming%20Little%20Girl.mp4",
     ...style.ghost,
   },
   {
@@ -77,6 +83,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Hoofd draait om een verborgen doodshoofd te onthullen", "Wit flitsend stroboscoopeffect op de schedel", "Kwaadaardig gelach voor een maximaal schrikeffect", "Werkt op batterijen, dus overal draadloos neer te zetten"],
     height: "1,68 m",
     image: "/products/Two-Faced%20Ghost.png",
+    video: "/products/Two-Faced%20Ghost.mp4",
     ...style.ghost,
   },
   {
@@ -88,6 +95,7 @@ export const scareEffectProducts: Product[] = [
     features: ["Bewegend wolvenhoofd dat plotseling omhoog klapt", "Mysterieuze heks verschijnt vanuit het wolvenhoofd", "Groene verlichting voor een angstaanjagende uitstraling", "Harde schreeuw en gemene lach voor maximaal schrikeffect"],
     height: "1,70 m",
     image: "/products/Wolf%20Woman.png",
+    video: "/products/Wolf%20Woman.mp4",
     ...style.monster,
   },
 ];

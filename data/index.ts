@@ -59,6 +59,7 @@ export const products: Product[] = [
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-evil-spirit.png",
+    video: "/products/Halloween%20pop%20EVIL%20SPIRIT.mp4",
     ...style.ghost,
   },
   {
@@ -70,6 +71,7 @@ export const products: Product[] = [
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-evil-witch.png",
+    video: "/products/Halloween%20pop%20Evil%20Witch.mp4",
     ...style.witch,
   },
   {
@@ -81,6 +83,7 @@ export const products: Product[] = [
     height: "~1,65 m",
     features: [],
     image: "/products/halloween-pop-freaky-clown.png",
+    video: "/products/Halloween%20pop%20Freaky%20Clown.mp4",
     ...style.clown,
   },
   {
@@ -103,6 +106,7 @@ export const products: Product[] = [
     height: "1,70 m",
     features: [],
     image: "/products/halloween-pop-horrible-pumpkin.png",
+    video: "/products/Halloween%20pop%20Horrible%20Pumpkin.mp4",
     ...style.monster,
   },
   {
@@ -115,6 +119,7 @@ export const products: Product[] = [
     height: "~1,80 m",
     features: [],
     image: "/products/halloween-pop-mad-pumpkin-man.png",
+    video: "/products/Halloween%20pop%20Mad%20Pumpkin%20Man.mp4",
     ...style.monster,
   },
   {
@@ -126,6 +131,7 @@ export const products: Product[] = [
     height: "~1,60 m",
     features: [],
     image: "/products/halloween-pop-mean-witch.png",
+    video: "/products/Halloween%20pop%20Mean%20Witch.mp4",
     ...style.witch,
   },
   {
@@ -149,6 +155,7 @@ export const products: Product[] = [
     height: "1,90 m",
     features: [],
     image: "/products/halloween-pop-old-wizard.png",
+    video: "/products/Halloween%20pop%20Old%20wizard.mp4",
     ...style.wizard,
   },
   {
@@ -172,6 +179,7 @@ export const products: Product[] = [
     height: "~1,60 m",
     features: [],
     image: "/products/halloween-pop-scary-clown.png",
+    video: "/products/Halloween%20pop%20Scary%20Clown.mov",
     ...style.clown,
   },
   {
@@ -183,6 +191,7 @@ export const products: Product[] = [
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-scary-zombie.png",
+    video: "/products/Halloween%20pop%20Scary%20Zombie.mp4",
     ...style.zombie,
   },
   {
@@ -194,6 +203,7 @@ export const products: Product[] = [
     height: "~1,60 m",
     features: [],
     image: "/products/halloween-pop-screaming-dead.png",
+    video: "/products/Halloween%20pop%20Screaming%20Dead.mov",
     ...style.zombie,
   },
   {
@@ -205,6 +215,7 @@ export const products: Product[] = [
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-screaming-skeleton.png",
+    video: "/products/Halloween%20pop%20Screaming%20Skeleton.mp4",
     ...style.skeleton,
   },
   {
@@ -228,6 +239,7 @@ export const products: Product[] = [
     height: "~1,73 m",
     features: [],
     image: "/products/halloween-pop-sneaky-clown.png",
+    video: "/products/Halloween%20pop%20Sneaky%20Clown.mov",
     ...style.clown,
   },
   {
@@ -251,6 +263,7 @@ export const products: Product[] = [
     height: "1,70 m",
     features: [],
     image: "/products/halloween-pop-spirit-of-dead.png",
+    video: "/products/Halloween%20pop%20Spirit%20of%20Dead.mp4",
     ...style.ghost,
   },
   {
@@ -325,6 +338,7 @@ export const products: Product[] = [
     height: "~2,00 m",
     features: [],
     image: "/products/halloween-pop-zombie-vrouw.png",
+    video: "/products/Halloween%20pop%20Zombie%20Vrouw.mov",
     ...style.zombie,
   },
   {
@@ -336,6 +350,7 @@ export const products: Product[] = [
     height: "~1,80 m",
     features: [],
     image: "/products/the-creepy-wizard.png",
+    video: "/products/The%20Creepy%20Wizard.mp4",
     ...style.wizard,
   },
   {
@@ -347,6 +362,7 @@ export const products: Product[] = [
     features: ["Bewegend hoofd en lichaam voor realistisch effect", "Fel rood oplichtende schedel tijdens animatie", "Inclusief groot piratenzwaard", "Werkt op batterijen (draadloos)"],
     height: "1,83 m",
     image: "/products/Evil%20Pirate.png",
+    video: "/products/Evil%20Pirate.mp4",
     ...style.skeleton,
   },
   {
@@ -357,6 +373,7 @@ export const products: Product[] = [
     description: "Laat de duisternis tot leven komen met de indrukwekkende Flying Skeleton Creep Animatronic. Dit angstaanjagende vliegende skelet lijkt rechtstreeks uit de onderwereld te zijn opgestegen en zweeft dreigend boven zijn slachtoffers.",
     features: ["Bewegende vleugels voor een realistisch vliegend effect", "Bewegend lichaam tijdens de animatie", "Kwaadaardige lach en angstaanjagende schreeuwgeluiden", "Fel groen oplichtende ogen"],
     image: "/products/Flying%20Skeleton%20Creep.png",
+    video: "/products/Flying%20Skeleton%20Creep.mp4",
     ...style.skeleton,
   },
   {
@@ -368,6 +385,7 @@ export const products: Product[] = [
     features: ["Bewegend lichaam voor een realistisch effect", "Fel rood oplichtende ogen", "Kwaadaardige en gemene clownslach", "Griezelige circusmuziek op de achtergrond"],
     height: "1,73 m",
     image: "/products/Horror%20Clown.png",
+    video: "/products/Horror%20Clown.mp4",
     ...style.clown,
   },
   {
@@ -389,6 +407,7 @@ export const products: Product[] = [
     features: ["Levensechte Halloween animatronic met volledig groene uitstraling", "Schedel met fel groen oplichtende ogen en verlichting", "Kwaadaardige lach, diepe grom en realistische kettinggeluiden", "Werkt op batterijen (draadloos neer te zetten)"],
     image: "/products/Swamp%20Ghost.png",
     height: "1,83 m",
+    video: "/products/Swamp%20Ghost.mp4",
     ...style.ghost,
   },
 ];
