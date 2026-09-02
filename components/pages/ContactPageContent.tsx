@@ -56,7 +56,7 @@ export default function ContactPageContent() {
               </h2>
               <p className="text-horror-text-muted text-sm mb-8">
                 {c.formIntro}{" "}
-                <a href="mailto:info@allseasontoys.nl" className="text-horror-orange hover:underline">info@allseasontoys.nl</a>
+                <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">jorgen0207@gmail.com</a>
               </p>
               <ContactForm />
             </div>
@@ -89,7 +89,7 @@ export default function ContactPageContent() {
             <div className="flex flex-col md:flex-row gap-6 text-xs text-horror-text-muted">
               <span>{c.kvk} <span className="text-horror-text-secondary">64942708</span></span>
               <span>{c.btw} <span className="text-horror-text-secondary">NL855913770B01</span></span>
-              <a href="mailto:info@allseasontoys.nl" className="text-horror-orange hover:underline">info@allseasontoys.nl</a>
+              <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">jorgen0207@gmail.com</a>
             </div>
           </div>
         </div>

@@ -162,7 +162,7 @@ export const nl = {
       warehouse: "Op voorraad in Nederweert, Nederland",
       delivery: "Gratis verzending via DHL / DPD",
       returns: "Grootste collectie van NL",
-      email: "info@allseasontoys.nl",
+      email: "jorgen0207@gmail.com",
     },
   },
 
@@ -191,7 +191,7 @@ export const nl = {
       {
         icon: "✉",
         title: "Persoonlijk contact",
-        body: "Vragen? Stuur een e-mail naar info@allseasontoys.nl. We reageren doorgaans binnen één werkdag met een concreet antwoord.",
+        body: "Vragen? Stuur een e-mail naar jorgen0207@gmail.com. We reageren doorgaans binnen één werkdag met een concreet antwoord.",
       },
     ],
     howEyebrow: "Hoe het werkt",
@@ -208,7 +208,7 @@ export const nl = {
     warehouseBody: "Wil je producten bekijken of een bestelling ophalen? Dat is mogelijk in ons magazijn in Nederweert. Neem van tevoren contact op om een afspraak te maken.",
     contactDetails: [
       { label: "Adres", value: "Pannenweg 306, 6031 RK Nederweert" },
-      { label: "E-mail", value: "info@allseasontoys.nl" },
+      { label: "E-mail", value: "jorgen0207@gmail.com" },
       { label: "Bezoek", value: "Uitsluitend op afspraak" },
     ],
     appointmentBtn: "Afspraak maken",
@@ -219,7 +219,7 @@ export const nl = {
       { label: "KvK-nummer", value: "64942708" },
       { label: "BTW-nummer", value: "NL855913770B01" },
       { label: "Adres", value: "Pannenweg 306, 6031 RK Nederweert, Nederland" },
-      { label: "E-mail", value: "info@allseasontoys.nl" },
+      { label: "E-mail", value: "jorgen0207@gmail.com" },
     ],
   },
 
@@ -234,7 +234,7 @@ export const nl = {
         id: "email",
         icon: "✉",
         title: "E-mail",
-        lines: ["info@allseasontoys.nl"],
+        lines: ["jorgen0207@gmail.com"],
         note: "Wij reageren binnen 1 werkdag",
       },
       {
@@ -262,7 +262,7 @@ export const nl = {
       { id: "pickup-faq", q: "Kan ik mijn bestelling afhalen?", a: "Ja, afhalen is mogelijk op ons adres in Nederweert. Neem van tevoren contact op via e-mail om een afhaaltijd in te plannen." },
       { id: "returns", q: "Wat is het retourbeleid?", a: "Je hebt 14 dagen bedenktijd na ontvangst van je bestelling. Producten moeten ongebruikt en in originele verpakking worden geretourneerd. Neem contact op via e-mail om een retour te starten." },
       { id: "warranty", q: "Bieden jullie garantie?", a: "Ja. Op al onze animatronics gelden de wettelijke garantiebepalingen. Bij defecten of klachten staan we je graag bij — stuur een e-mail met een beschrijving en indien mogelijk foto's." },
-      { id: "wholesale", q: "Zijn er groothandelsmogelijkheden?", a: "Ja, voor groothandel of grotere bestellingen voor professionele toepassingen neem je contact op via info@allseasontoys.nl." },
+      { id: "wholesale", q: "Zijn er groothandelsmogelijkheden?", a: "Ja, voor groothandel of grotere bestellingen voor professionele toepassingen neem je contact op via jorgen0207@gmail.com." },
       { id: "origin", q: "Waar komen de producten vandaan?", a: "Onze animatronics worden direct geïmporteerd van de fabrikant en liggen op voorraad in ons magazijn in Nederweert, Nederland. Zo bieden we scherpe prijzen zonder lange levertijden." },
     ],
     companyTitle: "Bedrijfsgegevens",

@@ -346,6 +346,7 @@ export const products: Product[] = [
     description: "Stap aan boord van een vervloekt piratenschip met de angstaanjagende Evil Pirate Animatronic. Deze levensechte ondode piraat vertelt het duistere verhaal over zijn leven op een spookschip, waar hij eeuwen geleden stierf maar nooit echt is verdwenen.",
     features: ["Bewegend hoofd en lichaam voor realistisch effect", "Fel rood oplichtende schedel tijdens animatie", "Inclusief groot piratenzwaard", "Werkt op batterijen (draadloos)"],
     height: "1,83 m",
+    image: "/products/Evil%20Pirate.png",
     ...style.skeleton,
   },
   {
@@ -355,6 +356,7 @@ export const products: Product[] = [
     price: 149.95,
     description: "Laat de duisternis tot leven komen met de indrukwekkende Flying Skeleton Creep Animatronic. Dit angstaanjagende vliegende skelet lijkt rechtstreeks uit de onderwereld te zijn opgestegen en zweeft dreigend boven zijn slachtoffers.",
     features: ["Bewegende vleugels voor een realistisch vliegend effect", "Bewegend lichaam tijdens de animatie", "Kwaadaardige lach en angstaanjagende schreeuwgeluiden", "Fel groen oplichtende ogen"],
+    image: "/products/Flying%20Skeleton%20Creep.png",
     ...style.skeleton,
   },
   {
@@ -365,6 +367,7 @@ export const products: Product[] = [
     description: "Stap binnen in een vervloekt circus met de angstaanjagende Horror Clown Animatronic. Deze gestoorde clown lijkt rechtstreeks uit een verlaten horrorcircus te zijn ontsnapt en staat klaar om iedere bezoeker de stuipen op het lijf te jagen.",
     features: ["Bewegend lichaam voor een realistisch effect", "Fel rood oplichtende ogen", "Kwaadaardige en gemene clownslach", "Griezelige circusmuziek op de achtergrond"],
     height: "1,73 m",
+    image: "/products/Horror%20Clown.png",
     ...style.clown,
   },
   {
@@ -374,6 +377,7 @@ export const products: Product[] = [
     price: 149.95,
     description: "Durf jij de vergiftigde appel aan te nemen van de angstaanjagende Poison Apple Witch? Deze kwaadaardige heks lijkt zo uit een duister sprookje te zijn gestapt en wacht geduldig op haar volgende slachtoffer.",
     features: ["Ogen lichten fel op tijdens de animatie", "Begint te praten wanneer ze wordt geactiveerd", "Dreigende uitstraling en griezelige geluidseffecten", "Werkt op batterijen (draadloos)"],
+    image: "/products/Poison%20Apple%20Witch.png",
     ...style.witch,
   },
   {
@@ -383,6 +387,7 @@ export const products: Product[] = [
     price: 159.95,
     description: "Haal de duistere sfeer van een vervloekt moeras in huis met de angstaanjagende Swamp Ghost Animatronic.",
     features: ["Levensechte Halloween animatronic met volledig groene uitstraling", "Schedel met fel groen oplichtende ogen en verlichting", "Kwaadaardige lach, diepe grom en realistische kettinggeluiden", "Werkt op batterijen (draadloos neer te zetten)"],
+    image: "/products/Swamp%20Ghost.png",
     height: "1,83 m",
     ...style.ghost,
   },

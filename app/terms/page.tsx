@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const articles = [
   {
     title: "Artikel 1 – Identiteit",
-    content: `Magic Halloween Props is een handelsnaam van All Season Toys, gevestigd te Pannenweg 306, 6031 RK Nederweert, Nederland.\n\nE-mail: info@allseasontoys.nl\nKvK-nummer: 64942708\nBTW-nummer: NL855913770B01`,
+    content: `Magic Halloween Props is een handelsnaam van All Season Toys, gevestigd te Pannenweg 306, 6031 RK Nederweert, Nederland.\n\nE-mail: jorgen0207@gmail.com\nKvK-nummer: 64942708\nBTW-nummer: NL855913770B01`,
   },
   {
     title: "Artikel 2 – Toepasselijkheid",
@@ -29,7 +29,7 @@ const articles = [
   },
   {
     title: "Artikel 6 – Herroepingsrecht",
-    content: "De consument heeft het recht om binnen 14 dagen na ontvangst van het product de overeenkomst zonder opgave van redenen te ontbinden. Producten dienen ongebruikt en in originele verpakking te worden geretourneerd. Retourkosten zijn voor rekening van de consument, tenzij anders overeengekomen. Neem contact op via info@allseasontoys.nl om een retour in te dienen.",
+    content: "De consument heeft het recht om binnen 14 dagen na ontvangst van het product de overeenkomst zonder opgave van redenen te ontbinden. Producten dienen ongebruikt en in originele verpakking te worden geretourneerd. Retourkosten zijn voor rekening van de consument, tenzij anders overeengekomen. Neem contact op via jorgen0207@gmail.com om een retour in te dienen.",
   },
   {
     title: "Artikel 7 – Betaling",
@@ -37,11 +37,11 @@ const articles = [
   },
   {
     title: "Artikel 8 – Garantie en conformiteit",
-    content: "Magic Halloween Props staat ervoor in dat de producten voldoen aan de overeenkomst, de in het aanbod vermelde specificaties en de redelijke eisen van deugdelijkheid. Op alle producten gelden de wettelijke garantiebepalingen. Bij defecten of klachten kunt u contact opnemen via info@allseasontoys.nl.",
+    content: "Magic Halloween Props staat ervoor in dat de producten voldoen aan de overeenkomst, de in het aanbod vermelde specificaties en de redelijke eisen van deugdelijkheid. Op alle producten gelden de wettelijke garantiebepalingen. Bij defecten of klachten kunt u contact opnemen via jorgen0207@gmail.com.",
   },
   {
     title: "Artikel 9 – Klachten",
-    content: "Klachten dienen binnen bekwame tijd te worden gemeld via info@allseasontoys.nl. Wij streven ernaar klachten binnen 5 werkdagen te beantwoorden. Bij geschillen trachten wij in goed overleg tot een oplossing te komen.",
+    content: "Klachten dienen binnen bekwame tijd te worden gemeld via jorgen0207@gmail.com. Wij streven ernaar klachten binnen 5 werkdagen te beantwoorden. Bij geschillen trachten wij in goed overleg tot een oplossing te komen.",
   },
   {
     title: "Artikel 10 – Toepasselijk recht",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
@@ -9,10 +10,21 @@ import type { Product } from "@/types";
 export default function ProCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   return (
     <article className={`group card-horror flex flex-col overflow-hidden w-full${product.soldOut ? " opacity-60" : ""}`}>
-      <Link href={`/products/${product.id}`} className="block">
+      <Link
+        href={`/products/${product.id}`}
+        className="block"
+        onMouseEnter={() => videoRef.current?.play()}
+        onMouseLeave={() => {
+          if (videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+          }
+        }}
+      >
         <div className="relative h-64 bg-gradient-to-br from-[#1c0e0a] to-[#0a0505] overflow-hidden flex items-center justify-center">
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -24,9 +36,19 @@ export default function ProCard({ product }: { product: Product }) {
             src={product.image!}
             alt={product.name}
             fill
-            className="object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04]"
+            className={`object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04] ${product.video ? "group-hover:opacity-0 transition-opacity" : ""}`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
+          {product.video && (
+            <video
+              ref={videoRef}
+              src={product.video}
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-contain object-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            />
+          )}
 
           {product.soldOut && (
             <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">

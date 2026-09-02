@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     title: "1. Verwerkingsverantwoordelijke",
-    content: `Magic Halloween Props is een handelsnaam van All Season Toys (Slegers import vof).\n\nAdres: Pannenweg 306, 6031 RK Nederweert, Nederland\nE-mail: info@allseasontoys.nl\nKvK: 64942708 · BTW: NL855913770B01`,
+    content: `Magic Halloween Props is een handelsnaam van All Season Toys (Slegers import vof).\n\nAdres: Pannenweg 306, 6031 RK Nederweert, Nederland\nE-mail: jorgen0207@gmail.com\nKvK: 64942708 · BTW: NL855913770B01`,
   },
   {
     title: "2. Welke persoonsgegevens wij verwerken",
@@ -33,7 +33,7 @@ const sections = [
   },
   {
     title: "7. Uw rechten (AVG)",
-    content: "U heeft op grond van de AVG de volgende rechten:\n\n• Recht op inzage in uw gegevens\n• Recht op correctie of verwijdering\n• Recht op beperking van de verwerking\n• Recht op dataportabiliteit\n• Recht om bezwaar te maken\n\nStuur een verzoek naar info@allseasontoys.nl. Wij reageren binnen 30 dagen.",
+    content: "U heeft op grond van de AVG de volgende rechten:\n\n• Recht op inzage in uw gegevens\n• Recht op correctie of verwijdering\n• Recht op beperking van de verwerking\n• Recht op dataportabiliteit\n• Recht om bezwaar te maken\n\nStuur een verzoek naar jorgen0207@gmail.com. Wij reageren binnen 30 dagen.",
   },
   {
     title: "8. Beveiliging",

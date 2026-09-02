@@ -31,7 +31,7 @@ export default function ContactForm() {
         <p className="font-cinzel font-bold text-xl text-horror-text-primary">{t.successTitle}</p>
         <p className="text-horror-text-muted text-sm max-w-xs">
           {t.successBody}{" "}
-          <span className="text-horror-orange">info@allseasontoys.nl</span>.
+          <span className="text-horror-orange">jorgen0207@gmail.com</span>.
         </p>
       </div>
     );

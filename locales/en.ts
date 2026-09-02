@@ -164,7 +164,7 @@ export const en: Translations = {
       warehouse: "In stock in Nederweert, Netherlands",
       delivery: "Free shipping via DHL / DPD",
       returns: "Largest collection in NL",
-      email: "info@allseasontoys.nl",
+      email: "jorgen0207@gmail.com",
     },
   },
 
@@ -193,7 +193,7 @@ export const en: Translations = {
       {
         icon: "✉",
         title: "Personal service",
-        body: "Questions? Email info@allseasontoys.nl. We typically respond within one business day with a clear answer.",
+        body: "Questions? Email jorgen0207@gmail.com. We typically respond within one business day with a clear answer.",
       },
     ],
     howEyebrow: "How it works",
@@ -210,7 +210,7 @@ export const en: Translations = {
     warehouseBody: "Want to view products or collect an order? You're welcome at our warehouse in Nederweert. Contact us in advance to schedule a time.",
     contactDetails: [
       { label: "Address", value: "Pannenweg 306, 6031 RK Nederweert" },
-      { label: "Email", value: "info@allseasontoys.nl" },
+      { label: "Email", value: "jorgen0207@gmail.com" },
       { label: "Visits", value: "By appointment only" },
     ],
     appointmentBtn: "Make an appointment",
@@ -221,7 +221,7 @@ export const en: Translations = {
       { label: "KvK number", value: "64942708" },
       { label: "VAT number", value: "NL855913770B01" },
       { label: "Address", value: "Pannenweg 306, 6031 RK Nederweert, Netherlands" },
-      { label: "Email", value: "info@allseasontoys.nl" },
+      { label: "Email", value: "jorgen0207@gmail.com" },
     ],
   },
 
@@ -236,7 +236,7 @@ export const en: Translations = {
         id: "email",
         icon: "✉",
         title: "Email",
-        lines: ["info@allseasontoys.nl"],
+        lines: ["jorgen0207@gmail.com"],
         note: "We reply within 1 business day",
       },
       {
@@ -264,7 +264,7 @@ export const en: Translations = {
       { id: "pickup-faq", q: "Can I collect my order?", a: "Yes, pickup is possible at our address in Nederweert. Contact us by email in advance to arrange a collection time." },
       { id: "returns", q: "What is the return policy?", a: "You have 14 days from receipt of your order to return it. Products must be unused and in original packaging. Contact us by email to initiate a return." },
       { id: "warranty", q: "Do you offer a warranty?", a: "Yes. All our animatronics are covered by statutory warranty provisions. For defects or complaints, email us with a description and photos if possible." },
-      { id: "wholesale", q: "Is wholesale available?", a: "Yes, for wholesale or larger orders for professional applications (haunted houses, theme parks, events) contact us at info@allseasontoys.nl." },
+      { id: "wholesale", q: "Is wholesale available?", a: "Yes, for wholesale or larger orders for professional applications (haunted houses, theme parks, events) contact us at jorgen0207@gmail.com." },
       { id: "origin", q: "Where do the products come from?", a: "Our animatronics are imported directly from the manufacturer and stocked at our warehouse in Nederweert, Netherlands. This allows us to offer competitive prices without long overseas lead times." },
     ],
     companyTitle: "Company details",

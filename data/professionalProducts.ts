@@ -74,6 +74,7 @@ export const professionalProducts: Product[] = [
     description: "Deze meedogenloze heks is van plan het kleine meisje levend te koken. Griezelige groene lichteffecten begeleiden het kronkelende, schreeuwende kind.",
     features: ["3 activeringsmodi: continu, bewegingsmelder of voetmat", "Inclusief vloermat met activeringsfunctie", "Licht-, beweeg- en geluidseffecten", "Inclusief rookmachine"],
     height: "ca. 2,03 m",
+    video: "/products/Evil%20Witch%20cooking%20the%20little%20girl.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/evilwitchcookinglittlegirl.png",
   },
   {
@@ -93,6 +94,7 @@ export const professionalProducts: Product[] = [
     description: "De brenger van het onheil grijpt plotseling naar voren met zijn rechterhand — durf jij de Grim Reaper te confronteren?",
     features: ["Activering via knop, bewegingssensor of voetmat", "Oranje-rood oplichtende ogen", "Houdt een zeis vast in de linkerhand", "Materialen: latex, metaal en kunststof"],
     height: "1,80 m",
+    video: "/products/Lunging%20Reaper%20animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/lungingreaper.png",
   },
   {
@@ -135,6 +137,7 @@ export const professionalProducts: Product[] = [
     description: "Een werkelijk angstaanjagende, smeulende ghoul met huiveringwekkende geluidseffecten en gloeiende verlichting in gezicht, borst en handen.",
     features: ["Geanimeerde beweging: romp beweegt naar voren en achteren", "Smeulend lichteffect in gezicht, borst en handen", "Geluidseffecten"],
     height: "ca. 2,50 m",
+    video: "/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/pumpkinhollowsmolderingghoul.png",
   },
   {
@@ -145,6 +148,7 @@ export const professionalProducts: Product[] = [
     description: "De vogelverschrikker-variant van de Pumpkin Hollow-reeks: een werkelijk angstaanjagende, smeulende ghoul met huiveringwekkende geluidseffecten en gloeiende verlichting.",
     features: ["Geanimeerde beweging: romp beweegt naar voren en achteren", "Smeulend lichteffect in gezicht, borst en handen", "Geluidseffecten", "Oplichtende ogen"],
     height: "ca. 2,50 m",
+    video: "/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20Scarecrow.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/pumpkinhollowsmolderingghoulscarecrow.png",
   },
   {
@@ -155,6 +159,7 @@ export const professionalProducts: Product[] = [
     description: "Deze gigantische animatronic van ruim 2 meter zorgt met griezelig geluid, dreigende bewegingen en helse ooggloed voor een compleet horror-effect. Een skelet-ruiter op een demonisch paard, met synchrone mondbeweging tijdens het spreken.",
     features: ["Continu, bewegingsmelder of voetmatactivering", "Oplichtende ogen en gedetailleerde gezichtsuitdrukkingen", "Paard beweegt kop en stampt met voorhoeven", "Inclusief deurmat en EU-adapter"],
     height: "ca. 2,10 m",
+    video: "/products/Riding%20dead%20Animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/ridingdead.png",
   },
   {
@@ -196,6 +201,7 @@ export const professionalProducts: Product[] = [
     description: "Een professionele heks-animatronic met servomotoren voor vloeiende, levensechte bewegingen. Spreekt dreigend Engels met een irritant hoge stem, begeleid door griezelige windgeluiden, terwijl haar bovenlichaam wiegt.",
     features: ["Continu, bewegingsmelder of voetmatactivering", "Licht-, beweeg- en geluidsfuncties", "Materiaal: metaal, latex en kunststof", "Inclusief deurmat en NL-adapter"],
     height: "1,80 m",
+    video: "/products/The%20old%20mean%20witch%20from%20the%20dark%20forest.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/oldmeanwitchdarkforest.png",
   },
   {
@@ -206,6 +212,7 @@ export const professionalProducts: Product[] = [
     description: "Dit gigantische nachtmerriefiguur van ruim 2 meter zorgt met angstaanjagend geluid, spookachtige bewegingen en helse ogen voor een complete horrorervaring.",
     features: ["3 functies: continu, bewegingsmelder of voetmatactivering", "Gedetailleerde gezichtsuitdrukkingen en oplichtende ogen", "Materiaal: metaal, latex en kunststof", "Inclusief NL-adapter"],
     height: "ca. 2,10 m",
+    video: "/products/Wailing%20Ghost%20of%20Terror.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/wailingghostofterror.png",
   },
   {
@@ -235,6 +242,7 @@ export const professionalProducts: Product[] = [
     description: "Het levensgrote zombieskelet met heksenketel is precies wat je nodig hebt om feestgangers in een griezelige stemming te brengen. Ogen lichten op, de kaak beweegt tijdens het spreken en hij roert in zijn ketel terwijl LED's vlammen simuleren.",
     features: ["3 activeringsmodi: bewegingssensor, voetmat of continu", "Verstelbaar volume via controller", "Inclusief EU-adapter en voetmat"],
     height: "ca. 1,80 m",
+    video: "/products/Zombie%20Skeleton%20with%20Cauldron%20Animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/zombieskeletonwithcauldron.png",
   },
 ];

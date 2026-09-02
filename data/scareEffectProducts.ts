@@ -87,6 +87,7 @@ export const scareEffectProducts: Product[] = [
     description: "Breng een unieke en verrassende scare tot leven met de indrukwekkende Wolf Woman Animatronic. Op het eerste gezicht lijkt het een angstaanjagende wolf, maar niets is wat het lijkt.",
     features: ["Bewegend wolvenhoofd dat plotseling omhoog klapt", "Mysterieuze heks verschijnt vanuit het wolvenhoofd", "Groene verlichting voor een angstaanjagende uitstraling", "Harde schreeuw en gemene lach voor maximaal schrikeffect"],
     height: "1,70 m",
+    image: "/products/Wolf%20Woman.png",
     ...style.monster,
   },
 ];

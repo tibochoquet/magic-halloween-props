@@ -84,8 +84,8 @@ export default function CheckoutContent() {
         </p>
         <p className="text-horror-text-muted text-sm">
           {nl ? "Vragen? Mail ons op " : "Questions? Email us at "}
-          <a href="mailto:info@allseasontoys.nl" className="text-horror-orange hover:underline">
-            info@allseasontoys.nl
+          <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">
+            jorgen0207@gmail.com
           </a>
         </p>
         <Link href="/shop" className="btn-outline mt-4">
