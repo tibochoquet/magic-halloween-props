@@ -17,6 +17,7 @@ export const style = {
 export const products: Product[] = [
   {
     id: "animatronic-crow-in-cage",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Animatronic Crow in Cage – bezeten enge kraai in kooi",
     category: "monster",
@@ -29,6 +30,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-chainsaw-killer",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Chainsaw Killer",
     category: "zombie",
@@ -42,6 +44,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-mummy",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Evil Mummy",
     category: "mummy",
@@ -55,6 +58,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-spirit",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop EVIL SPIRIT",
     category: "ghost",
@@ -68,6 +72,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Evil Witch",
     category: "witch",
@@ -81,6 +86,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-freaky-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Freaky Clown",
     category: "clown",
@@ -94,6 +100,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-grim-reaper",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Grim Reaper",
     category: "reaper",
@@ -106,6 +113,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-horrible-pumpkin",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Horrible Pumpkin",
     category: "monster",
@@ -119,6 +127,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-mad-pumpkin-man",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Mad Pumpkin Man",
     category: "monster",
@@ -133,6 +142,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-mean-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Mean Witch",
     category: "witch",
@@ -146,6 +156,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-old-wailing-ghost",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Old Wailing Ghost",
     category: "ghost",
@@ -159,6 +170,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-old-wizard",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Old wizard",
     category: "wizard",
@@ -172,6 +184,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-psycho-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Psycho Clown",
     category: "clown",
@@ -185,6 +198,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-scary-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Scary Clown",
     category: "clown",
@@ -198,6 +212,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-scary-zombie",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Scary Zombie",
     category: "zombie",
@@ -211,6 +226,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-dead",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Screaming Dead",
     category: "zombie",
@@ -224,6 +240,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-skeleton",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Screaming Skeleton",
     category: "skeleton",
@@ -237,6 +254,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Screaming Witch",
     category: "witch",
@@ -249,6 +267,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-sneaky-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Sneaky Clown",
     category: "clown",
@@ -262,6 +281,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spinning-head-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Spinning head witch",
     category: "witch",
@@ -275,6 +295,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spirit-of-dead",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Spirit of Dead",
     category: "ghost",
@@ -288,6 +309,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spooky-ghost",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Spooky Ghost",
     category: "ghost",
@@ -301,6 +323,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terrifying-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Terrifying Witch",
     category: "witch",
@@ -315,6 +338,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terror-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Terror Clown",
     category: "clown",
@@ -329,6 +353,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terror-creep",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Terror Creep",
     category: "zombie",
@@ -342,6 +367,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-witch-of-the-dark",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     name: "Halloween pop Witch of the Dark",
     category: "witch",
     price: 149.00,
@@ -355,6 +381,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-zombie-vrouw",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Halloween pop Zombie Vrouw",
     category: "zombie",
@@ -369,6 +396,7 @@ export const products: Product[] = [
   },
   {
     id: "the-creepy-wizard",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "The Creepy Wizard",
     category: "wizard",
@@ -382,6 +410,7 @@ export const products: Product[] = [
   },
   {
     id: "evil-pirate",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Evil Pirate",
     category: "skeleton",
@@ -395,6 +424,7 @@ export const products: Product[] = [
   },
   {
     id: "flying-skeleton-creep",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Flying Skeleton Creep",
     category: "skeleton",
@@ -407,6 +437,7 @@ export const products: Product[] = [
   },
   {
     id: "horror-clown",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Horror Clown",
     category: "clown",
@@ -420,6 +451,7 @@ export const products: Product[] = [
   },
   {
     id: "poison-apple-witch",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Poison Apple Witch",
     category: "witch",
@@ -431,6 +463,7 @@ export const products: Product[] = [
   },
   {
     id: "swamp-ghost",
+    powerSource: "Werkt op batterijen (meegeleverd)",
     availability: "in_stock",
     name: "Swamp Ghost",
     category: "ghost",

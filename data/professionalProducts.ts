@@ -6,6 +6,7 @@ const AC = "rgba(180,55,0,0.28)";
 export const professionalProducts: Product[] = [
   {
     id: "pro-bloodthirsty-werewolf",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Bloodthirsty Werewolf Professionele Halloween Animatronic",
     category: "monster",
@@ -17,6 +18,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-clown-of-terror",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Clown of terror",
     category: "clown",
@@ -29,6 +31,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-clown-your-worse-nightmare",
+    powerSource: "230V via meegeleverde adapter",
     availability: "unavailable",
     availabilityNote: "Leverbaar vanaf januari 2027",
     name: "Clown your worse Nightmare",
@@ -42,6 +45,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-dark-evil-scarecrow",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Dark Evil Scarecrow",
     category: "monster",
@@ -54,6 +58,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-elvira-animatronic",
+    powerSource: "110-240V adapter (meegeleverd)",
     availability: "unavailable",
     availabilityNote: "Leverbaar vanaf januari 2027",
     name: "Elvira animatronic",
@@ -67,6 +72,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-evil-pumpkin-terror-monster",
+    powerSource: "230V via meegeleverde adapter",
     name: "Evil Pumkin Terror Monster mega grote animatronic",
     category: "monster",
     price: 879,
@@ -79,6 +85,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-evil-witch-cooking",
+    powerSource: "230V via meegeleverde adapter",
     availability: "unavailable",
     availabilityNote: "Leverbaar vanaf januari 2027",
     name: "Evil Witch cooking the little girl",
@@ -92,6 +99,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-extreem-mean-witch",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Extreem Mean Witch ( Big size)!",
     category: "witch",
@@ -103,6 +111,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-lunging-reaper",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Lunging Reaper animatronic",
     category: "reaper",
@@ -115,6 +124,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-nun-from-hell",
+    powerSource: "Werkt op 3x AA batterijen (meegeleverd)",
     name: "Nun From Hell Animatronic",
     category: "ghost",
     price: 275,
@@ -126,6 +136,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-pumpkin-hollow-ghoul",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Pumpkin Hollow Smoldering Ghoul animatronic",
     category: "ghost",
@@ -138,6 +149,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-pumpkin-hollow-scarecrow",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Pumpkin Hollow Smoldering Ghoul Scarecrow",
     category: "ghost",
@@ -150,6 +162,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-riding-dead",
+    powerSource: "230V via meegeleverde EU-adapter",
     availability: "in_stock",
     name: "Riding dead Animatronic",
     category: "zombie",
@@ -162,6 +175,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-rotting-reaper",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Rotting Reaper from Hell",
     category: "reaper",
@@ -172,6 +186,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-screaming-angel",
+    powerSource: "230V via meegeleverde EU-adapter",
     name: "Screeming Angel of the dark animatronic",
     category: "ghost",
     price: 479,
@@ -184,6 +199,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-skalet-animatronic",
+    powerSource: "230V via meegeleverde adapter",
     name: "Skalet Animatronic",
     category: "skeleton",
     price: 275,
@@ -196,6 +212,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-old-mean-witch",
+    powerSource: "230V via meegeleverde NL-adapter",
     availability: "unavailable",
     availabilityNote: "Tijdelijk niet leverbaar",
     name: "The old mean witch from the dark forest",
@@ -209,6 +226,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-wailing-ghost",
+    powerSource: "230V via meegeleverde NL-adapter",
     availability: "in_stock",
     name: "Wailing Ghost of Terror",
     category: "ghost",
@@ -221,6 +239,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-weerwolf-xxl",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Weerwolf XXL animatronic halloween pop",
     category: "monster",
@@ -233,6 +252,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-zombie-attack",
+    powerSource: "230V via meegeleverde adapter",
     availability: "in_stock",
     name: "Zombie attack",
     category: "zombie",
@@ -244,6 +264,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-zombie-skeleton-cauldron",
+    powerSource: "230V via meegeleverde EU-adapter",
     availability: "in_stock",
     name: "Zombie Skeleton with Cauldron Animatronic",
     category: "zombie",

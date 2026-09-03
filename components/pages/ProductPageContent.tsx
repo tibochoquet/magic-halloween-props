@@ -193,7 +193,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
                 { label: p.specLabels.height, value: product.height },
                 { label: p.specLabels.type, value: product.category },
                 { label: p.specLabels.activation, value: p.specValues.activation },
-                { label: p.specLabels.power, value: p.specValues.power },
+                { label: p.specLabels.power, value: product.powerSource ?? p.specValues.power },
               ].map(({ label, value }) => (
                 <div key={label}>
                   <dt className="text-horror-text-muted text-xs tracking-wider uppercase mb-0.5">{label}</dt>

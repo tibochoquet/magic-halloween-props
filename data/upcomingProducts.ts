@@ -4,6 +4,7 @@ import { style } from "@/data";
 export const upcomingProducts: Product[] = [
   {
     id: "the-collector-of-souls",
+    powerSource: "230V via meegeleverde EU-adapter",
     name: "The Collector of Souls",
     category: "reaper",
     price: 850,
@@ -27,6 +28,7 @@ export const upcomingProducts: Product[] = [
   },
   {
     id: "rocking-horse-girl",
+    powerSource: "5,9V/2A-adapter (meegeleverd)",
     name: "Rocking Horse Girl",
     category: "ghost",
     price: 275,

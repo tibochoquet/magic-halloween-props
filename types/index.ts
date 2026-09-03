@@ -13,6 +13,7 @@ export interface Product {
   notifyOnRestock?: boolean;
   featured?: boolean;
   height?: string;
+  powerSource?: string;
   features: string[];
   accentColor: string;
   bgGradient: string;
