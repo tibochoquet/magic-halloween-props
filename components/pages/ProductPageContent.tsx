@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/types";
 import AddToCartButton from "@/components/ui/AddToCartButton";
+import NotifyForm from "@/components/ui/NotifyForm";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
 
@@ -168,7 +169,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
               dangerouslySetInnerHTML={{ __html: longDescription }}
             />
           ) : (
-            <p className="text-horror-text-secondary text-base leading-relaxed mb-8">{description}</p>
+            <p className="text-horror-text-secondary text-base leading-relaxed mb-8 whitespace-pre-line">{description}</p>
           )}
 
           {features.length > 0 && (
@@ -202,7 +203,11 @@ export default function ProductPageContent({ product, related }: { product: Prod
             </dl>
           </div>
 
-          <AddToCartButton product={product} />
+          {product.notifyOnRestock ? (
+            <NotifyForm productName={product.name} />
+          ) : (
+            <AddToCartButton product={product} />
+          )}
           <p className="mt-4 text-horror-text-muted text-xs text-center leading-relaxed">{p.shippingNote}</p>
         </div>
       </div>

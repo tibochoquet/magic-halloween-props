@@ -6,6 +6,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import ProCard from "@/components/ui/ProCard";
 import ScareCard from "@/components/ui/ScareCard";
 import SectionHeader from "@/components/ui/SectionHeader";
+import UpcomingProducts from "@/components/sections/UpcomingProducts";
 import { products, categories } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import { scareEffectProducts } from "@/data/scareEffectProducts";
@@ -248,6 +249,8 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
 
         </div>
       </section>
+
+      <UpcomingProducts />
     </>
   );
 }

@@ -10,6 +10,7 @@ export interface Product {
   badge?: "BESTSELLER" | "NEW" | "PREMIUM" | "EXTREME" | "LIMITED";
   availability: "in_stock" | "unavailable";
   availabilityNote?: string;
+  notifyOnRestock?: boolean;
   featured?: boolean;
   height?: string;
   features: string[];

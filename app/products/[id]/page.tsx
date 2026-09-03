@@ -3,11 +3,12 @@ import type { Metadata } from "next";
 import { products } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import { scareEffectProducts } from "@/data/scareEffectProducts";
+import { upcomingProducts } from "@/data/upcomingProducts";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductPageContent from "@/components/pages/ProductPageContent";
 
-const allProducts = [...products, ...professionalProducts, ...scareEffectProducts];
+const allProducts = [...products, ...professionalProducts, ...scareEffectProducts, ...upcomingProducts];
 
 // Products discontinued and removed from the catalog. Their old URLs redirect
 // to the category they used to belong to, rather than a plain 404.
