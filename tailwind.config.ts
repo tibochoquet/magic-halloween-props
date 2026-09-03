@@ -41,8 +41,18 @@ const config: Config = {
         "shimmer": "shimmer 2.5s ease-in-out infinite",
         "ember": "ember 4s ease-in-out infinite",
         "marquee": "marquee 45s linear infinite",
+        "modal-fade-in": "modalFadeIn 0.25s ease-out",
+        "modal-slide-up": "modalSlideUp 0.3s ease-out",
       },
       keyframes: {
+        modalFadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        modalSlideUp: {
+          "0%": { transform: "translateY(24px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
         fogDrift: {
           "0%, 100%": { transform: "translateX(-6%) scaleY(1)", opacity: "0.55" },
           "33%": { transform: "translateX(4%) scaleY(1.08)", opacity: "0.75" },

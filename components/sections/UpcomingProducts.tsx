@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { upcomingProducts } from "@/data/upcomingProducts";
+import { professionalProducts } from "@/data/professionalProducts";
 import NotifyForm from "@/components/ui/NotifyForm";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 
 export default function UpcomingProducts() {
+  const upcomingProducts = professionalProducts.filter((p) => p.notifyOnRestock);
   if (upcomingProducts.length === 0) return null;
 
   return (
@@ -20,7 +21,7 @@ export default function UpcomingProducts() {
           Deze animatronics komen er nog aan. Laat je e-mailadres achter en we laten het je weten zodra ze binnen zijn.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {upcomingProducts.map((product) => (
             <article key={product.id} className="card-horror flex flex-col overflow-hidden">
               <Link href={`/products/${product.id}`} className="block">

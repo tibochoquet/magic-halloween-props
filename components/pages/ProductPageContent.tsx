@@ -22,7 +22,9 @@ export default function ProductPageContent({ product, related }: { product: Prod
 
   const media: MediaItem[] = [
     ...(product.image ? [{ type: "image" as const, src: product.image }] : []),
+    ...(product.images ?? []).map((src) => ({ type: "image" as const, src })),
     ...(product.video ? [{ type: "video" as const, src: product.video }] : []),
+    ...(product.videos ?? []).map((src) => ({ type: "video" as const, src })),
   ];
   const [activeIndex, setActiveIndex] = useState(0);
   const active = media[activeIndex];

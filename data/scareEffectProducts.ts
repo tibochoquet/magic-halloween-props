@@ -67,7 +67,7 @@ export const scareEffectProducts: Product[] = [
     price: 195.00,
     description: "Creëer een mysterieuze en huiveringwekkende sfeer met de indrukwekkende Rising Spirit Animatronic. Deze angstaanjagende geest lijkt vanuit het niets op te stijgen en door de lucht te zweven.",
     features: ["Levensecht zweefeffect", "Ogen lichten fel op tijdens de animatie", "Geluiden van roepende geest en mysterieuze magische effecten", "Ideaal met rookmachine voor extra sfeer"],
-    height: "~1,90 m",
+    height: "1,90 m",
     image: "/products/Rising%20Spirit.png",
     video: "/products/Rising%20Spirit.mp4",
     ...style.ghost,

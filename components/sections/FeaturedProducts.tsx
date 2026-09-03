@@ -1,8 +1,6 @@
 "use client";
 
 import { useRef, useEffect, useCallback } from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import { products } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import ProductCard from "@/components/ui/ProductCard";
@@ -12,10 +10,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 import type { Product } from "@/types";
 
 const FEATURED_PRO_IDS = ["pro-bloodthirsty-werewolf", "pro-riding-dead"];
-const DESKTOP_SPEED = 0.8;
+const SCROLL_SPEED = 0.8;
 
-// ── Desktop: RAF continuous scroll ────────────────────────────────────────────
-function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
+// ── RAF continuous scroll, identical behaviour on touch and mouse ─────────────
+function Carousel({ allFeatured }: { allFeatured: Product[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
   const dragging = useRef(false);
@@ -27,7 +25,7 @@ function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
   const tick = useCallback(() => {
     const el = containerRef.current;
     if (el && !paused.current) {
-      el.scrollLeft += DESKTOP_SPEED;
+      el.scrollLeft += SCROLL_SPEED;
       const half = el.scrollWidth / 2;
       if (el.scrollLeft >= half) el.scrollLeft -= half;
     }
@@ -58,6 +56,26 @@ function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
     containerRef.current.scrollLeft = next;
   };
   const onMouseUp = () => { dragging.current = false; };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    paused.current = true;
+    dragging.current = true;
+    hasDragged.current = false;
+    startX.current = e.touches[0].clientX;
+    startScroll.current = containerRef.current?.scrollLeft ?? 0;
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (!dragging.current || !containerRef.current) return;
+    const delta = startX.current - e.touches[0].clientX;
+    if (Math.abs(delta) > 5) hasDragged.current = true;
+    let next = startScroll.current + delta;
+    const half = containerRef.current.scrollWidth / 2;
+    if (next < 0) next += half;
+    if (next >= half) next -= half;
+    containerRef.current.scrollLeft = next;
+  };
+  const onTouchEnd = () => { dragging.current = false; paused.current = false; };
+
   const onClickCapture = (e: React.MouseEvent) => {
     if (hasDragged.current) {
       e.stopPropagation();
@@ -69,54 +87,30 @@ function DesktopCarousel({ allFeatured }: { allFeatured: Product[] }) {
   return (
     <div className="relative">
       <div
-        className="absolute left-0 top-0 bottom-0 w-32 lg:w-48 z-20 pointer-events-none"
+        className="absolute left-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 z-20 pointer-events-none"
         style={{ background: "linear-gradient(to right, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
       />
       <div
-        className="absolute right-0 top-0 bottom-0 w-32 lg:w-48 z-20 pointer-events-none"
+        className="absolute right-0 top-0 bottom-0 w-16 md:w-32 lg:w-48 z-20 pointer-events-none"
         style={{ background: "linear-gradient(to left, #0A0A0A 0%, rgba(10,10,10,0.85) 40%, transparent 100%)" }}
       />
       <div
         ref={containerRef}
         className="overflow-x-hidden py-6 cursor-grab active:cursor-grabbing select-none"
+        style={{ touchAction: "pan-y" }}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
         onClickCapture={onClickCapture}
       >
-        <div className="flex items-stretch gap-5" style={{ width: "max-content" }}>
+        <div className="flex items-stretch gap-4 md:gap-5" style={{ width: "max-content" }}>
           {[...allFeatured, ...allFeatured].map((product, i) => (
-            <div key={`${product.id}-${i}`} className="w-[280px] flex-shrink-0 flex">
-              {product.id.startsWith("pro-")
-                ? <ProCard product={product} />
-                : <ProductCard product={product} />}
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ── Mobile: Embla touch carousel ──────────────────────────────────────────────
-function MobileCarousel({ allFeatured }: { allFeatured: Product[] }) {
-  const [emblaRef] = useEmblaCarousel(
-    { loop: true, dragFree: true, align: "start" },
-    [Autoplay({ delay: 2800, stopOnInteraction: false, stopOnMouseEnter: true })]
-  );
-
-  return (
-    <div className="relative">
-      <div
-        className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none"
-        style={{ background: "linear-gradient(to left, #0A0A0A 0%, transparent 100%)" }}
-      />
-      <div ref={emblaRef} className="overflow-hidden py-4">
-        <div className="flex items-stretch gap-4 pl-5 pr-2">
-          {allFeatured.map((product) => (
-            <div key={product.id} className="flex-[0_0_82%] sm:flex-[0_0_46%] min-w-0 flex">
+            <div key={`${product.id}-${i}`} className="w-[250px] sm:w-[280px] flex-shrink-0 flex">
               {product.id.startsWith("pro-")
                 ? <ProCard product={product} />
                 : <ProductCard product={product} />}
@@ -175,14 +169,8 @@ export default function FeaturedProducts() {
         />
       </div>
 
-      {/* Desktop: continuous RAF scroll */}
-      <div className="relative z-10 hidden md:block">
-        <DesktopCarousel allFeatured={allFeatured} />
-      </div>
-
-      {/* Mobile/tablet: Embla swipe carousel */}
-      <div className="relative z-10 md:hidden">
-        <MobileCarousel allFeatured={allFeatured} />
+      <div className="relative z-10">
+        <Carousel allFeatured={allFeatured} />
       </div>
 
       {/* CTA */}

@@ -20,6 +20,12 @@ export interface Product {
   iconEmoji: string;
   image?: string;
   video?: string;
+  /** Additional gallery images beyond the primary `image`. */
+  images?: string[];
+  /** Additional gallery videos beyond the primary `video`. */
+  videos?: string[];
+  /** Dedicated cinematic promotional hero image for this product (distinct from gallery `image`). */
+  heroImage?: string;
 }
 
 export interface Category {

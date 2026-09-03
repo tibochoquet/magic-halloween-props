@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
@@ -10,12 +11,24 @@ import CategoryIcon from "@/components/ui/CategoryIcon";
 export default function ScareCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
+  const videoRef = useRef<HTMLVideoElement>(null);
   const unavailable = product.availability === "unavailable";
-  const unavailableLabel = product.availabilityNote ?? (language === "nl" ? "Niet beschikbaar" : "Unavailable");
+  const unavailableShortLabel = language === "nl" ? "Niet beschikbaar" : "Unavailable";
+  const unavailableLabel = product.availabilityNote ?? unavailableShortLabel;
 
   return (
-    <article className={`group card-horror flex flex-col overflow-hidden w-full${unavailable ? " opacity-60" : ""}`}>
-      <Link href={`/products/${product.id}`} className="block">
+    <article id={`product-${product.id}`} className={`group card-horror flex flex-col overflow-hidden w-full scroll-mt-28${unavailable ? " opacity-60" : ""}`}>
+      <Link
+        href={`/products/${product.id}`}
+        className="block"
+        onMouseEnter={() => videoRef.current?.play()}
+        onMouseLeave={() => {
+          if (videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+          }
+        }}
+      >
         <div className={`relative h-64 bg-gradient-to-br ${product.bgGradient} overflow-hidden flex items-center justify-center`}>
           <div
             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
@@ -28,13 +41,23 @@ export default function ScareCard({ product }: { product: Product }) {
               src={product.image}
               alt={product.name}
               fill
-              className="object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04]"
+              className={`object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04] ${product.video ? "group-hover:opacity-0 transition-opacity" : ""}`}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
           ) : (
             <div className="relative z-10 text-horror-text-muted/30">
               <CategoryIcon id={product.category} size={96} />
             </div>
+          )}
+          {product.video && (
+            <video
+              ref={videoRef}
+              src={product.video}
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-contain object-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            />
           )}
 
           {unavailable && (
@@ -98,7 +121,7 @@ export default function ScareCard({ product }: { product: Product }) {
             <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            {unavailable ? unavailableLabel : (language === "nl" ? "Voeg toe" : "Add")}
+            {unavailable ? unavailableShortLabel : (language === "nl" ? "Voeg toe" : "Add")}
           </button>
         </div>
       </div>

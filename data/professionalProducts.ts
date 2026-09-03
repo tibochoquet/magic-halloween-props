@@ -3,6 +3,10 @@ import type { Product } from "@/types";
 const G = "from-[#1c0e0a] to-[#0a0505]";
 const AC = "rgba(180,55,0,0.28)";
 
+// EDITABLE PLACEHOLDER: real price not yet provided by the supplier for
+// "Evil Witch Cooking the Little Bear". Update this value once confirmed.
+const PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR = 799;
+
 export const professionalProducts: Product[] = [
   {
     id: "pro-bloodthirsty-werewolf",
@@ -14,6 +18,7 @@ export const professionalProducts: Product[] = [
     description: "Deze levensgrote weerwolf transformeert elke ruimte direct in een haunted house, met grommende geluiden, realistische bewegingen en dreigende verlichting.",
     features: ["Beweegt hoofd, mond en klauwen realistisch", "Lichtgevende ogen en dreigend geluidseffect", "Bediening via bewegingssensor, continu of voetmat", "Materialen: metaal, latex en kunststof"],
     height: "1,50 m",
+    video: "/products/Bloodthirsty%20Werewolf%20Professionele%20Halloween%20Animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/bloodthirstywerewolf.png",
   },
   {
@@ -27,6 +32,7 @@ export const professionalProducts: Product[] = [
     features: ["Indrukwekkende hoogte van 2,25 m", "Digitale bewegende ogen die bezoekers volgen", "Spreekt angstaanjagende zinnen uit", "Geschikt voor haunted houses, escape rooms en circusthema's"],
     height: "2,25 m",
     video: "/products/Clown%20of%20terror.mp4",
+    videos: ["/products/Clown%20of%20terror%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/clownofterror.png",
   },
   {
@@ -41,6 +47,7 @@ export const professionalProducts: Product[] = [
     features: [],
     height: "2,40 m",
     video: "/products/Clown%20your%20worse%20Nightmare.mp4",
+    videos: ["/products/Clown%20your%20worse%20Nightmare%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/clownyourworstnightmare.png",
   },
   {
@@ -54,6 +61,7 @@ export const professionalProducts: Product[] = [
     features: ["Ogen lichten op, beweegt en praat"],
     height: "1,80 m",
     video: "/products/Dark%20Evil%20Scarecrow.mp4",
+    videos: ["/products/Dark%20Evil%20Scarecrow%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/darkevilscarecrow.png",
   },
   {
@@ -93,7 +101,7 @@ export const professionalProducts: Product[] = [
     price: 799,
     description: "Deze meedogenloze heks is van plan het kleine meisje levend te koken. Griezelige groene lichteffecten begeleiden het kronkelende, schreeuwende kind.",
     features: ["3 activeringsmodi: continu, bewegingsmelder of voetmat", "Inclusief vloermat met activeringsfunctie", "Licht-, beweeg- en geluidseffecten", "Inclusief rookmachine"],
-    height: "ca. 2,03 m",
+    height: "2,03 m",
     video: "/products/Evil%20Witch%20cooking%20the%20little%20girl.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/evilwitchcookinglittlegirl.png",
   },
@@ -107,6 +115,7 @@ export const professionalProducts: Product[] = [
     description: "Deze mega grote heks intimideert elke gast met haar dreigende bewegingen en gemene lach.",
     features: [],
     video: "/products/Extreem%20Mean%20Witch.mp4",
+    videos: ["/products/Extreem%20Mean%20Witch%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/extreemmeanwitch.png",
   },
   {
@@ -120,6 +129,7 @@ export const professionalProducts: Product[] = [
     features: ["Activering via knop, bewegingssensor of voetmat", "Oranje-rood oplichtende ogen", "Houdt een zeis vast in de linkerhand", "Materialen: latex, metaal en kunststof"],
     height: "1,80 m",
     video: "/products/Lunging%20Reaper%20animatronic.mp4",
+    videos: ["/products/Lunging%20Reaper%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/lungingreaper.png",
   },
   {
@@ -132,6 +142,7 @@ export const professionalProducts: Product[] = [
     description: "Huiveringwekkend realistisch: haar mond beweegt synchroon tijdens het spreken van angstaanjagende teksten, terwijl haar ogen dreigend oplichten en de kaars in haar hand een spookachtig licht werpt.",
     features: ["Mond beweegt synchroon tijdens het spreken", "Ogen lichten dreigend op", "Kaars met spookachtig lichteffect", "Werkt op 3x AA batterijen, overal te plaatsen"],
     height: "1,85 m",
+    video: "/products/Nun%20From%20Hell%20Animatronic.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/nunfromhell.png",
   },
   {
@@ -143,8 +154,9 @@ export const professionalProducts: Product[] = [
     price: 699,
     description: "Een werkelijk angstaanjagende, smeulende ghoul met huiveringwekkende geluidseffecten en gloeiende verlichting in gezicht, borst en handen.",
     features: ["Geanimeerde beweging: romp beweegt naar voren en achteren", "Smeulend lichteffect in gezicht, borst en handen", "Geluidseffecten"],
-    height: "ca. 2,50 m",
+    height: "2,50 m",
     video: "/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20animatronic.mp4",
+    videos: ["/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20ALT.mp4", "/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20ALT2.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/pumpkinhollowsmolderingghoul.png",
   },
   {
@@ -156,8 +168,9 @@ export const professionalProducts: Product[] = [
     price: 479,
     description: "De vogelverschrikker-variant van de Pumpkin Hollow-reeks: een werkelijk angstaanjagende, smeulende ghoul met huiveringwekkende geluidseffecten en gloeiende verlichting.",
     features: ["Geanimeerde beweging: romp beweegt naar voren en achteren", "Smeulend lichteffect in gezicht, borst en handen", "Geluidseffecten", "Oplichtende ogen"],
-    height: "ca. 2,50 m",
+    height: "2,50 m",
     video: "/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20Scarecrow.mp4",
+    videos: ["/products/Pumpkin%20Hollow%20Smoldering%20Ghoul%20Scarecrow%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/pumpkinhollowsmolderingghoulscarecrow.png",
   },
   {
@@ -169,8 +182,9 @@ export const professionalProducts: Product[] = [
     price: 1250,
     description: "Deze gigantische animatronic van ruim 2 meter zorgt met griezelig geluid, dreigende bewegingen en helse ooggloed voor een compleet horror-effect. Een skelet-ruiter op een demonisch paard, met synchrone mondbeweging tijdens het spreken.",
     features: ["Continu, bewegingsmelder of voetmatactivering", "Oplichtende ogen en gedetailleerde gezichtsuitdrukkingen", "Paard beweegt kop en stampt met voorhoeven", "Inclusief deurmat en EU-adapter"],
-    height: "ca. 2,10 m",
+    height: "2,10 m",
     video: "/products/Riding%20dead%20Animatronic.mp4",
+    videos: ["/products/Riding%20dead%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/ridingdead.png",
   },
   {
@@ -182,6 +196,7 @@ export const professionalProducts: Product[] = [
     price: 379,
     description: "Laat je niet grijpen door deze rottende Hein, die je maar wat graag meeneemt naar het hiernamaals. Verlichte elementen en griezelige leuzen moeten je verleiden om mee te stappen over de grens naar het rijk van de doden.",
     features: [],
+    video: "/products/Rotting%20Reaper%20from%20Hell.mp4",
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/rottingreaperfromhell.png",
   },
   {
@@ -195,6 +210,7 @@ export const professionalProducts: Product[] = [
     features: ["Continu, bewegingsmelder of voetmatactivering (mat niet inbegrepen)", "Oplichtende ogen en gedetailleerde gezichtsuitdrukking", "Materiaal: metaal, latex en kunststof", "Inclusief EU-adapter"],
     height: "2,15 m",
     video: "/products/Screeming%20Angel%20of%20the%20dark.mp4",
+    videos: ["/products/Screeming%20Angel%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/screamingangelofthedark.png",
   },
   {
@@ -222,6 +238,7 @@ export const professionalProducts: Product[] = [
     features: ["Continu, bewegingsmelder of voetmatactivering", "Licht-, beweeg- en geluidsfuncties", "Materiaal: metaal, latex en kunststof", "Inclusief deurmat en NL-adapter"],
     height: "1,80 m",
     video: "/products/The%20old%20mean%20witch%20from%20the%20dark%20forest.mp4",
+    videos: ["/products/The%20old%20mean%20witch%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/oldmeanwitchdarkforest.png",
   },
   {
@@ -233,8 +250,9 @@ export const professionalProducts: Product[] = [
     price: 799,
     description: "Dit gigantische nachtmerriefiguur van ruim 2 meter zorgt met angstaanjagend geluid, spookachtige bewegingen en helse ogen voor een complete horrorervaring.",
     features: ["3 functies: continu, bewegingsmelder of voetmatactivering", "Gedetailleerde gezichtsuitdrukkingen en oplichtende ogen", "Materiaal: metaal, latex en kunststof", "Inclusief NL-adapter"],
-    height: "ca. 2,10 m",
+    height: "2,10 m",
     video: "/products/Wailing%20Ghost%20of%20Terror.mp4",
+    videos: ["/products/Wailing%20Ghost%20of%20Terror%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/wailingghostofterror.png",
   },
   {
@@ -260,6 +278,7 @@ export const professionalProducts: Product[] = [
     description: "Een gruwelijke, zéér realistische zombie die gromt en beweegt — de kans van je leven voor je horror-setting.",
     features: [],
     video: "/products/Zombie%20attack%20pro.mp4",
+    videos: ["/products/Zombie%20attack%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/zombieattack.png",
   },
   {
@@ -271,9 +290,83 @@ export const professionalProducts: Product[] = [
     price: 479,
     description: "Het levensgrote zombieskelet met heksenketel is precies wat je nodig hebt om feestgangers in een griezelige stemming te brengen. Ogen lichten op, de kaak beweegt tijdens het spreken en hij roert in zijn ketel terwijl LED's vlammen simuleren.",
     features: ["3 activeringsmodi: bewegingssensor, voetmat of continu", "Verstelbaar volume via controller", "Inclusief EU-adapter en voetmat"],
-    height: "ca. 1,80 m",
+    height: "1,80 m",
     video: "/products/Zombie%20Skeleton%20with%20Cauldron%20Animatronic.mp4",
+    videos: ["/products/Zombie%20Skeleton%20with%20Cauldron%20ALT.mp4"],
     bgGradient: G, accentColor: AC, iconEmoji: "💀", image: "/products/zombieskeletonwithcauldron.png",
+  },
+  {
+    id: "the-collector-of-souls",
+    powerSource: "230V via meegeleverde EU-adapter",
+    name: "The Collector of Souls",
+    category: "reaper",
+    price: 850,
+    availability: "unavailable",
+    availabilityNote: "Verwacht januari 2027",
+    notifyOnRestock: true,
+    badge: "PREMIUM",
+    description:
+      "Hoog boven zijn bezoekers torent The Collector of Souls: een duistere gestalte met een pratende schedel, een beweegbare kaak en gele ogen die in het donker oplichten. Kop en armen bewegen terwijl hij spreekt: een verschijning die je liever niet alleen tegenkomt.\n\nDe animatronic is 213 cm hoog na montage en werkt op 230V via de meegeleverde EU-adapter. Activeren kan continu, via de ingebouwde bewegingssensor, of met de meegeleverde deurmat. Montage met twee personen wordt aanbevolen. Geschikt voor binnen; buiten alleen onder een afdak.",
+    features: [
+      "Bewegende kop en armen",
+      "Pratende schedel met beweegbare kaak",
+      "Oplichtende gele ogen",
+      "Continu, bewegingsmelder of voetmatactivering",
+      "Materiaal: metaal, latex, kunststof en polyester",
+      "Inclusief EU-adapter en deurmat",
+    ],
+    height: "2,13 m",
+    image: "/products/The%20Collector%20of%20Souls.png",
+    images: [
+      "/products/The%20Collector%20of%20Souls%202.png",
+      "/products/The%20Collector%20of%20Souls%203.png",
+      "/products/The%20Collector%20of%20Souls%204.png",
+      "/products/The%20Collector%20of%20Souls%205.png",
+    ],
+    video: "/products/The%20Collector%20of%20Souls.mp4",
+    heroImage: "/products/Soul%20Reaper%20Hero%202.png",
+    bgGradient: G, accentColor: AC, iconEmoji: "💀",
+  },
+  {
+    id: "rocking-horse-girl",
+    powerSource: "5,9V/2A-adapter (meegeleverd)",
+    name: "Rocking Horse Girl",
+    category: "ghost",
+    price: 275,
+    availability: "unavailable",
+    availabilityNote: "Verwacht januari 2027",
+    notifyOnRestock: true,
+    description:
+      "Op het eerste gezicht een onschuldig meisje op haar hobbelpaard, tot ze in beweging komt. Rocking Horse Girl schommelt zachtjes heen en weer terwijl haar ogen rood oplichten en ze een van drie kinderliedjes inzet, geluidsgeactiveerd zodra er iemand in de buurt komt.\n\nDe animatronic weegt 6,6 kg en wordt geleverd met een 5,9V/2A-adapter, inclusief volumeregeling en een aansluiting voor een externe speaker. Step pad en try-me button zijn los verkrijgbaar. Alleen te gebruiken op een overdekte plek.",
+    features: [
+      "Schommelt heen en weer op haar hobbelpaard",
+      "Ogen lichten rood op",
+      "Speelt drie kinderliedjes",
+      "Geluidsgeactiveerd met volumeregeling",
+      "Aansluiting voor externe speaker",
+      "Materiaal: metaal, kunststof en textiel",
+    ],
+    height: "0,86 m",
+    image: "/products/Rocking%20Horse%20Girl.png",
+    bgGradient: G, accentColor: AC, iconEmoji: "💀",
+  },
+  {
+    id: "pro-evil-witch-cooking-little-bear",
+    powerSource: "230V via meegeleverde adapter",
+    availability: "unavailable",
+    availabilityNote: "Leverbaar vanaf januari 2027",
+    notifyOnRestock: true,
+    badge: "NEW",
+    name: "Evil Witch Cooking the Little Bear",
+    category: "witch",
+    // PLACEHOLDER — exact price not yet provided by the supplier for this specific variant.
+    // Update PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR below once confirmed.
+    price: PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR,
+    description: "Deze meedogenloze heks laat het kleine berenwelpje niet ontsnappen aan haar kokende ketel. Griezelige groene lichteffecten begeleiden het kronkelende diertje boven het vuur.",
+    features: ["3 activeringsmodi: continu, bewegingsmelder of voetmat", "Inclusief vloermat met activeringsfunctie", "Licht-, beweeg- en geluidseffecten", "Inclusief rookmachine"],
+    height: "2,03 m",
+    image: "/products/Evil%20Witch%20cooking%20the%20little%20bear.png",
+    bgGradient: G, accentColor: AC, iconEmoji: "💀",
   },
 ];
 
