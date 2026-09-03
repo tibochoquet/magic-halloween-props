@@ -245,7 +245,6 @@ export const products: Product[] = [
     height: "1,80 m",
     features: [],
     image: "/products/halloween-pop-screaming-witch.png",
-    video: "/products/Halloween%20pop%20Screaming%20Witch.mp4",
     ...style.witch,
   },
   {
@@ -351,6 +350,7 @@ export const products: Product[] = [
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-witch-of-the-dark.png",
+    video: "/products/Halloween%20pop%20Screaming%20Witch.mp4",
     ...style.witch,
   },
   {
