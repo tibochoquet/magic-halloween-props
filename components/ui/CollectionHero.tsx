@@ -74,69 +74,105 @@ export default function CollectionHero({
   }, []);
 
   return (
-    <div
-      ref={rootRef}
-      className={`relative w-full overflow-hidden bg-horror-black ${title ? "min-h-screen" : "aspect-video"}`}
-    >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority
-        className="object-cover object-center"
-        sizes="100vw"
-      />
-
-      {/* Legibility fades, blending into the page's dark background */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-horror-black via-transparent to-transparent" />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/70 via-black/10 to-transparent" />
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/25 via-transparent to-black/25" />
-      {/* Bottom seam blend into the next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-t from-horror-black to-transparent" />
-
-      {backLink && (
-        <Link
-          href={backLink.href}
-          className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] sm:text-xs font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
-        >
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          {backLink.label}
-        </Link>
-      )}
-
+    <div ref={rootRef} className="relative w-full overflow-hidden bg-horror-black">
+      {/* Mobile: text-only box, no photo/hotspots — keeps things fast and legible on small screens */}
       {title && (
-        <div className="absolute inset-x-0 top-0 z-10 pt-16 sm:pt-20 md:pt-24 px-5 text-center pointer-events-none">
-          <div className="max-w-3xl mx-auto">
+        <div
+          className="md:hidden relative px-6 py-16 text-center overflow-hidden"
+          style={{ background: "linear-gradient(160deg, #1c0e0a 0%, #0a0505 60%, #0A0A0A 100%)" }}
+        >
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[420px] h-[280px] pointer-events-none"
+            style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,107,0,0.14) 0%, transparent 68%)" }}
+          />
+          {backLink && (
+            <Link
+              href={backLink.href}
+              className="relative z-10 inline-flex items-center gap-1.5 mb-8 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              {backLink.label}
+            </Link>
+          )}
+          <div className="relative z-10">
             {eyebrow && (
-              <div className="inline-flex items-center gap-3 mb-3 sm:mb-4 justify-center">
-                <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
-                <span className="text-horror-orange text-[10px] sm:text-sm font-semibold tracking-[0.25em] uppercase" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
-                  {eyebrow}
-                </span>
-                <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
+              <div className="inline-flex items-center gap-3 mb-4 justify-center">
+                <div className="h-px w-8 bg-horror-orange/60" />
+                <span className="text-horror-orange text-xs font-semibold tracking-[0.25em] uppercase">{eyebrow}</span>
+                <div className="h-px w-8 bg-horror-orange/60" />
               </div>
             )}
-            <h2
-              className="font-cinzel text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
-              style={{ textShadow: "0 4px 22px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)" }}
-            >
+            <h2 className="font-cinzel text-4xl font-bold text-white leading-tight">
               {title} {titleAccent && <span className="text-horror-orange">{titleAccent}</span>}
             </h2>
-            {subtitle && (
-              <p
-                className="hidden sm:block mt-4 sm:mt-5 text-white/85 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed"
-                style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95)" }}
-              >
-                {subtitle}
-              </p>
-            )}
+            {subtitle && <p className="mt-4 text-white/85 text-base max-w-sm mx-auto leading-relaxed">{subtitle}</p>}
           </div>
         </div>
       )}
 
-      {spots.map((spot) => {
+      {/* Tablet/desktop: full-screen cinematic photo with hotspots */}
+      <div className={`hidden md:block relative w-full ${title ? "min-h-screen" : "aspect-video"}`}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+
+        {/* Legibility fades, blending into the page's dark background */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-horror-black via-transparent to-transparent" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/70 via-black/10 to-transparent" />
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black/25 via-transparent to-black/25" />
+        {/* Bottom seam blend into the next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-t from-horror-black to-transparent" />
+
+        {backLink && (
+          <Link
+            href={backLink.href}
+            className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] sm:text-xs font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            {backLink.label}
+          </Link>
+        )}
+
+        {title && (
+          <div className="absolute inset-x-0 top-0 z-10 pt-20 md:pt-24 px-5 text-center pointer-events-none">
+            <div className="max-w-3xl mx-auto">
+              {eyebrow && (
+                <div className="inline-flex items-center gap-3 mb-3 sm:mb-4 justify-center">
+                  <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
+                  <span className="text-horror-orange text-[10px] sm:text-sm font-semibold tracking-[0.25em] uppercase" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
+                    {eyebrow}
+                  </span>
+                  <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
+                </div>
+              )}
+              <h2
+                className="font-cinzel text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                style={{ textShadow: "0 4px 22px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)" }}
+              >
+                {title} {titleAccent && <span className="text-horror-orange">{titleAccent}</span>}
+              </h2>
+              {subtitle && (
+                <p
+                  className="mt-4 sm:mt-5 text-white/85 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed"
+                  style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95)" }}
+                >
+                  {subtitle}
+                </p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {spots.map((spot) => {
         const isOpen = openId === spot.id;
         return (
           <div
@@ -193,6 +229,7 @@ export default function CollectionHero({
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

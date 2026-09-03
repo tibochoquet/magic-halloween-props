@@ -129,7 +129,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
             {/* Standard Halloween Props */}
             <a
               href="/halloween-props"
-              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px]"
+              className="group relative overflow-hidden block min-h-[240px] md:min-h-[280px]"
               style={{ background: "linear-gradient(135deg, #160C0A 0%, #0E0A14 100%)" }}
             >
               <div className="absolute inset-0 pointer-events-none">
@@ -139,10 +139,10 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
                 <div className="absolute top-14 right-16 w-px h-px rounded-full bg-horror-orange/18 animate-ember" style={{ animationDelay: "2.1s", animationDuration: "6.2s" }} />
               </div>
               <div className="absolute inset-0 border border-horror-border group-hover:border-horror-orange/35 transition-colors duration-500" />
-              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
+              <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-horror-orange/50 text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2">Halloween Collection</span>
-                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
+                  <span className="text-horror-orange/50 text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2">Halloween Collection</span>
+                  <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
                     Standard Halloween Props
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
@@ -164,7 +164,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
             {/* Professional Animatronics */}
             <a
               href="/professional-animatronics"
-              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px]"
+              className="group relative overflow-hidden block min-h-[240px] md:min-h-[280px]"
               style={{ background: "linear-gradient(135deg, #0E0808 0%, #0A0510 100%)" }}
             >
               <div className="absolute inset-0 pointer-events-none">
@@ -174,10 +174,10 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
                 <div className="absolute top-14 right-16 w-px h-px rounded-full animate-ember" style={{ background: "rgba(200,150,30,0.20)", animationDelay: "3s", animationDuration: "7.2s" }} />
               </div>
               <div className="absolute inset-0 border border-[rgba(200,150,30,0.18)] group-hover:border-[rgba(200,150,30,0.42)] transition-colors duration-500" />
-              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
+              <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>Professional Grade</span>
-                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
+                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>Professional Grade</span>
+                  <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
                     Professional Animatronics
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
@@ -199,7 +199,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
             {/* Scare Effect Animatronics */}
             <a
               href="/scare-effects"
-              className="group relative overflow-hidden block min-h-[190px] md:min-h-[280px] col-span-2 lg:col-span-1"
+              className="group relative overflow-hidden block min-h-[240px] md:min-h-[280px] col-span-2 lg:col-span-1"
               style={{ background: "linear-gradient(135deg, #0E0812 0%, #0A0714 100%)" }}
             >
               <div className="absolute inset-0 pointer-events-none">
@@ -209,10 +209,10 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
                 <div className="absolute top-14 right-16 w-px h-px rounded-full animate-ember" style={{ background: "rgba(192,132,252,0.20)", animationDelay: "2.6s", animationDuration: "6.8s" }} />
               </div>
               <div className="absolute inset-0 border border-[rgba(168,85,247,0.18)] group-hover:border-[rgba(168,85,247,0.42)] transition-colors duration-500" />
-              <div className="relative z-10 flex flex-col justify-end p-3 md:p-8 h-full">
+              <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-[9px] md:text-xs tracking-[0.28em] uppercase block mb-1 md:mb-2" style={{ color: "rgba(192,132,252,0.58)" }}>Jumpscare Line</span>
-                  <h3 className="font-cinzel text-[11px] sm:text-sm md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
+                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(192,132,252,0.58)" }}>Jumpscare Line</span>
+                  <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
                     Scare Effect Animatronics
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">

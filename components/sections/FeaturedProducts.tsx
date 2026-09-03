@@ -13,6 +13,9 @@ const FEATURED_PRO_IDS = ["pro-bloodthirsty-werewolf", "pro-riding-dead"];
 const SCROLL_SPEED = 0.8;
 
 // ── RAF continuous scroll, identical behaviour on touch and mouse ─────────────
+// Uses the Pointer Events API (not mouseenter/mouseleave) because real touch
+// devices synthesize a "ghost" mouseenter after a tap with no matching
+// mouseleave, which would pause the autoplay loop forever after the first tap.
 function Carousel({ allFeatured }: { allFeatured: Product[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const paused = useRef(false);
@@ -37,15 +40,23 @@ function Carousel({ allFeatured }: { allFeatured: Product[] }) {
     return () => cancelAnimationFrame(rafId.current);
   }, [tick]);
 
-  const onMouseEnter = () => { paused.current = true; };
-  const onMouseLeave = () => { paused.current = false; dragging.current = false; };
-  const onMouseDown = (e: React.MouseEvent) => {
+  const onPointerEnter = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") paused.current = true;
+  };
+  const onPointerLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === "mouse") {
+      paused.current = false;
+      dragging.current = false;
+    }
+  };
+  const onPointerDown = (e: React.PointerEvent) => {
+    paused.current = true;
     dragging.current = true;
     hasDragged.current = false;
     startX.current = e.clientX;
     startScroll.current = containerRef.current?.scrollLeft ?? 0;
   };
-  const onMouseMove = (e: React.MouseEvent) => {
+  const onPointerMove = (e: React.PointerEvent) => {
     if (!dragging.current || !containerRef.current) return;
     const delta = startX.current - e.clientX;
     if (Math.abs(delta) > 5) hasDragged.current = true;
@@ -55,26 +66,10 @@ function Carousel({ allFeatured }: { allFeatured: Product[] }) {
     if (next >= half) next -= half;
     containerRef.current.scrollLeft = next;
   };
-  const onMouseUp = () => { dragging.current = false; };
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    paused.current = true;
-    dragging.current = true;
-    hasDragged.current = false;
-    startX.current = e.touches[0].clientX;
-    startScroll.current = containerRef.current?.scrollLeft ?? 0;
+  const endDrag = (e: React.PointerEvent) => {
+    dragging.current = false;
+    if (e.pointerType !== "mouse") paused.current = false;
   };
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (!dragging.current || !containerRef.current) return;
-    const delta = startX.current - e.touches[0].clientX;
-    if (Math.abs(delta) > 5) hasDragged.current = true;
-    let next = startScroll.current + delta;
-    const half = containerRef.current.scrollWidth / 2;
-    if (next < 0) next += half;
-    if (next >= half) next -= half;
-    containerRef.current.scrollLeft = next;
-  };
-  const onTouchEnd = () => { dragging.current = false; paused.current = false; };
 
   const onClickCapture = (e: React.MouseEvent) => {
     if (hasDragged.current) {
@@ -98,14 +93,12 @@ function Carousel({ allFeatured }: { allFeatured: Product[] }) {
         ref={containerRef}
         className="overflow-x-hidden py-6 cursor-grab active:cursor-grabbing select-none"
         style={{ touchAction: "pan-y" }}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
         onClickCapture={onClickCapture}
       >
         <div className="flex items-stretch gap-4 md:gap-5" style={{ width: "max-content" }}>
