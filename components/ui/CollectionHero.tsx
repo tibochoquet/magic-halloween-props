@@ -113,7 +113,7 @@ export default function CollectionHero({
       )}
 
       {/* Tablet/desktop: full-screen cinematic photo with hotspots */}
-      <div className={`hidden md:block relative w-full ${title ? "min-h-screen" : "aspect-video"}`}>
+      <div className="hidden md:block relative w-full aspect-video">
         <Image
           src={src}
           alt={alt}
@@ -143,26 +143,26 @@ export default function CollectionHero({
         )}
 
         {title && (
-          <div className="absolute inset-x-0 top-0 z-10 pt-20 md:pt-24 px-5 text-center pointer-events-none">
+          <div className="absolute inset-x-0 top-0 z-10 pt-10 lg:pt-14 xl:pt-20 px-5 text-center pointer-events-none">
             <div className="max-w-3xl mx-auto">
               {eyebrow && (
-                <div className="inline-flex items-center gap-3 mb-3 sm:mb-4 justify-center">
-                  <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
-                  <span className="text-horror-orange text-[10px] sm:text-sm font-semibold tracking-[0.25em] uppercase" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
+                <div className="inline-flex items-center gap-2 lg:gap-3 mb-2 lg:mb-3 justify-center">
+                  <div className="h-px w-6 lg:w-10 bg-horror-orange/60" />
+                  <span className="text-horror-orange text-[9px] lg:text-sm font-semibold tracking-[0.25em] uppercase" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
                     {eyebrow}
                   </span>
-                  <div className="h-px w-8 sm:w-10 bg-horror-orange/60" />
+                  <div className="h-px w-6 lg:w-10 bg-horror-orange/60" />
                 </div>
               )}
               <h2
-                className="font-cinzel text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+                className="font-cinzel text-2xl lg:text-4xl xl:text-6xl font-bold text-white leading-tight"
                 style={{ textShadow: "0 4px 22px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)" }}
               >
                 {title} {titleAccent && <span className="text-horror-orange">{titleAccent}</span>}
               </h2>
               {subtitle && (
                 <p
-                  className="mt-4 sm:mt-5 text-white/85 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed"
+                  className="hidden xl:block mt-5 text-white/85 text-base lg:text-lg max-w-xl mx-auto leading-relaxed"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95)" }}
                 >
                   {subtitle}

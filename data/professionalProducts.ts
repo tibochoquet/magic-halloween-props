@@ -324,7 +324,7 @@ export const professionalProducts: Product[] = [
       "/products/The%20Collector%20of%20Souls%205.png",
     ],
     video: "/products/The%20Collector%20of%20Souls.mp4",
-    heroImage: "/products/Soul%20Reaper%20Hero%202.png",
+    heroImage: "/products/Soul%20Reaper%20Hero%20Final.png",
     bgGradient: G, accentColor: AC, iconEmoji: "💀",
   },
   {

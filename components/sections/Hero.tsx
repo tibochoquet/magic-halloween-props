@@ -44,7 +44,7 @@ export default function Hero() {
 
       {/* Hero image */}
       <Image
-        src="/main%20page%20hero.png"
+        src="/products/Main%20Page%20Hero%20New.png"
         alt=""
         fill
         priority
@@ -122,7 +122,7 @@ export default function Hero() {
         <div className="flex-1 flex flex-col justify-center pt-24 md:pt-28 pb-8 md:pb-10 px-6 sm:px-10 lg:pl-[7vw] xl:pl-[9vw] lg:pr-0 w-full lg:max-w-[54vw]">
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2.5 mb-5 md:mb-10 bg-horror-orange/[0.035] px-4 md:px-5 py-2 text-horror-orange/75 text-[11px] font-semibold tracking-[0.24em] uppercase w-fit">
+          <div className="inline-flex items-center gap-2.5 mb-5 md:mb-10 text-horror-orange/75 text-[11px] font-semibold tracking-[0.24em] uppercase w-fit">
             <span className="w-1 h-1 rounded-full bg-horror-orange/65 animate-pulse" />
             {t.hero.badge}
           </div>

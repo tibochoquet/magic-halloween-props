@@ -7,7 +7,7 @@ import { professionalProducts } from "@/data/professionalProducts";
 
 const HERO_SPOTS: { id: string; xPct: number; yPct: number }[] = [
   { id: "pro-bloodthirsty-werewolf", xPct: 31, yPct: 74 },
-  { id: "pro-pumpkin-hollow-scarecrow", xPct: 35, yPct: 42 },
+  { id: "pro-pumpkin-hollow-scarecrow", xPct: 35, yPct: 47 },
   { id: "pro-riding-dead", xPct: 64, yPct: 58 },
 ];
 

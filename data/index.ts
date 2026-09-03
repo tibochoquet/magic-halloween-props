@@ -374,7 +374,7 @@ export const products: Product[] = [
     category: "witch",
     price: 149.00,
     description: "Halloween animatronic pop met beweging en geluid.",
-    availability: "unavailable",
+    availability: "in_stock",
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-witch-of-the-dark.png",
