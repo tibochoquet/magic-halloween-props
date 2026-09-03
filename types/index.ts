@@ -8,7 +8,8 @@ export interface Product {
   reviews?: number;
   description: string;
   badge?: "BESTSELLER" | "NEW" | "PREMIUM" | "EXTREME" | "LIMITED";
-  soldOut?: boolean;
+  availability: "in_stock" | "unavailable";
+  availabilityNote?: string;
   featured?: boolean;
   height?: string;
   features: string[];

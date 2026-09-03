@@ -4,6 +4,7 @@ import { style } from "@/data";
 export const scareEffectProducts: Product[] = [
   {
     id: "scare-angel-of-dead",
+    availability: "in_stock",
     name: "Angel Of Dead",
     category: "reaper",
     price: 179.95,
@@ -16,6 +17,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-nun-from-hell",
+    availability: "in_stock",
     name: "Nun From Hell",
     category: "ghost",
     price: 179.95,
@@ -28,6 +30,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-popping-pumpkin-man",
+    availability: "in_stock",
     name: "Popping Pumpkin Man",
     category: "monster",
     price: 184.95,
@@ -40,6 +43,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-possessed-saint",
+    availability: "in_stock",
     name: "Possessed Saint",
     category: "monster",
     price: 179.95,
@@ -52,6 +56,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-rising-spirit",
+    availability: "in_stock",
     name: "Rising Spirit",
     category: "ghost",
     price: 195.00,
@@ -64,6 +69,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-screaming-little-girl",
+    availability: "in_stock",
     name: "Screaming Little Girl",
     category: "ghost",
     price: 179.95,
@@ -76,6 +82,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-two-faced-ghost",
+    availability: "in_stock",
     name: "Two-Faced Ghost",
     category: "ghost",
     price: 179.95,
@@ -88,6 +95,7 @@ export const scareEffectProducts: Product[] = [
   },
   {
     id: "scare-wolf-woman",
+    availability: "in_stock",
     name: "Wolf Woman",
     category: "monster",
     price: 189.95,

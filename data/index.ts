@@ -17,6 +17,7 @@ export const style = {
 export const products: Product[] = [
   {
     id: "animatronic-crow-in-cage",
+    availability: "in_stock",
     name: "Animatronic Crow in Cage – bezeten enge kraai in kooi",
     category: "monster",
     price: 79.95,
@@ -28,6 +29,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-chainsaw-killer",
+    availability: "in_stock",
     name: "Halloween pop Chainsaw Killer",
     category: "zombie",
     price: 139.00,
@@ -40,6 +42,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-mummy",
+    availability: "in_stock",
     name: "Halloween pop Evil Mummy",
     category: "mummy",
     price: 119.00,
@@ -52,6 +55,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-spirit",
+    availability: "in_stock",
     name: "Halloween pop EVIL SPIRIT",
     category: "ghost",
     price: 149.00,
@@ -64,6 +68,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-evil-witch",
+    availability: "in_stock",
     name: "Halloween pop Evil Witch",
     category: "witch",
     price: 149.00,
@@ -76,6 +81,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-freaky-clown",
+    availability: "in_stock",
     name: "Halloween pop Freaky Clown",
     category: "clown",
     price: 129.00,
@@ -88,6 +94,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-grim-reaper",
+    availability: "in_stock",
     name: "Halloween pop Grim Reaper",
     category: "reaper",
     price: 129.00,
@@ -99,6 +106,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-horrible-pumpkin",
+    availability: "in_stock",
     name: "Halloween pop Horrible Pumpkin",
     category: "monster",
     price: 119.00,
@@ -111,6 +119,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-mad-pumpkin-man",
+    availability: "in_stock",
     name: "Halloween pop Mad Pumpkin Man",
     category: "monster",
     price: 149.00,
@@ -124,6 +133,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-mean-witch",
+    availability: "in_stock",
     name: "Halloween pop Mean Witch",
     category: "witch",
     price: 149.00,
@@ -136,6 +146,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-old-wailing-ghost",
+    availability: "in_stock",
     name: "Halloween pop Old Wailing Ghost",
     category: "ghost",
     price: 129.00,
@@ -148,6 +159,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-old-wizard",
+    availability: "in_stock",
     name: "Halloween pop Old wizard",
     category: "wizard",
     price: 149.00,
@@ -160,6 +172,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-psycho-clown",
+    availability: "in_stock",
     name: "Halloween pop Psycho Clown",
     category: "clown",
     price: 119.00,
@@ -172,6 +185,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-scary-clown",
+    availability: "in_stock",
     name: "Halloween pop Scary Clown",
     category: "clown",
     price: 119.00,
@@ -184,6 +198,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-scary-zombie",
+    availability: "in_stock",
     name: "Halloween pop Scary Zombie",
     category: "zombie",
     price: 129.00,
@@ -196,6 +211,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-dead",
+    availability: "in_stock",
     name: "Halloween pop Screaming Dead",
     category: "zombie",
     price: 149.00,
@@ -208,6 +224,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-skeleton",
+    availability: "in_stock",
     name: "Halloween pop Screaming Skeleton",
     category: "skeleton",
     price: 119.00,
@@ -220,6 +237,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-screaming-witch",
+    availability: "in_stock",
     name: "Halloween pop Screaming Witch",
     category: "witch",
     price: 129.00,
@@ -232,6 +250,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-sneaky-clown",
+    availability: "in_stock",
     name: "Halloween pop Sneaky Clown",
     category: "clown",
     price: 119.00,
@@ -244,6 +263,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spinning-head-witch",
+    availability: "in_stock",
     name: "Halloween pop Spinning head witch",
     category: "witch",
     price: 129.00,
@@ -256,6 +276,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spirit-of-dead",
+    availability: "in_stock",
     name: "Halloween pop Spirit of Dead",
     category: "ghost",
     price: 119.00,
@@ -268,6 +289,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-spooky-ghost",
+    availability: "in_stock",
     name: "Halloween pop Spooky Ghost",
     category: "ghost",
     price: 95.00,
@@ -280,6 +302,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terrifying-witch",
+    availability: "in_stock",
     name: "Halloween pop Terrifying Witch",
     category: "witch",
     price: 149.00,
@@ -293,6 +316,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terror-clown",
+    availability: "in_stock",
     name: "Halloween pop Terror Clown",
     category: "clown",
     price: 149.00,
@@ -306,6 +330,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-terror-creep",
+    availability: "in_stock",
     name: "Halloween pop Terror Creep",
     category: "zombie",
     price: 119.00,
@@ -322,7 +347,7 @@ export const products: Product[] = [
     category: "witch",
     price: 149.00,
     description: "Halloween animatronic pop met beweging en geluid.",
-    soldOut: true,
+    availability: "unavailable",
     height: "1,60 m",
     features: [],
     image: "/products/halloween-pop-witch-of-the-dark.png",
@@ -330,6 +355,7 @@ export const products: Product[] = [
   },
   {
     id: "halloween-pop-zombie-vrouw",
+    availability: "in_stock",
     name: "Halloween pop Zombie Vrouw",
     category: "zombie",
     price: 175.00,
@@ -343,6 +369,7 @@ export const products: Product[] = [
   },
   {
     id: "the-creepy-wizard",
+    availability: "in_stock",
     name: "The Creepy Wizard",
     category: "wizard",
     price: 179.00,
@@ -355,6 +382,7 @@ export const products: Product[] = [
   },
   {
     id: "evil-pirate",
+    availability: "in_stock",
     name: "Evil Pirate",
     category: "skeleton",
     price: 159.95,
@@ -367,6 +395,7 @@ export const products: Product[] = [
   },
   {
     id: "flying-skeleton-creep",
+    availability: "in_stock",
     name: "Flying Skeleton Creep",
     category: "skeleton",
     price: 149.95,
@@ -378,6 +407,7 @@ export const products: Product[] = [
   },
   {
     id: "horror-clown",
+    availability: "in_stock",
     name: "Horror Clown",
     category: "clown",
     price: 159.95,
@@ -390,6 +420,7 @@ export const products: Product[] = [
   },
   {
     id: "poison-apple-witch",
+    availability: "in_stock",
     name: "Poison Apple Witch",
     category: "witch",
     price: 149.95,
@@ -400,6 +431,7 @@ export const products: Product[] = [
   },
   {
     id: "swamp-ghost",
+    availability: "in_stock",
     name: "Swamp Ghost",
     category: "ghost",
     price: 159.95,

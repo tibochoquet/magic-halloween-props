@@ -13,12 +13,14 @@ export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const unavailable = product.availability === "unavailable";
+  const unavailableLabel = product.availabilityNote ?? (language === "nl" ? "Niet beschikbaar" : "Unavailable");
 
-  const soldOutCls = "border border-horror-border text-horror-text-muted cursor-not-allowed";
+  const unavailableCls = "border border-horror-border text-horror-text-muted cursor-not-allowed";
   const addCls = "bg-horror-orange/10 border border-horror-orange/30 text-horror-orange hover:bg-horror-orange hover:text-black";
 
   return (
-    <article className={`group card-horror flex flex-col overflow-hidden w-full ${product.soldOut ? "opacity-70" : ""}`}>
+    <article className={`group card-horror flex flex-col overflow-hidden w-full ${unavailable ? "opacity-70" : ""}`}>
       <Link
         href={`/products/${product.id}`}
         className="block"
@@ -57,15 +59,15 @@ export default function ProductCard({ product }: { product: Product }) {
             />
           )}
 
-          {product.soldOut && (
-            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20">
-              <span className="border border-white/30 text-white text-xs font-bold tracking-[0.2em] uppercase px-4 py-2">
-                {language === "nl" ? "Uitverkocht" : "Sold Out"}
+          {unavailable && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center z-20 px-4 text-center">
+              <span className="border border-white/30 text-white text-xs font-bold tracking-[0.15em] uppercase px-4 py-2">
+                {unavailableLabel}
               </span>
             </div>
           )}
 
-          {product.badge && !product.soldOut && (
+          {product.badge && !unavailable && (
             <div className={`absolute top-4 left-4 px-3 py-1 text-xs font-bold tracking-widest ${BADGE_STYLES[product.badge]}`}>
               {product.badge}
             </div>
@@ -112,14 +114,14 @@ export default function ProductCard({ product }: { product: Product }) {
           </div>
 
           <button
-            onClick={() => !product.soldOut && addToCart(product)}
-            disabled={product.soldOut}
-            className={`flex items-center gap-1.5 md:gap-2 px-4 md:px-5 py-3 md:py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${product.soldOut ? soldOutCls : addCls}`}
+            onClick={() => !unavailable && addToCart(product)}
+            disabled={unavailable}
+            className={`flex items-center gap-1.5 md:gap-2 px-4 md:px-5 py-3 md:py-2.5 text-xs font-bold tracking-wider uppercase transition-all duration-300 ${unavailable ? unavailableCls : addCls}`}
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            {product.soldOut ? (language === "nl" ? "Uitverkocht" : "Sold out") : (language === "nl" ? "Voeg toe" : "Add")}
+            {unavailable ? unavailableLabel : (language === "nl" ? "Voeg toe" : "Add")}
           </button>
         </div>
       </div>

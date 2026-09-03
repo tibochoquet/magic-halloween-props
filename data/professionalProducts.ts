@@ -6,6 +6,7 @@ const AC = "rgba(180,55,0,0.28)";
 export const professionalProducts: Product[] = [
   {
     id: "pro-bloodthirsty-werewolf",
+    availability: "in_stock",
     name: "Bloodthirsty Werewolf Professionele Halloween Animatronic",
     category: "monster",
     price: 1200,
@@ -16,6 +17,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-clown-of-terror",
+    availability: "in_stock",
     name: "Clown of terror",
     category: "clown",
     price: 879,
@@ -27,6 +29,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-clown-your-worse-nightmare",
+    availability: "in_stock",
     name: "Clown your worse Nightmare",
     category: "clown",
     price: 549,
@@ -38,6 +41,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-dark-evil-scarecrow",
+    availability: "in_stock",
     name: "Dark Evil Scarecrow",
     category: "monster",
     price: 279,
@@ -50,6 +54,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-elvira-animatronic",
+    availability: "in_stock",
     name: "Elvira animatronic",
     category: "witch",
     price: 275,
@@ -64,7 +69,7 @@ export const professionalProducts: Product[] = [
     name: "Evil Pumkin Terror Monster mega grote animatronic",
     category: "monster",
     price: 879,
-    soldOut: true,
+    availability: "unavailable",
     description: "Een 2,10 meter hoog schrikbewind rechtstreeks uit een horrorfilm. Deze animatronic buigt dreigend voorover met een grijnzende pompoenlantaarn in zijn klauw en gloeiende gele ogen.",
     features: ["Skeletachtige kop- en lichaamsconstructie", "Gloeiende gele ogen", "Houdt een jack-o-lantern vast", "Geprogrammeerd met beweging en enge uitspraken"],
     height: "2,10 m",
@@ -73,6 +78,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-evil-witch-cooking",
+    availability: "in_stock",
     name: "Evil Witch cooking the little girl",
     category: "witch",
     price: 799,
@@ -84,6 +90,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-extreem-mean-witch",
+    availability: "in_stock",
     name: "Extreem Mean Witch ( Big size)!",
     category: "witch",
     price: 579,
@@ -94,6 +101,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-lunging-reaper",
+    availability: "in_stock",
     name: "Lunging Reaper animatronic",
     category: "reaper",
     price: 479,
@@ -108,7 +116,7 @@ export const professionalProducts: Product[] = [
     name: "Nightmare terror zombie",
     category: "zombie",
     price: 649,
-    soldOut: true,
+    availability: "unavailable",
     description: "Deze angstaanjagende zombie is dé blikvanger van je Halloweenfeest. Spreekt met een schorre, droge stem terwijl hoofd en mond bewegen, begeleid door griezelige druppelgeluiden.",
     features: ["3 werkstanden: continu, bewegingsmelder of voetmat", "Oplichtende digitale ogen met geanimeerde beweging", "Gedetailleerde latex gezichtsuitdrukking", "Inclusief activeringsmat en NL-adapter"],
     height: "ca. 2,10 m",
@@ -120,7 +128,7 @@ export const professionalProducts: Product[] = [
     name: "Nun From Hell Animatronic",
     category: "ghost",
     price: 275,
-    soldOut: true,
+    availability: "unavailable",
     description: "Huiveringwekkend realistisch: haar mond beweegt synchroon tijdens het spreken van angstaanjagende teksten, terwijl haar ogen dreigend oplichten en de kaars in haar hand een spookachtig licht werpt.",
     features: ["Mond beweegt synchroon tijdens het spreken", "Ogen lichten dreigend op", "Kaars met spookachtig lichteffect", "Werkt op 3x AA batterijen, overal te plaatsen"],
     height: "1,85 m",
@@ -128,6 +136,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-peekaboo-little-girl",
+    availability: "in_stock",
     name: "Peek a Boo Little Girl Animatronic – groot horror-effect",
     category: "ghost",
     price: 175,
@@ -138,6 +147,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-pumpkin-hollow-ghoul",
+    availability: "in_stock",
     name: "Pumpkin Hollow Smoldering Ghoul animatronic",
     category: "ghost",
     price: 699,
@@ -149,6 +159,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-pumpkin-hollow-scarecrow",
+    availability: "in_stock",
     name: "Pumpkin Hollow Smoldering Ghoul Scarecrow",
     category: "ghost",
     price: 479,
@@ -160,6 +171,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-riding-dead",
+    availability: "in_stock",
     name: "Riding dead Animatronic",
     category: "zombie",
     price: 1250,
@@ -171,6 +183,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-rotting-reaper",
+    availability: "in_stock",
     name: "Rotting Reaper from Hell",
     category: "reaper",
     price: 379,
@@ -183,7 +196,7 @@ export const professionalProducts: Product[] = [
     name: "Screeming Angel of the dark animatronic",
     category: "ghost",
     price: 479,
-    soldOut: true,
+    availability: "unavailable",
     description: "Een imposant doodsengelfiguur met lang grijzend haar, wapperende gewaden en benige handen die naar bezoekers reiken — licht, geluid en beweging voor een zeer indrukwekkende Halloween-decoratie.",
     features: ["Continu, bewegingsmelder of voetmatactivering (mat niet inbegrepen)", "Oplichtende ogen en gedetailleerde gezichtsuitdrukking", "Materiaal: metaal, latex en kunststof", "Inclusief EU-adapter"],
     height: "2,15 m",
@@ -195,7 +208,7 @@ export const professionalProducts: Product[] = [
     name: "Skalet Animatronic",
     category: "skeleton",
     price: 275,
-    soldOut: true,
+    availability: "unavailable",
     description: "Laat de rillingen over je rug lopen: dit griezelige skelet beweegt zijn hoofd, mond, bovenlichaam én beide armen levensecht, terwijl zijn ogen fel oplichten en hij enge geluiden maakt.",
     features: ["Beweegt hoofd, mond, bovenlichaam en beide armen", "Ogen lichten op voor extra creepy effect", "Maakt geluid en spreekt met angstaanjagende stem"],
     height: "1,50 m",
@@ -203,6 +216,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-old-mean-witch",
+    availability: "in_stock",
     name: "The old mean witch from the dark forest",
     category: "witch",
     price: 750,
@@ -214,6 +228,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-wailing-ghost",
+    availability: "in_stock",
     name: "Wailing Ghost of Terror",
     category: "ghost",
     price: 799,
@@ -225,6 +240,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-weerwolf-xxl",
+    availability: "in_stock",
     name: "Weerwolf XXL animatronic halloween pop",
     category: "monster",
     price: 479,
@@ -236,6 +252,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-zombie-attack",
+    availability: "in_stock",
     name: "Zombie attack",
     category: "zombie",
     price: 379,
@@ -246,6 +263,7 @@ export const professionalProducts: Product[] = [
   },
   {
     id: "pro-zombie-skeleton-cauldron",
+    availability: "in_stock",
     name: "Zombie Skeleton with Cauldron Animatronic",
     category: "zombie",
     price: 479,
