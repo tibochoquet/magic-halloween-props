@@ -154,6 +154,11 @@ export default function CollectionHero({
             </h2>
             {subtitle && <p className="mt-4 text-white/85 text-base max-w-sm mx-auto leading-relaxed">{subtitle}</p>}
           </div>
+
+          <div className="relative z-10 flex flex-col items-center pt-10 gap-2 text-white/50 text-[10px] tracking-[0.32em] uppercase">
+            <span>Bekijk de collectie</span>
+            <div className="w-px h-6 bg-gradient-to-b from-horror-orange/50 to-transparent animate-pulse" />
+          </div>
         </div>
       )}
 
@@ -216,6 +221,12 @@ export default function CollectionHero({
             </div>
           </div>
         )}
+
+        {/* Scroll indicator — signals the product grid sits below the fold */}
+        <div className="absolute inset-x-0 bottom-0 z-10 hidden sm:flex flex-col items-center pb-8 gap-2 text-white/50 text-[10px] tracking-[0.32em] uppercase pointer-events-none">
+          <div className="w-px h-8 bg-gradient-to-b from-horror-orange/50 to-transparent animate-pulse" />
+          <span>Bekijk de collectie</span>
+        </div>
 
         {spots.map((spot) => {
           const isOpen = openId === spot.id;

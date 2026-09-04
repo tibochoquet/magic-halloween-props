@@ -18,7 +18,8 @@ export const products: Product[] = [
   {
     id: "animatronic-crow-in-cage",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Niet meer leverbaar",
     name: "Animatronic Crow in Cage – bezeten enge kraai in kooi",
     category: "monster",
     price: 79.95,
@@ -384,7 +385,8 @@ export const products: Product[] = [
   {
     id: "halloween-pop-zombie-vrouw",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Halloween pop Zombie Vrouw",
     category: "zombie",
     price: 175.00,
@@ -413,7 +415,8 @@ export const products: Product[] = [
   {
     id: "evil-pirate",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Evil Pirate",
     category: "skeleton",
     price: 159.95,
@@ -427,7 +430,8 @@ export const products: Product[] = [
   {
     id: "flying-skeleton-creep",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Flying Skeleton Creep",
     category: "skeleton",
     price: 149.95,
@@ -440,7 +444,8 @@ export const products: Product[] = [
   {
     id: "horror-clown",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Horror Clown",
     category: "clown",
     price: 159.95,
@@ -454,7 +459,8 @@ export const products: Product[] = [
   {
     id: "poison-apple-witch",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Poison Apple Witch",
     category: "witch",
     price: 149.95,
@@ -467,7 +473,8 @@ export const products: Product[] = [
   {
     id: "swamp-ghost",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "in_stock",
+    availability: "unavailable",
+    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
     name: "Swamp Ghost",
     category: "ghost",
     price: 159.95,
