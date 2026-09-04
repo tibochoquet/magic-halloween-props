@@ -5,8 +5,6 @@ import { Building2, Package, Star, Mail } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import ProCard from "@/components/ui/ProCard";
 import ScareCard from "@/components/ui/ScareCard";
-import SectionHeader from "@/components/ui/SectionHeader";
-import CollectionHero, { type CollectionHeroSpot } from "@/components/ui/CollectionHero";
 import UpcomingProducts from "@/components/sections/UpcomingProducts";
 import { products, categories } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
@@ -14,28 +12,6 @@ import { scareEffectProducts } from "@/data/scareEffectProducts";
 import { useTranslation } from "@/hooks/useTranslation";
 
 type ShopVariant = "all" | "standard" | "premium" | "scare";
-
-const allProductsFlat = [...products, ...professionalProducts, ...scareEffectProducts];
-
-const WHOLE_HERO_SPOTS: { id: string; xPct: number; yPct: number }[] = [
-  { id: "scare-wolf-woman", xPct: 19.5, yPct: 58 },
-  { id: "halloween-pop-terror-clown", xPct: 48.5, yPct: 49 },
-  { id: "scare-popping-pumpkin-man", xPct: 72, yPct: 52 },
-  { id: "pro-nun-from-hell", xPct: 91.5, yPct: 49 },
-];
-
-const STANDARD_HERO_SPOTS: { id: string; xPct: number; yPct: number }[] = [
-  { id: "halloween-pop-horrible-pumpkin", xPct: 19, yPct: 49 },
-  { id: "halloween-pop-evil-witch", xPct: 38, yPct: 58 },
-  { id: "halloween-pop-psycho-clown", xPct: 61.5, yPct: 43 },
-];
-
-function resolveHeroSpots(defs: { id: string; xPct: number; yPct: number }[]): CollectionHeroSpot[] {
-  return defs.flatMap(({ id, xPct, yPct }) => {
-    const p = allProductsFlat.find((pp) => pp.id === id);
-    return p ? [{ id, xPct, yPct, name: p.name, price: p.price }] : [];
-  });
-}
 
 export default function ShopContent({ variant = "all" }: { variant?: ShopVariant }) {
   const t = useTranslation();
@@ -59,31 +35,6 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
 
   const totalCount = filteredStandard.length + filteredPro.length + filteredScare.length;
 
-  const heroSpots =
-    variant === "all"
-      ? resolveHeroSpots(WHOLE_HERO_SPOTS)
-      : variant === "standard"
-        ? resolveHeroSpots(STANDARD_HERO_SPOTS)
-        : [];
-  const heroSrc =
-    variant === "all"
-      ? "/whole%20collection%20hero-wolfgirl-terrorclown-nun-poppingpumpkin.png"
-      : "/standaard%20collection%20hero-psychoclown-horrible%20pumpkin-evilwitch.png";
-  const heroAlt =
-    variant === "all"
-      ? "Het Gehele Assortiment — Wolf Woman, Halloween pop Terror Clown, Nun From Hell en Popping Pumpkin Man"
-      : "Standaard Halloween Props — Halloween pop Horrible Pumpkin, Halloween pop Evil Witch en Halloween pop Psycho Clown";
-  const heroTitle =
-    variant === "all"
-      ? { eyebrow: s.eyebrow, title: s.title, titleAccent: s.titleAccent, subtitle: s.subtitle }
-      : {
-          eyebrow: "Halloween Collection",
-          title: "Standaard",
-          titleAccent: "Halloween Props",
-          subtitle: "Premium animatronics voor thuisdecoratie, feesten en seizoensevenementen.",
-        };
-  const heroBackLink = variant === "standard" ? { href: "/shop", label: "Terug naar gehele assortiment" } : undefined;
-
   function setCategory(id: string) {
     const params = new URLSearchParams(searchParams.toString());
     if (id === "all") {
@@ -96,29 +47,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
 
   return (
     <>
-      {heroSpots.length > 0 ? (
-        <section className="relative pt-28 md:pt-36 pb-12 md:pb-16 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-5 md:px-8">
-            <CollectionHero
-              src={heroSrc}
-              alt={heroAlt}
-              spots={heroSpots}
-              eyebrow={heroTitle.eyebrow}
-              title={heroTitle.title}
-              titleAccent={heroTitle.titleAccent}
-              subtitle={heroTitle.subtitle}
-              backLink={heroBackLink}
-            />
-          </div>
-        </section>
-      ) : (
-        <section className="relative pt-28 md:pt-36 pb-0 overflow-hidden">
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,107,0,0.07) 0%, transparent 60%)" }} />
-          <div className="max-w-7xl mx-auto px-5 md:px-8">
-            <SectionHeader eyebrow={s.eyebrow} title={s.title} titleAccent={s.titleAccent} subtitle={s.subtitle} />
-          </div>
-        </section>
-      )}
+      <div className="pt-12 md:pt-16" />
 
       {/* Collection gateway cards — only on the "everything" view; the standalone collection pages link back instead */}
       {variant === "all" && (

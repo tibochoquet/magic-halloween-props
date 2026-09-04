@@ -123,7 +123,7 @@ export default function CollectionHero({
       {/* Mobile: text-only box, no photo/hotspots — keeps things fast and legible on small screens */}
       {title && (
         <div
-          className="md:hidden relative px-6 py-16 text-center overflow-hidden"
+          className="md:hidden relative px-6 pt-24 pb-16 text-center overflow-hidden"
           style={{ background: "linear-gradient(160deg, #1c0e0a 0%, #0a0505 60%, #0A0A0A 100%)" }}
         >
           <div
@@ -178,7 +178,7 @@ export default function CollectionHero({
         {backLink && (
           <Link
             href={backLink.href}
-            className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] sm:text-xs font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
+            className="absolute top-20 left-4 lg:top-24 lg:left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] sm:text-xs font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />

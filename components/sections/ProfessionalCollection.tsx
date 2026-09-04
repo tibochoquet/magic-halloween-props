@@ -1,28 +1,16 @@
 "use client";
 
 import ProCard from "@/components/ui/ProCard";
-import CollectionHero, { type CollectionHeroSpot } from "@/components/ui/CollectionHero";
 import { useTranslation } from "@/hooks/useTranslation";
 import { professionalProducts } from "@/data/professionalProducts";
-
-const HERO_SPOTS: { id: string; xPct: number; yPct: number }[] = [
-  { id: "pro-bloodthirsty-werewolf", xPct: 31, yPct: 74 },
-  { id: "pro-pumpkin-hollow-scarecrow", xPct: 35, yPct: 47 },
-  { id: "pro-riding-dead", xPct: 64, yPct: 58 },
-];
 
 export default function ProfessionalCollection({ pageMode = false }: { pageMode?: boolean }) {
   const t = useTranslation();
 
-  const heroSpots: CollectionHeroSpot[] = HERO_SPOTS.flatMap(({ id, xPct, yPct }) => {
-    const p = professionalProducts.find((pp) => pp.id === id);
-    return p ? [{ id, xPct, yPct, name: p.name, price: p.price }] : [];
-  });
-
   return (
     <section
       id="professional"
-      className={`relative overflow-hidden ${pageMode ? "pt-28 md:pt-36 pb-16 md:pb-24" : "py-16 md:py-24 lg:py-32 -mt-px"}`}
+      className={`relative overflow-hidden ${pageMode ? "pt-12 md:pt-16 pb-16 md:pb-24" : "py-16 md:py-24 lg:py-32 -mt-px"}`}
       style={{ background: "linear-gradient(180deg, #0A0A0A 0%, #0E0808 25%, #0C0910 55%, #0A0A0A 100%)" }}
     >
       {!pageMode && (
@@ -48,21 +36,6 @@ export default function ProfessionalCollection({ pageMode = false }: { pageMode?
         <div className="absolute top-[72%] left-[52%] w-px h-px rounded-full bg-horror-orange/11 animate-ember" style={{ animationDelay: "0.8s", animationDuration: "7.5s" }} />
         <div className="absolute top-[88%] left-[33%] w-px h-px rounded-full bg-horror-orange/10 animate-ember" style={{ animationDelay: "1.9s", animationDuration: "6.5s" }} />
       </div>
-
-      {heroSpots.length > 0 && (
-        <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-8 mb-14 md:mb-20">
-          <CollectionHero
-            src="/pro%20collection%20hero-bloodwerewolf-ridingdead-smoderingscarecrow.png"
-            alt="Professional Animatronics collectie — Bloodthirsty Werewolf, Riding Dead en Pumpkin Hollow Smoldering Ghoul Scarecrow"
-            spots={heroSpots}
-            eyebrow="Professional Collection"
-            title="Professional"
-            titleAccent="Animatronics"
-            subtitle="High-end cinematic animatronics for haunted attractions, escape rooms and professional horror experiences."
-            backLink={{ href: "/shop", label: "Terug naar gehele assortiment" }}
-          />
-        </div>
-      )}
 
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
