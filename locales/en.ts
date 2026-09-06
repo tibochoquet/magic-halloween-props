@@ -215,14 +215,19 @@ export const en: Translations = {
     ],
     appointmentBtn: "Make an appointment",
     companyTitle: "Company details",
-    companyDetails: [
-      { label: "Trading name", value: "All Season Toys" },
-      { label: "Legal entity", value: "Slegers import vof" },
-      { label: "KvK number", value: "64942708" },
-      { label: "VAT number", value: "NL855913770B01" },
-      { label: "Address", value: "Pannenweg 306, 6031 RK Nederweert, Netherlands" },
-      { label: "Email", value: "jorgen0207@gmail.com" },
-    ],
+    // Labels only — values come from lib/companyInfo.ts so there is exactly one
+    // source of truth for every legal identifier on the site.
+    companyLabels: {
+      tradeName: "Trading name",
+      statutoryName: "Legal name",
+      legalForm: "Legal form",
+      kvk: "KvK number",
+      vat: "VAT identification number",
+      address: "Address",
+      email: "Email",
+      phone: "Phone",
+      todo: "To be supplied",
+    },
   },
 
   contact: {

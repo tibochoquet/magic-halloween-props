@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { company, addressLineFull } from "@/lib/companyInfo";
 
 export const metadata: Metadata = {
   title: "Algemene Voorwaarden | Magic Halloween Props",
@@ -8,8 +9,15 @@ export const metadata: Metadata = {
 
 const articles = [
   {
-    title: "Artikel 1 – Identiteit",
-    content: `Magic Halloween Props is een handelsnaam van All Season Toys, gevestigd te Pannenweg 306, 6031 RK Nederweert, Nederland.\n\nE-mail: jorgen0207@gmail.com\nKvK-nummer: 64942708\nBTW-nummer: NL855913770B01`,
+    title: "Artikel 1 – Identiteit van de ondernemer",
+    content:
+      `${company.tradeName} is een handelsnaam van ${company.statutoryName} ` +
+      `(${company.legalForm}), handelend onder ${company.umbrellaTradeName}, ` +
+      `gevestigd te ${addressLineFull}.\n\n` +
+      `E-mail: ${company.email}\n` +
+      (company.phone ? `Telefoon: ${company.phone}\n` : `Telefoon: TODO — nog aan te leveren\n`) +
+      `KvK-nummer: ${company.kvk}\n` +
+      `BTW-identificatienummer: ${company.vatId}`,
   },
   {
     title: "Artikel 2 – Toepasselijkheid",

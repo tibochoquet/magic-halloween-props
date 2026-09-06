@@ -213,14 +213,19 @@ export const nl = {
     ],
     appointmentBtn: "Afspraak maken",
     companyTitle: "Bedrijfsgegevens",
-    companyDetails: [
-      { label: "Handelsnaam", value: "All Season Toys" },
-      { label: "Rechtsvorm", value: "Slegers import vof" },
-      { label: "KvK-nummer", value: "64942708" },
-      { label: "BTW-nummer", value: "NL855913770B01" },
-      { label: "Adres", value: "Pannenweg 306, 6031 RK Nederweert, Nederland" },
-      { label: "E-mail", value: "jorgen0207@gmail.com" },
-    ],
+    // Labels only — values come from lib/companyInfo.ts so there is exactly one
+    // source of truth for every legal identifier on the site.
+    companyLabels: {
+      tradeName: "Handelsnaam",
+      statutoryName: "Statutaire naam",
+      legalForm: "Rechtsvorm",
+      kvk: "KvK-nummer",
+      vat: "BTW-identificatienummer",
+      address: "Adres",
+      email: "E-mail",
+      phone: "Telefoon",
+      todo: "Nog aan te leveren",
+    },
   },
 
   contact: {

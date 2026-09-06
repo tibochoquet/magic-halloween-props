@@ -2,6 +2,7 @@
 
 import { useTranslation } from "@/hooks/useTranslation";
 import ContactForm from "@/components/sections/ContactForm";
+import { company, addressLine } from "@/lib/companyInfo";
 
 export default function ContactPageContent() {
   const t = useTranslation();
@@ -84,12 +85,17 @@ export default function ContactPageContent() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="font-cinzel text-xs font-bold tracking-widest uppercase text-horror-text-primary mb-1">{c.companyTitle}</p>
-              <p className="text-horror-text-muted text-sm">{c.companyLine}</p>
+              <p className="text-horror-text-muted text-sm">
+                {company.umbrellaTradeName} · {company.statutoryName} · {addressLine}
+              </p>
             </div>
             <div className="flex flex-col md:flex-row gap-6 text-xs text-horror-text-muted">
-              <span>{c.kvk} <span className="text-horror-text-secondary">64942708</span></span>
-              <span>{c.btw} <span className="text-horror-text-secondary">NL855913770B01</span></span>
-              <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">jorgen0207@gmail.com</a>
+              <span>{c.kvk} <span className="text-horror-text-secondary">{company.kvk}</span></span>
+              <span>{c.btw} <span className="text-horror-text-secondary">{company.vatId}</span></span>
+              <a href={`mailto:${company.email}`} className="text-horror-orange hover:underline">{company.email}</a>
+              {company.phone && (
+                <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="text-horror-orange hover:underline">{company.phone}</a>
+              )}
             </div>
           </div>
         </div>

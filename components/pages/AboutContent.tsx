@@ -2,10 +2,24 @@
 
 import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
+import { company, addressLineFull } from "@/lib/companyInfo";
 
 export default function AboutContent() {
   const t = useTranslation();
   const a = t.about;
+  const cl = a.companyLabels;
+
+  // Values come from the single source of truth; only the labels are localised.
+  const companyDetails: { label: string; value: string }[] = [
+    { label: cl.tradeName, value: company.umbrellaTradeName },
+    { label: cl.statutoryName, value: company.statutoryName },
+    { label: cl.legalForm, value: company.legalForm },
+    { label: cl.kvk, value: company.kvk },
+    { label: cl.vat, value: company.vatId },
+    { label: cl.address, value: addressLineFull },
+    { label: cl.email, value: company.email },
+    { label: cl.phone, value: company.phone ?? `TODO — ${cl.todo}` },
+  ];
 
   return (
     <>
@@ -108,7 +122,7 @@ export default function AboutContent() {
             <div className="bg-horror-card border border-horror-border p-8">
               <p className="font-cinzel text-xs font-bold tracking-widest uppercase text-horror-text-primary mb-5">{a.companyTitle}</p>
               <dl className="space-y-4 text-sm">
-                {a.companyDetails.map(({ label, value }) => (
+                {companyDetails.map(({ label, value }) => (
                   <div key={label} className="flex justify-between gap-4 border-b border-horror-border pb-3 last:border-0 last:pb-0">
                     <dt className="text-horror-text-muted tracking-wide">{label}</dt>
                     <dd className="text-horror-text-secondary text-right">{value}</dd>

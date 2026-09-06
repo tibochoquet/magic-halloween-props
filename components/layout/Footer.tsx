@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import Link from "next/link";
 import { useTranslation } from "@/hooks/useTranslation";
+import { company, addressLine, entityLine } from "@/lib/companyInfo";
 
 const socials = [
   {
@@ -98,7 +99,7 @@ export default function Footer() {
               {f.brandDesc}
             </p>
             <p className="text-horror-text-muted/60 text-xs mb-6">
-              {f.opBehalf} <span className="text-horror-text-muted">All Season Toys</span> (Slegers import vof)
+              {f.opBehalf} <span className="text-horror-text-muted">{company.umbrellaTradeName}</span> ({company.statutoryName})
             </p>
             <div className="flex items-center gap-3">
               {socials.map((s) => (
@@ -132,10 +133,11 @@ export default function Footer() {
         <div className="border-t border-horror-border py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <p className="text-horror-text-muted text-xs">
-              © {new Date().getFullYear()} Magic Halloween Props — All Season Toys · Slegers import vof
+              © {new Date().getFullYear()} {company.tradeName} — {entityLine}
             </p>
             <p className="text-horror-text-muted/50 text-xs mt-1">
-              KvK 64942708 · BTW NL855913770B01 · Pannenweg 306, 6031 RK Nederweert
+              KvK {company.kvk} · BTW {company.vatId} · {addressLine}
+              {company.phone && ` · ${company.phone}`}
             </p>
           </div>
           <div className="flex items-center gap-6">
