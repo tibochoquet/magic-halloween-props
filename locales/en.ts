@@ -110,6 +110,8 @@ export const en: Translations = {
     legal: {
       terms: "Terms & Conditions",
       privacy: "Privacy Policy",
+      returns: "Returns",
+      shipping: "Shipping",
       contact: "Contact",
     },
   },

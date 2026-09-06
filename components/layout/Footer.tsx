@@ -53,11 +53,11 @@ export default function Footer() {
       { label: f.links.contact,   href: "/contact" },
     ],
     [f.sections.klantenservice]: [
-      { label: f.links.faq,      href: "/contact#faq" },
-      { label: f.links.shipping, href: "/contact#shipping" },
-      { label: f.links.returns,  href: "/contact#returns" },
-      { label: f.links.warranty, href: "/contact#warranty" },
-      { label: f.links.pickup,   href: "/contact#pickup" },
+      { label: f.links.faq,      href: "/faq" },
+      { label: f.links.shipping, href: "/verzending" },
+      { label: f.links.returns,  href: "/retourneren" },
+      { label: f.links.warranty, href: "/retourneren#garantie" },
+      { label: f.links.pickup,   href: "/contact" },
     ],
   }), [f]);
 
@@ -142,8 +142,10 @@ export default function Footer() {
           </div>
           <div className="flex items-center gap-6">
             {[
-              { label: f.legal.terms, href: "/terms" },
+              { label: f.legal.terms, href: "/algemene-voorwaarden" },
               { label: f.legal.privacy, href: "/privacy" },
+              { label: f.legal.returns, href: "/retourneren" },
+              { label: f.legal.shipping, href: "/verzending" },
               { label: f.legal.contact, href: "/contact" },
             ].map((item) => (
               <Link key={item.label} href={item.href} className="text-horror-text-muted text-xs hover:text-horror-orange transition-colors duration-300">

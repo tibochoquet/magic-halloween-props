@@ -139,3 +139,34 @@
   }
 }
 
+
+/* ── Print: the statutory withdrawal form must print cleanly on paper ──────── */
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  /* Kill the site's atmospheric layers so they don't waste ink or obscure text */
+  body * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+  }
+
+  .legal-form {
+    background: #fff !important;
+    color: #000 !important;
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  .legal-form * {
+    color: #000 !important;
+  }
+
+  @page {
+    margin: 18mm;
+  }
+}

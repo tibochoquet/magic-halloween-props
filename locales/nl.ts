@@ -108,6 +108,8 @@ export const nl = {
     legal: {
       terms: "Algemene voorwaarden",
       privacy: "Privacybeleid",
+      returns: "Retourneren",
+      shipping: "Verzending",
       contact: "Contact",
     },
   },
