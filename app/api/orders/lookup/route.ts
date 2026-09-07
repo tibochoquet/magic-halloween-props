@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
-import { orderStore } from "@/lib/orders/store";
+import { orderStore, orderStorageConfigured } from "@/lib/orders/store";
 import { validateLookup } from "@/lib/orders/validation";
 import { grantOrderAccess } from "@/lib/orders/session";
+
+const NOT_AVAILABLE =
+  "Het online besteloverzicht is nog niet beschikbaar. Mail ons je bestelnummer, dan helpen we je direct verder.";
+
 
 /** Deliberately vague: never reveal whether the number or the email was wrong. */
 const NOT_FOUND_MESSAGE =
   "We konden geen bestelling vinden met deze gegevens. Controleer je bestelnummer en e-mailadres en probeer het opnieuw.";
 
 export async function POST(request: Request) {
+  if (!orderStorageConfigured)
+    return NextResponse.json({ error: NOT_AVAILABLE }, { status: 503 });
+
   let body: unknown;
   try {
     body = await request.json();

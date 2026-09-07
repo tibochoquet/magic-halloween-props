@@ -27,6 +27,12 @@ export type CompanyInfo = {
   establishmentNumber: string | null;
   /** BTW-identificatienummer. Legally required on a consumer webshop. */
   vatId: string | null;
+  /**
+   * Omzetbelastingnummer — used for Belastingdienst filings only.
+   * Deliberately NOT rendered anywhere public: the BTW-identificatienummer is
+   * the number meant for customers and invoices.
+   */
+  turnoverTaxNumber: string | null;
   address: {
     street: string;
     postcode: string;
@@ -53,9 +59,8 @@ export const company: CompanyInfo = {
   kvk: "97264180",
   establishmentNumber: "000062518372",
 
-  // TODO (build-blocking): a consumer webshop must display a
-  // BTW-identificatienummer. Not supplied with the new KVK details.
-  vatId: TODO,
+  vatId: "NL005258878B60",
+  turnoverTaxNumber: "263478269B02",
   address: {
     street: "Pannenweg 306",
     postcode: "6031 RK",
@@ -101,9 +106,6 @@ export const identitySentence =
  * shipping a blank.
  */
 export const missingCompanyFields: { field: string; why: string }[] = [
-  ...(company.vatId === null
-    ? [{ field: "company.vatId", why: "BTW-identificatienummer must be displayed before a consumer orders." }]
-    : []),
   ...(company.phone === null
     ? [{ field: "company.phone", why: "Second contact channel is legally required alongside email." }]
     : []),

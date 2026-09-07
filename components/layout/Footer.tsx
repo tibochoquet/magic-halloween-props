@@ -53,7 +53,6 @@ export default function Footer() {
       { label: f.links.contact,   href: "/contact" },
     ],
     [f.sections.klantenservice]: [
-      { label: f.links.myOrder,  href: "/mijn-bestelling" },
       { label: f.links.faq,      href: "/faq" },
       { label: f.links.shipping, href: "/verzending" },
       { label: f.links.returns,  href: "/retourneren" },

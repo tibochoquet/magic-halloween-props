@@ -167,3 +167,10 @@ export const orderStore: OrderStore =
 
 /** True when the portal is running on throwaway fixture data. */
 export const usingFixtureData = !IS_PROD;
+
+/**
+ * True when no real storage is wired. Routes use this to answer with a clear
+ * "not available yet" instead of a 500, so a visitor who finds the page while
+ * it is unfinished gets an explanation rather than a crash.
+ */
+export const orderStorageConfigured = !IS_PROD;

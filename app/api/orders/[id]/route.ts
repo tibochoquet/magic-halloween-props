@@ -1,10 +1,17 @@
 import { NextResponse } from "next/server";
-import { orderStore } from "@/lib/orders/store";
+import { orderStore, orderStorageConfigured } from "@/lib/orders/store";
 import { authoriseOrder } from "@/lib/orders/session";
 import { trackingView } from "@/lib/orders/tracking";
 import { orderTotalCents, canReview, canRequestReturn } from "@/lib/orders/types";
 
+const NOT_AVAILABLE =
+  "Het online besteloverzicht is nog niet beschikbaar. Mail ons je bestelnummer, dan helpen we je direct verder.";
+
+
 export async function GET(_req: Request, { params }: { params: { id: string } }) {
+  if (!orderStorageConfigured)
+    return NextResponse.json({ error: NOT_AVAILABLE }, { status: 503 });
+
   const order = authoriseOrder(await orderStore.findById(params.id));
   if (!order) return NextResponse.json({ error: "Geen toegang tot deze bestelling." }, { status: 404 });
 
