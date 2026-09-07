@@ -6,54 +6,77 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import CategoryIcon from "@/components/ui/CategoryIcon";
+import { company } from "@/lib/companyInfo";
+import { deliveryTerms, WITHDRAWAL_DAYS, VAT_RATE } from "@/lib/shopTerms";
 
-const IDEAL_BANKS = [
-  "ABN AMRO", "ING", "Rabobank", "SNS Bank", "ASN Bank", "Bunq", "Revolut",
-];
+type Step = "cart" | "details" | "confirm";
 
-const PAYMENT_METHODS = [
-  { id: "ideal", label: "iDEAL", flag: "🇳🇱" },
-  { id: "card", label: "Creditcard / Debitcard", flag: "💳" },
-  { id: "paypal", label: "PayPal", flag: "🅿" },
-  { id: "bancontact", label: "Bancontact", flag: "🇧🇪" },
-];
-
-type Step = "cart" | "details" | "payment" | "confirm";
-
+/**
+ * ORDER REQUEST FLOW — deliberately NOT a payment flow.
+ *
+ * There is no payment provider wired to this site. Until one is, this page must
+ * never imply that money has changed hands or that an order is final. It
+ * therefore collects an order REQUEST and hands it to the customer's own mail
+ * client addressed to the shop; nothing is transmitted or stored by us.
+ *
+ * When a PSP is added, replace this component wholesale — do not bolt payment
+ * onto it. See section 6 of the pre-launch brief for the required final-button
+ * wording ("Bestelling met betalingsverplichting") which applies only once a
+ * real payment obligation exists.
+ */
 export default function CheckoutContent() {
-  const { items, totalPrice, totalItems, clearCart } = useCart();
+  const { items, totalPrice, totalItems, blockedItems } = useCart();
   const { language } = useLanguage();
   const nl = language === "nl";
 
   const [step, setStep] = useState<Step>("cart");
-  const [method, setMethod] = useState("ideal");
-  const [bank, setBank] = useState(IDEAL_BANKS[0]);
   const [form, setForm] = useState({
     firstName: "", lastName: "", email: "", phone: "",
     street: "", houseNumber: "", city: "", postcode: "", country: "Nederland",
     notes: "",
   });
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [sent, setSent] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) {
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   }
 
-  function handleOrder(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      clearCart();
-    }, 1200);
-  }
-
   const shipping = 0;
   const total = totalPrice + shipping;
+  // Prices are stored gross; show the VAT already contained in the total.
+  const vatIncluded = total - total / (1 + VAT_RATE);
 
-  if (items.length === 0 && !submitted) {
+  function buildMailto() {
+    const lines = [
+      nl ? "Ik wil de volgende bestelling plaatsen:" : "I would like to place the following order:",
+      "",
+      ...items.map(
+        ({ product, quantity }) =>
+          `- ${quantity}x ${product.name} (${product.id}) — €${(product.price * quantity).toLocaleString("nl-NL", { minimumFractionDigits: 2 })}`
+      ),
+      "",
+      `${nl ? "Totaal (incl. btw)" : "Total (incl. VAT)"}: €${total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}`,
+      "",
+      `${nl ? "Naam" : "Name"}: ${form.firstName} ${form.lastName}`,
+      `E-mail: ${form.email}`,
+      `${nl ? "Telefoon" : "Phone"}: ${form.phone}`,
+      `${nl ? "Adres" : "Address"}: ${form.street} ${form.houseNumber}, ${form.postcode} ${form.city}, ${form.country}`,
+      form.notes ? `${nl ? "Opmerkingen" : "Notes"}: ${form.notes}` : "",
+    ].filter(Boolean);
+
+    const subject = nl ? "Bestelaanvraag via magichalloweenprops.nl" : "Order request via magichalloweenprops.nl";
+    return `mailto:${company.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+  }
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!acceptedTerms) return;
+    window.location.href = buildMailto();
+    setSent(true);
+  }
+
+  if (items.length === 0 && !sent) {
     return (
       <div className="flex flex-col items-center justify-center py-32 gap-6 text-center">
         <p className="text-horror-text-muted text-sm tracking-wide">
@@ -66,29 +89,31 @@ export default function CheckoutContent() {
     );
   }
 
-  if (submitted) {
+  if (sent) {
     return (
-      <div className="flex flex-col items-center justify-center py-32 gap-6 text-center max-w-lg mx-auto px-5">
+      <div className="flex flex-col items-center justify-center py-32 gap-5 text-center max-w-lg mx-auto px-5">
         <div className="w-20 h-20 border-2 border-horror-orange flex items-center justify-center text-horror-orange">
           <svg className="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
         </div>
         <h2 className="font-cinzel text-3xl font-bold text-horror-text-primary">
-          {nl ? "Bestelling geplaatst!" : "Order placed!"}
+          {nl ? "Bijna klaar — verstuur je e-mail" : "Almost done — send your email"}
         </h2>
         <p className="text-horror-text-secondary text-base leading-relaxed">
           {nl
-            ? `Bedankt voor je bestelling, ${form.firstName}. Je ontvangt een bevestiging op ${form.email}. We nemen contact met je op voor verdere afhandeling.`
-            : `Thank you for your order, ${form.firstName}. You'll receive a confirmation at ${form.email}. We'll contact you shortly.`}
+            ? "We hebben je e-mailprogramma geopend met je aanvraag erin. Verstuur die e-mail om je aanvraag bij ons af te ronden. Opent er niets? Mail ons dan rechtstreeks."
+            : "We opened your email client with your request. Send that email to complete your request. Nothing opened? Email us directly."}
         </p>
-        <p className="text-horror-text-muted text-sm">
-          {nl ? "Vragen? Mail ons op " : "Questions? Email us at "}
-          <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">
-            jorgen0207@gmail.com
-          </a>
+        <a href={`mailto:${company.email}`} className="text-horror-orange hover:underline text-sm">
+          {company.email}
+        </a>
+        <p className="text-horror-text-muted text-xs leading-relaxed max-w-sm">
+          {nl
+            ? "Je hebt nog niets betaald en er is nog geen koopovereenkomst. Wij nemen contact op om je bestelling, levertijd en betaling te bevestigen."
+            : "You have not paid anything and no purchase agreement exists yet. We will contact you to confirm your order, delivery time and payment."}
         </p>
-        <Link href="/shop" className="btn-outline mt-4">
+        <Link href="/shop" className="btn-outline mt-2">
           {nl ? "Verder winkelen" : "Continue shopping"}
         </Link>
       </div>
@@ -98,17 +123,48 @@ export default function CheckoutContent() {
   const steps: { id: Step; label: string }[] = [
     { id: "cart", label: nl ? "Overzicht" : "Summary" },
     { id: "details", label: nl ? "Gegevens" : "Details" },
-    { id: "payment", label: nl ? "Betalen" : "Payment" },
+    { id: "confirm", label: nl ? "Aanvraag" : "Request" },
   ];
 
   return (
     <div className="max-w-6xl mx-auto px-5 md:px-8 pt-32 pb-24">
+      {/* No-payment notice — must be visible from the first step. */}
+      <div className="mb-10 p-4 md:p-5 border border-horror-orange/40 bg-horror-orange/5">
+        <p className="font-cinzel text-sm font-bold text-horror-text-primary mb-1.5">
+          {nl ? "Online betalen is nog niet mogelijk" : "Online payment is not available yet"}
+        </p>
+        <p className="text-horror-text-secondary text-sm leading-relaxed">
+          {nl
+            ? "Je kunt hier een bestelaanvraag doen. Wij nemen daarna contact met je op om de bestelling, levertijd en betaling te bevestigen. Er wordt via deze site geen betaling gedaan en er komt nog geen koopovereenkomst tot stand."
+            : "You can submit an order request here. We will then contact you to confirm the order, delivery time and payment. No payment is taken through this site and no purchase agreement is formed yet."}
+        </p>
+      </div>
+
+      {/* Blocked items — hard stop. */}
+      {blockedItems.length > 0 && (
+        <div className="mb-10 p-4 md:p-5 border border-red-700/50 bg-red-950/20">
+          <p className="font-cinzel text-sm font-bold text-red-400 mb-1.5">
+            {nl ? "Niet-leverbare producten in je winkelwagen" : "Unavailable products in your cart"}
+          </p>
+          <ul className="text-horror-text-secondary text-sm space-y-1">
+            {blockedItems.map(({ product }) => (
+              <li key={product.id}>
+                {product.name} — {product.availabilityNote ?? (nl ? "niet beschikbaar" : "unavailable")}
+              </li>
+            ))}
+          </ul>
+          <p className="text-horror-text-muted text-xs mt-2">
+            {nl ? "Verwijder deze uit je winkelwagen om verder te gaan." : "Remove these from your cart to continue."}
+          </p>
+        </div>
+      )}
+
       {/* Step indicator */}
       <div className="flex items-center gap-0 mb-12">
         {steps.map((s, i) => (
           <div key={s.id} className="flex items-center">
             <button
-              onClick={() => step !== "payment" && setStep(s.id)}
+              onClick={() => setStep(s.id)}
               className={`flex items-center gap-2 text-xs font-semibold tracking-widest uppercase transition-colors duration-200 ${
                 step === s.id ? "text-horror-orange" : "text-horror-text-muted"
               }`}
@@ -120,17 +176,13 @@ export default function CheckoutContent() {
               </span>
               {s.label}
             </button>
-            {i < steps.length - 1 && (
-              <div className="w-8 h-px bg-horror-border mx-3" />
-            )}
+            {i < steps.length - 1 && <div className="w-8 h-px bg-horror-border mx-3" />}
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Main content */}
         <div className="lg:col-span-2">
-          {/* STEP 1: Cart overview */}
           {step === "cart" && (
             <div>
               <h2 className="font-cinzel text-xl font-bold text-horror-text-primary mb-6">
@@ -161,7 +213,11 @@ export default function CheckoutContent() {
                   </li>
                 ))}
               </ul>
-              <button onClick={() => setStep("details")} className="btn-primary w-full justify-center">
+              <button
+                onClick={() => setStep("details")}
+                disabled={blockedItems.length > 0}
+                className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 {nl ? "Doorgaan naar gegevens" : "Continue to details"}
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -170,59 +226,58 @@ export default function CheckoutContent() {
             </div>
           )}
 
-          {/* STEP 2: Customer details */}
           {step === "details" && (
             <div>
               <h2 className="font-cinzel text-xl font-bold text-horror-text-primary mb-6">
                 {nl ? "Jouw gegevens" : "Your details"}
               </h2>
-              <form id="details-form" onSubmit={(e) => { e.preventDefault(); setStep("payment"); }} className="flex flex-col gap-4">
+              <form onSubmit={(e) => { e.preventDefault(); setStep("confirm"); }} className="flex flex-col gap-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Voornaam" : "First name"}</label>
-                    <input name="firstName" value={form.firstName} onChange={handleChange} required placeholder={nl ? "Jan" : "John"} className="input-horror" />
+                    <label htmlFor="firstName" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Voornaam" : "First name"}</label>
+                    <input id="firstName" name="firstName" value={form.firstName} onChange={handleChange} required placeholder={nl ? "Jan" : "John"} className="input-horror" />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Achternaam" : "Last name"}</label>
-                    <input name="lastName" value={form.lastName} onChange={handleChange} required placeholder={nl ? "de Vries" : "Smith"} className="input-horror" />
+                    <label htmlFor="lastName" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Achternaam" : "Last name"}</label>
+                    <input id="lastName" name="lastName" value={form.lastName} onChange={handleChange} required placeholder={nl ? "de Vries" : "Smith"} className="input-horror" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">E-mail</label>
-                    <input name="email" type="email" value={form.email} onChange={handleChange} required placeholder="jan@email.nl" className="input-horror" />
+                    <label htmlFor="email" className="text-horror-text-muted text-xs tracking-widest uppercase">E-mail</label>
+                    <input id="email" name="email" type="email" value={form.email} onChange={handleChange} required placeholder="jan@email.nl" className="input-horror" />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Telefoon" : "Phone"}</label>
-                    <input name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+31 6 12345678" className="input-horror" />
+                    <label htmlFor="phone" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Telefoon" : "Phone"}</label>
+                    <input id="phone" name="phone" type="tel" value={form.phone} onChange={handleChange} placeholder="+31 6 12345678" className="input-horror" />
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="col-span-2 flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Straat" : "Street"}</label>
-                    <input name="street" value={form.street} onChange={handleChange} required placeholder={nl ? "Voorbeeldstraat" : "Example Street"} className="input-horror" />
+                    <label htmlFor="street" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Straat" : "Street"}</label>
+                    <input id="street" name="street" value={form.street} onChange={handleChange} required placeholder={nl ? "Voorbeeldstraat" : "Example Street"} className="input-horror" />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Huisnr." : "Number"}</label>
-                    <input name="houseNumber" value={form.houseNumber} onChange={handleChange} required placeholder="12A" className="input-horror" />
+                    <label htmlFor="houseNumber" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Huisnr." : "Number"}</label>
+                    <input id="houseNumber" name="houseNumber" value={form.houseNumber} onChange={handleChange} required placeholder="12A" className="input-horror" />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Postcode" : "Postcode"}</label>
-                    <input name="postcode" value={form.postcode} onChange={handleChange} required placeholder="1234 AB" className="input-horror" />
+                    <label htmlFor="postcode" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Postcode" : "Postcode"}</label>
+                    <input id="postcode" name="postcode" value={form.postcode} onChange={handleChange} required placeholder="1234 AB" className="input-horror" />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Stad" : "City"}</label>
-                    <input name="city" value={form.city} onChange={handleChange} required placeholder={nl ? "Amsterdam" : "Amsterdam"} className="input-horror" />
+                    <label htmlFor="city" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Stad" : "City"}</label>
+                    <input id="city" name="city" value={form.city} onChange={handleChange} required placeholder="Amsterdam" className="input-horror" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Opmerkingen (optioneel)" : "Notes (optional)"}</label>
-                  <textarea name="notes" value={form.notes} onChange={handleChange} rows={3} placeholder={nl ? "Bezorgingsinstructies of opmerkingen..." : "Delivery instructions or notes..."} className="input-horror resize-none" />
+                  <label htmlFor="notes" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Opmerkingen (optioneel)" : "Notes (optional)"}</label>
+                  <textarea id="notes" name="notes" value={form.notes} onChange={handleChange} rows={3} placeholder={nl ? "Bezorgingsinstructies of opmerkingen..." : "Delivery instructions or notes..."} className="input-horror resize-none" />
                 </div>
                 <button type="submit" className="btn-primary w-full justify-center">
-                  {nl ? "Doorgaan naar betaling" : "Continue to payment"}
+                  {nl ? "Doorgaan naar overzicht" : "Continue to summary"}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -231,60 +286,86 @@ export default function CheckoutContent() {
             </div>
           )}
 
-          {/* STEP 3: Payment */}
-          {step === "payment" && (
-            <form onSubmit={handleOrder}>
+          {step === "confirm" && (
+            <form onSubmit={handleSubmit}>
               <h2 className="font-cinzel text-xl font-bold text-horror-text-primary mb-6">
-                {nl ? "Betaalmethode" : "Payment method"}
+                {nl ? "Controleer je aanvraag" : "Review your request"}
               </h2>
-              <div className="space-y-3 mb-6">
-                {PAYMENT_METHODS.map((m) => (
-                  <label
-                    key={m.id}
-                    className={`flex items-center gap-4 p-4 border cursor-pointer transition-colors duration-200 ${
-                      method === m.id ? "border-horror-orange/60 bg-horror-orange/5" : "border-horror-border hover:border-horror-border/70"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="method"
-                      value={m.id}
-                      checked={method === m.id}
-                      onChange={() => setMethod(m.id)}
-                      className="accent-horror-orange"
-                    />
-                    <span className="text-lg">{m.flag}</span>
-                    <span className="text-horror-text-primary text-sm font-medium">{m.label}</span>
-                  </label>
+
+              {/* Full order summary before the final action */}
+              <div className="border border-horror-border divide-y divide-horror-border mb-6">
+                {items.map(({ product, quantity }) => (
+                  <div key={product.id} className="flex justify-between gap-4 px-4 py-3 text-sm">
+                    <span className="text-horror-text-secondary">
+                      {quantity}× {product.name}
+                    </span>
+                    <span className="text-horror-text-primary font-medium whitespace-nowrap">
+                      €{(product.price * quantity).toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
+                    </span>
+                  </div>
                 ))}
+                <div className="flex justify-between px-4 py-3 text-sm text-horror-text-muted">
+                  <span>{nl ? "Verzending" : "Shipping"}</span>
+                  <span className="text-horror-orange">{nl ? "Gratis" : "Free"}</span>
+                </div>
+                <div className="flex justify-between px-4 py-3 text-base font-bold text-horror-text-primary">
+                  <span>{nl ? "Totaal" : "Total"}</span>
+                  <span>€{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}</span>
+                </div>
+                <div className="flex justify-between px-4 py-2 text-xs text-horror-text-muted">
+                  <span>{nl ? `Waarvan btw (${VAT_RATE * 100}%)` : `Of which VAT (${VAT_RATE * 100}%)`}</span>
+                  <span>€{vatIncluded.toLocaleString("nl-NL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
               </div>
 
-              {method === "ideal" && (
-                <div className="flex flex-col gap-1.5 mb-6">
-                  <label className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Kies je bank" : "Select your bank"}</label>
-                  <select value={bank} onChange={(e) => setBank(e.target.value)} className="input-horror">
-                    {IDEAL_BANKS.map((b) => <option key={b}>{b}</option>)}
-                  </select>
-                </div>
-              )}
+              <div className="text-sm text-horror-text-secondary space-y-1.5 mb-6 p-4 bg-horror-card border border-horror-border">
+                <p className="text-horror-text-primary font-medium">{form.firstName} {form.lastName}</p>
+                <p>{form.street} {form.houseNumber}, {form.postcode} {form.city}</p>
+                <p>{form.email}{form.phone ? ` · ${form.phone}` : ""}</p>
+                <p className="text-horror-text-muted text-xs pt-2">
+                  {nl ? "Levertijd" : "Delivery"}:{" "}
+                  {deliveryTerms.inStock ?? (nl ? "TODO — levertijd nog aan te leveren" : "TODO — delivery term pending")}
+                </p>
+              </div>
 
-              <button type="submit" disabled={loading} className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed">
-                {loading ? (
-                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                  </svg>
-                ) : (
-                  <>
-                    {nl ? "Bestelling bevestigen" : "Confirm order"} · €{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </>
-                )}
+              {/* Terms must be actively accepted, never pre-ticked */}
+              <label className="flex items-start gap-3 mb-6 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={acceptedTerms}
+                  onChange={(e) => setAcceptedTerms(e.target.checked)}
+                  required
+                  className="mt-0.5 accent-horror-orange w-4 h-4 flex-shrink-0"
+                />
+                <span className="text-horror-text-secondary text-sm leading-relaxed">
+                  {nl ? "Ik ga akkoord met de " : "I agree to the "}
+                  <Link href="/algemene-voorwaarden" className="text-horror-orange hover:underline">
+                    {nl ? "algemene voorwaarden" : "terms and conditions"}
+                  </Link>
+                  {nl ? " en het " : " and the "}
+                  <Link href="/privacy" className="text-horror-orange hover:underline">
+                    {nl ? "privacybeleid" : "privacy policy"}
+                  </Link>
+                  {nl
+                    ? `, en ik weet dat ik ${WITHDRAWAL_DAYS} dagen bedenktijd heb.`
+                    : `, and I understand I have ${WITHDRAWAL_DAYS} days to withdraw.`}
+                </span>
+              </label>
+
+              <button
+                type="submit"
+                disabled={!acceptedTerms || blockedItems.length > 0}
+                className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {nl ? "Aanvraag versturen" : "Send request"}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
               </button>
-              <p className="text-horror-text-muted text-xs text-center mt-3">
-                {nl ? "Beveiligde verbinding · Gegevens worden niet opgeslagen" : "Secure connection · Data is not stored"}
+              <p className="text-horror-text-muted text-xs text-center mt-3 leading-relaxed">
+                {nl
+                  ? "Dit is geen betaling en nog geen koopovereenkomst. Je aanvraag wordt via je eigen e-mailprogramma verstuurd."
+                  : "This is not a payment and not yet a purchase agreement. Your request is sent via your own email client."}
               </p>
             </form>
           )}
@@ -322,20 +403,32 @@ export default function CheckoutContent() {
                 <span>{nl ? "Totaal" : "Total"}</span>
                 <span>€{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}</span>
               </div>
-              <p className="text-horror-text-muted text-xs">{nl ? "Inclusief btw" : "Including VAT"}</p>
+              <p className="text-horror-text-muted text-xs">
+                {nl ? `Inclusief btw (${VAT_RATE * 100}%)` : `Including VAT (${VAT_RATE * 100}%)`}
+              </p>
             </div>
 
             <div className="mt-5 pt-5 border-t border-horror-border space-y-2 text-xs text-horror-text-muted">
-              {[
-                { icon: "↩", text: nl ? "14 dagen retourrecht" : "14-day returns" },
-                { icon: "🏭", text: nl ? "Op voorraad in NL" : "In stock in NL" },
-                { icon: "✉", text: nl ? "Reactie binnen 1 dag" : "Reply within 1 day" },
-              ].map((b) => (
-                <div key={b.text} className="flex items-center gap-2">
-                  <span className="text-horror-orange">{b.icon}</span>
-                  <span>{b.text}</span>
-                </div>
-              ))}
+              <div className="flex items-center gap-2">
+                <span className="text-horror-orange">↩</span>
+                <span>
+                  <Link href="/retourneren" className="hover:text-horror-orange transition-colors">
+                    {nl ? `${WITHDRAWAL_DAYS} dagen bedenktijd` : `${WITHDRAWAL_DAYS}-day withdrawal right`}
+                  </Link>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-horror-orange">🚚</span>
+                <span>
+                  <Link href="/verzending" className="hover:text-horror-orange transition-colors">
+                    {nl ? "Verzending en levering" : "Shipping and delivery"}
+                  </Link>
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-horror-orange">✉</span>
+                <span>{nl ? "Reactie binnen 1 werkdag" : "Reply within 1 business day"}</span>
+              </div>
             </div>
           </div>
         </div>

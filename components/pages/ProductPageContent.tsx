@@ -6,6 +6,8 @@ import Link from "next/link";
 import type { Product } from "@/types";
 import AddToCartButton from "@/components/ui/AddToCartButton";
 import NotifyForm from "@/components/ui/NotifyForm";
+import { isOrderable } from "@/lib/availability";
+import { deliveryTerms } from "@/lib/shopTerms";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
 
@@ -19,6 +21,8 @@ export default function ProductPageContent({ product, related }: { product: Prod
   const description = pd?.description ?? product.description;
   const features: string[] = pd?.features ?? product.features;
   const longDescription = pd?.longDescription;
+
+  const orderable = isOrderable(product);
 
   const media: MediaItem[] = [
     ...(product.image ? [{ type: "image" as const, src: product.image }] : []),
@@ -203,6 +207,26 @@ export default function ProductPageContent({ product, related }: { product: Prod
                 </div>
               ))}
             </dl>
+          </div>
+
+          {/* Delivery term — a consumer must see this before ordering. */}
+          <div className="mb-8 flex items-start gap-3 p-4 border border-horror-border">
+            <span className="text-horror-orange text-base leading-none mt-0.5">🚚</span>
+            <div className="text-sm">
+              <p className="text-horror-text-primary font-medium">
+                {orderable
+                  ? deliveryTerms.inStock ?? "TODO — levertijd nog aan te leveren"
+                  : product.availabilityNote ?? "Niet leverbaar"}
+              </p>
+              <p className="text-horror-text-muted text-xs mt-0.5">
+                {orderable
+                  ? `Verzending via ${deliveryTerms.carriers} · Afhalen op afspraak mogelijk`
+                  : "Dit product kan op dit moment niet besteld worden."}
+              </p>
+              <Link href="/verzending" className="text-horror-orange text-xs hover:underline mt-1 inline-block">
+                Verzending en levering
+              </Link>
+            </div>
           </div>
 
           {product.notifyOnRestock ? (

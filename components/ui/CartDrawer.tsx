@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -173,12 +174,14 @@ export default function CartDrawer() {
             <p className="text-horror-text-muted text-xs">{t.shippingNote}</p>
 
             {/* CTA */}
-            <a href="/checkout" onClick={closeCart} className="btn-primary w-full justify-center">
+            {/* Must be a client-side Link: a plain <a> triggers a full reload,
+                which previously wiped the in-memory cart before checkout. */}
+            <Link href="/checkout" onClick={closeCart} className="btn-primary w-full justify-center">
               {t.checkout}
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
 
             <button
               onClick={clearCart}

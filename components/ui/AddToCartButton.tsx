@@ -1,6 +1,7 @@
 "use client";
 
 import type { Product } from "@/types";
+import { isOrderable } from "@/lib/availability";
 import { useCart } from "@/context/CartContext";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -9,7 +10,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
   const t = useTranslation();
-  const unavailable = product.availability === "unavailable";
+  const unavailable = !isOrderable(product);
   const unavailableLabel = product.availabilityNote ?? (language === "nl" ? "Niet beschikbaar" : "Unavailable");
 
   return (

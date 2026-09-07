@@ -1,7 +1,11 @@
 "use client";
 
-import { createContext, useContext, useReducer, useCallback, useMemo } from "react";
+import { createContext, useContext, useReducer, useCallback, useMemo, useEffect, useRef } from "react";
 import type { Product } from "@/types";
+import { isOrderable } from "@/lib/availability";
+
+/** localStorage key holding the cart. Declared in the privacy inventory. */
+const CART_STORAGE_KEY = "mhp_cart_v1";
 
 export interface CartItem {
   product: Product;
@@ -14,6 +18,7 @@ interface CartState {
 }
 
 type CartAction =
+  | { type: "HYDRATE"; items: CartItem[] }
   | { type: "ADD"; product: Product }
   | { type: "REMOVE"; id: string }
   | { type: "UPDATE_QTY"; id: string; quantity: number }
@@ -24,6 +29,9 @@ type CartAction =
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "ADD": {
+      // Hard guard: an unorderable product must never enter the cart, no matter
+      // which UI called this. Disabled buttons are a hint, not a control.
+      if (!isOrderable(action.product)) return state;
       const existing = state.items.find((i) => i.product.id === action.product.id);
       if (existing) {
         return {
@@ -54,6 +62,8 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           i.product.id === action.id ? { ...i, quantity: action.quantity } : i
         ),
       };
+    case "HYDRATE":
+      return { ...state, items: action.items };
     case "CLEAR":
       return { ...state, items: [] };
     case "OPEN":
@@ -70,6 +80,12 @@ interface CartContextValue {
   isOpen: boolean;
   totalItems: number;
   totalPrice: number;
+  /**
+   * Items in the cart that are no longer orderable — e.g. availability changed
+   * after they were added. Checkout must refuse to proceed while this is
+   * non-empty.
+   */
+  blockedItems: CartItem[];
   addToCart: (product: Product) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
@@ -82,6 +98,35 @@ const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [], isOpen: false });
+  const hydrated = useRef(false);
+
+  // Restore the cart on mount. Without this a refresh — or any full page load —
+  // silently empties the cart mid-purchase.
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+      if (raw) {
+        const parsed: CartItem[] = JSON.parse(raw);
+        // Re-validate on restore: availability may have changed since.
+        const usable = parsed.filter((i) => i?.product && isOrderable(i.product));
+        if (usable.length) dispatch({ type: "HYDRATE", items: usable });
+      }
+    } catch {
+      /* corrupt or unavailable storage — start with an empty cart */
+    }
+    hydrated.current = true;
+  }, []);
+
+  // Persist after hydration so we never overwrite stored state with the
+  // initial empty array on first render.
+  useEffect(() => {
+    if (!hydrated.current) return;
+    try {
+      window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state.items));
+    } catch {
+      /* storage full or blocked — cart simply won't survive reload */
+    }
+  }, [state.items]);
 
   const addToCart = useCallback((product: Product) => dispatch({ type: "ADD", product }), []);
   const removeFromCart = useCallback((id: string) => dispatch({ type: "REMOVE", id }), []);
@@ -92,10 +137,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const totalItems = state.items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = state.items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
+  const blockedItems = useMemo(
+    () => state.items.filter((i) => !isOrderable(i.product)),
+    [state.items]
+  );
 
   const value = useMemo(
-    () => ({ ...state, totalItems, totalPrice, addToCart, removeFromCart, updateQuantity, clearCart, openCart, closeCart }),
-    [state, totalItems, totalPrice, addToCart, removeFromCart, updateQuantity, clearCart, openCart, closeCart]
+    () => ({ ...state, totalItems, totalPrice, blockedItems, addToCart, removeFromCart, updateQuantity, clearCart, openCart, closeCart }),
+    [state, totalItems, totalPrice, blockedItems, addToCart, removeFromCart, updateQuantity, clearCart, openCart, closeCart]
   );
 
   return (

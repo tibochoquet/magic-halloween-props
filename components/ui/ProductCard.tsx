@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/types";
+import { isOrderable } from "@/lib/availability";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
@@ -13,7 +14,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const unavailable = product.availability === "unavailable";
+  const unavailable = !isOrderable(product);
   const unavailableShortLabel = language === "nl" ? "Niet beschikbaar" : "Unavailable";
   const unavailableLabel = product.availabilityNote ?? unavailableShortLabel;
 

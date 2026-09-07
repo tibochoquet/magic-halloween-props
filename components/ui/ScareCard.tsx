@@ -6,13 +6,14 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Product } from "@/types";
+import { isOrderable } from "@/lib/availability";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 
 export default function ScareCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const unavailable = product.availability === "unavailable";
+  const unavailable = !isOrderable(product);
   const unavailableShortLabel = language === "nl" ? "Niet beschikbaar" : "Unavailable";
   const unavailableLabel = product.availabilityNote ?? unavailableShortLabel;
 
