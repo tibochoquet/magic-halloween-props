@@ -8,6 +8,7 @@ import AddToCartButton from "@/components/ui/AddToCartButton";
 import NotifyForm from "@/components/ui/NotifyForm";
 import { isOrderable } from "@/lib/availability";
 import { deliveryTerms } from "@/lib/shopTerms";
+import ProductSafetyBlock from "@/components/ui/ProductSafetyBlock";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
 
@@ -104,6 +105,12 @@ export default function ProductPageContent({ product, related }: { product: Prod
                 <button
                   key={item.src}
                   onClick={() => setActiveIndex(i)}
+                  aria-label={
+                    item.type === "image"
+                      ? `${product.name} — foto ${i + 1} tonen`
+                      : `${product.name} — video ${i + 1} tonen`
+                  }
+                  aria-current={i === activeIndex}
                   className={`relative w-20 h-20 flex-shrink-0 bg-gradient-to-br ${product.bgGradient} overflow-hidden border transition-colors duration-200 ${
                     i === activeIndex ? "border-horror-orange" : "border-horror-border hover:border-horror-orange/40"
                   }`}
@@ -237,6 +244,9 @@ export default function ProductPageContent({ product, related }: { product: Prod
           <p className="mt-4 text-horror-text-muted text-xs text-center leading-relaxed">{p.shippingNote}</p>
         </div>
       </div>
+
+      {/* GPSR product safety — required on every listing */}
+      <ProductSafetyBlock product={product} />
 
       {/* Related */}
       {related.length > 0 && (
