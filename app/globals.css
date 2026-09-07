@@ -140,6 +140,40 @@
 }
 
 
+/* ── Keyboard focus ────────────────────────────────────────────────────────
+   Every interactive element needs a visible focus state. :focus-visible keeps
+   it to keyboard users so mouse clicks stay clean. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #FF6B00;
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* Skip link: first tab stop, visually hidden until focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #FF6B00;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
 /* ── Print: the statutory withdrawal form must print cleanly on paper ──────── */
 @media print {
   html,

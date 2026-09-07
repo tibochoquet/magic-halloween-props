@@ -10,7 +10,8 @@ import {
 } from "@/lib/shopTerms";
 
 export const metadata: Metadata = {
-  title: "Algemene voorwaarden | Magic Halloween Props",
+  title: "Algemene voorwaarden",
+  alternates: { canonical: "/algemene-voorwaarden" },
   description:
     "De algemene voorwaarden van Magic Halloween Props (All Season Toys, Slegers import vof) voor koop op afstand door consumenten.",
 };

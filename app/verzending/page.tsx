@@ -5,7 +5,8 @@ import { company, addressLineFull } from "@/lib/companyInfo";
 import { deliveryTerms, WITHDRAWAL_DAYS } from "@/lib/shopTerms";
 
 export const metadata: Metadata = {
-  title: "Verzending en levering | Magic Halloween Props",
+  title: "Verzending en levering",
+  alternates: { canonical: "/verzending" },
   description:
     "Verzendkosten, levertijden en afhalen op afspraak. Alles wat je moet weten voordat je bestelt bij Magic Halloween Props.",
 };

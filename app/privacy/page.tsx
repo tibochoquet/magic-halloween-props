@@ -3,7 +3,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacybeleid | Magic Halloween Props",
+  title: "Privacybeleid",
+  description:
+    "Welke persoonsgegevens Magic Halloween Props verwerkt, waarvoor, hoe lang wij ze bewaren en welke rechten je hebt onder de AVG.",
+  alternates: { canonical: "/privacy" },
 };
 
 const sections = [
@@ -51,7 +54,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <main className="min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
 
       <section className="relative pt-36 pb-24 overflow-hidden">

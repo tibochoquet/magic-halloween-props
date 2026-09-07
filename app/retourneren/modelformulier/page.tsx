@@ -7,7 +7,8 @@ import { company, addressLineFull } from "@/lib/companyInfo";
 import { returnPolicy } from "@/lib/shopTerms";
 
 export const metadata: Metadata = {
-  title: "Modelformulier voor herroeping | Magic Halloween Props",
+  title: "Modelformulier voor herroeping",
+  alternates: { canonical: "/retourneren/modelformulier" },
   description:
     "Het wettelijke modelformulier voor herroeping. Vul dit formulier alleen in en stuur het terug wanneer je de overeenkomst wilt herroepen.",
 };
@@ -23,7 +24,7 @@ export default function ModelformulierPage() {
   const line = "________________________________________";
 
   return (
-    <main className="min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="min-h-screen bg-horror-black overflow-x-hidden">
       <div className="print:hidden">
         <Header />
       </div>

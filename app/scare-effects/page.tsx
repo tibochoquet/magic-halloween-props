@@ -6,14 +6,15 @@ import ScareEffectCollection from "@/components/sections/ScareEffectCollection";
 import { scareHeroSpots } from "@/lib/collectionHeroSpots";
 
 export const metadata: Metadata = {
-  title: "Scare Effect Animatronics | Magic Halloween Props",
+  title: "Scare effect animatronics",
+  alternates: { canonical: "/scare-effects" },
   description:
     "Halloween poppen met ingebouwd scare-effect voor het ultieme jumpscare-moment. Direct op voorraad in Nederland.",
 };
 
 export default function ScareEffectsPage() {
   return (
-    <main className="min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <CollectionHero
         src="/scare%20collection%20hero-screaminggirl-angelofdead-risingspirit.png"

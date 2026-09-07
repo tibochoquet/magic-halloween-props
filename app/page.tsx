@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
@@ -8,11 +9,18 @@ import Testimonials from "@/components/sections/Testimonials";
 import Newsletter from "@/components/sections/Newsletter";
 import { professionalProducts } from "@/data/professionalProducts";
 
+export const metadata: Metadata = {
+  title: "Premium Halloween animatronics op voorraad in Nederland",
+  description:
+    "Levensgrote animatronics voor haunted houses, escape rooms en Halloween-displays. Direct geïmporteerd, op voorraad in Nederweert, gratis verzending.",
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   const soulLedgerProduct = professionalProducts.find((p) => p.id === "the-collector-of-souls");
 
   return (
-    <main className="relative min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="relative min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <Hero />
       <FeaturedProducts />

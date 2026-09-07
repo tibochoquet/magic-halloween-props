@@ -10,7 +10,8 @@ import {
 } from "@/lib/shopTerms";
 
 export const metadata: Metadata = {
-  title: "Retourneren en herroepingsrecht | Magic Halloween Props",
+  title: "Retourneren en herroepingsrecht",
+  alternates: { canonical: "/retourneren" },
   description:
     "Je hebt 14 dagen bedenktijd. Lees hoe je je bestelling herroept, binnen welke termijn je retourneert en wanneer je je geld terugkrijgt.",
 };

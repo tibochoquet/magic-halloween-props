@@ -10,6 +10,7 @@
     "audit": "node scripts/audit.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "lucide-react": "^1.16.0",
     "next": "14.2.29",
     "react": "^18.3.1",

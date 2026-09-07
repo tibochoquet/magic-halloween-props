@@ -6,14 +6,15 @@ import ProfessionalCollection from "@/components/sections/ProfessionalCollection
 import { professionalHeroSpots } from "@/lib/collectionHeroSpots";
 
 export const metadata: Metadata = {
-  title: "Professional Animatronics | Magic Halloween Props",
+  title: "Professional animatronics",
+  alternates: { canonical: "/professional-animatronics" },
   description:
-    "High-end cinematic animatronics for haunted attractions, escape rooms and professional horror experiences. 23 professional grade props, direct from stock in the Netherlands.",
+    "High-end animatronics voor haunted houses, escape rooms en professionele horrorattracties. Eigen voorraad in Nederweert, gratis verzending.",
 };
 
 export default function ProfessionalAnimatronicsPage() {
   return (
-    <main className="min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <CollectionHero
         src="/pro%20collection%20hero-bloodwerewolf-ridingdead-smoderingscarecrow.png"

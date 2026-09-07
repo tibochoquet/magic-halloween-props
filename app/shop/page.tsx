@@ -7,13 +7,14 @@ import ShopContent from "@/components/pages/ShopContent";
 import { wholeHeroSpots } from "@/lib/collectionHeroSpots";
 
 export const metadata: Metadata = {
-  title: "Assortiment | Magic Halloween Props — All Season Toys",
+  title: "Assortiment — alle animatronics",
+  alternates: { canonical: "/shop" },
   description: "Alle premium animatronic horror props op voorraad in Nederland. Skeletten, zombies, vampieren, geesten en meer.",
 };
 
 export default function ShopPage() {
   return (
-    <main className="min-h-screen bg-horror-black overflow-x-hidden">
+    <main id="main" className="min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <CollectionHero
         src="/whole%20collection%20hero-wolfgirl-terrorclown-nun-poppingpumpkin.png"

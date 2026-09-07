@@ -249,7 +249,7 @@ export default function CollectionHero({
                   if (isOpen) goTo(spot.id);
                   else setOpenId(spot.id);
                 }}
-                className="group/spot relative flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full focus:outline-none"
+                className="group/spot relative flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full"
               >
                 <span
                   className="absolute inset-0 rounded-full bg-horror-orange/70 motion-safe:animate-ping"
