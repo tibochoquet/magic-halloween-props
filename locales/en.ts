@@ -173,7 +173,7 @@ export const en: Translations = {
 
   about: {
     eyebrow: "About us",
-    h1a: "All Season Toys —",
+    h1a: "Spinecollection —",
     h1b: "Magic Halloween Props",
     intro: "We are a Dutch company specialising in premium animatronics for Halloween, haunted houses, escape rooms and professional displays. Fair prices. Real stock. Personal service.",
     cta: "Browse the collection",
@@ -276,7 +276,6 @@ export const en: Translations = {
       { id: "origin", q: "Where do the products come from?", a: "Our animatronics are imported directly from the manufacturer and stocked at our warehouse in Nederweert, Netherlands. This allows us to offer competitive prices without long overseas lead times." },
     ],
     companyTitle: "Company details",
-    companyLine: "All Season Toys · Slegers import vof · Pannenweg 306, 6031 RK Nederweert",
     kvk: "KvK:",
     btw: "VAT:",
     form: {

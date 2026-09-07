@@ -6,7 +6,7 @@ import ContactPageContent from "@/components/pages/ContactPageContent";
 export const metadata: Metadata = {
   title: "Contact",
   alternates: { canonical: "/contact" },
-  description: "Neem contact op met All Season Toys. Vragen over animatronics, afhalen, groothandel of garantie? Wij reageren binnen 1 werkdag.",
+  description: "Neem contact op met Magic Halloween Props. Vragen over animatronics, afhalen, groothandel of garantie? Wij reageren binnen 1 werkdag.",
 };
 
 export default function ContactPage() {

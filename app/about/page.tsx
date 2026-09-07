@@ -6,7 +6,7 @@ import AboutContent from "@/components/pages/AboutContent";
 export const metadata: Metadata = {
   title: "Over ons",
   description:
-    "All Season Toys (Slegers import vof) importeert en verkoopt premium Halloween animatronics vanuit Nederweert. Eigen voorraad, bekijken op afspraak.",
+    "Spinecollection importeert en verkoopt premium Halloween animatronics vanuit Nederweert. Eigen voorraad, bekijken op afspraak.",
   alternates: { canonical: "/about" },
 };
 
