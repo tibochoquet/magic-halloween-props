@@ -123,7 +123,7 @@ export const en: Translations = {
     checkout: "Proceed to Checkout",
     clearCart: "Clear cart",
     subtotal: "Subtotal",
-    shippingNote: "Shipping & taxes calculated at checkout.",
+    shippingNote: "VAT included · Free shipping within the Netherlands.",
     decreaseQty: "Decrease quantity",
     increaseQty: "Increase quantity",
     removeItem: "Remove",

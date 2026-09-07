@@ -121,7 +121,7 @@ export const nl = {
     checkout: "Naar de kassa",
     clearCart: "Winkelwagen leegmaken",
     subtotal: "Subtotaal",
-    shippingNote: "Verzending en btw worden berekend bij de kassa.",
+    shippingNote: "Inclusief btw · Gratis verzending binnen Nederland.",
     decreaseQty: "Aantal verlagen",
     increaseQty: "Aantal verhogen",
     removeItem: "verwijderen",

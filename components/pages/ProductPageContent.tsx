@@ -7,7 +7,7 @@ import type { Product } from "@/types";
 import AddToCartButton from "@/components/ui/AddToCartButton";
 import NotifyForm from "@/components/ui/NotifyForm";
 import { isOrderable } from "@/lib/availability";
-import { deliveryTerms } from "@/lib/shopTerms";
+import { deliveryTerms, VAT_RATE } from "@/lib/shopTerms";
 import ProductSafetyBlock from "@/components/ui/ProductSafetyBlock";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
@@ -160,20 +160,27 @@ export default function ProductPageContent({ product, related }: { product: Prod
             </div>
           )}
 
-          <div className="flex items-baseline gap-3 mb-8 pb-8 border-b border-horror-border">
-            <span className="font-cinzel text-4xl font-bold text-horror-text-primary">
-              €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
-            </span>
-            {product.originalPrice && (
-              <>
-                <span className="text-horror-text-muted text-xl line-through">
-                  €{product.originalPrice.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
-                </span>
-                <span className="px-2 py-0.5 bg-red-900/40 border border-red-700/40 text-red-400 text-xs font-bold tracking-wide">
-                  -{Math.round((1 - product.price / product.originalPrice) * 100)}% {p.discount}
-                </span>
-              </>
-            )}
+          <div className="mb-8 pb-8 border-b border-horror-border">
+            <div className="flex items-baseline gap-3">
+              <span className="font-cinzel text-4xl font-bold text-horror-text-primary">
+                €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
+              </span>
+              {product.originalPrice && (
+                <>
+                  <span className="text-horror-text-muted text-xl line-through">
+                    €{product.originalPrice.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
+                  </span>
+                  <span className="px-2 py-0.5 bg-red-900/40 border border-red-700/40 text-red-400 text-xs font-bold tracking-wide">
+                    -{Math.round((1 - product.price / product.originalPrice) * 100)}% {p.discount}
+                  </span>
+                </>
+              )}
+            </div>
+            {/* Consumer prices must be shown inclusive of VAT and labelled as such,
+                and the shipping cost must be visible before the payment step. */}
+            <p className="text-horror-text-muted text-xs mt-2">
+              Inclusief {VAT_RATE * 100}% btw · Gratis verzending binnen Nederland
+            </p>
           </div>
 
           {longDescription ? (
