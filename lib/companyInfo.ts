@@ -14,7 +14,7 @@
 export const TODO = null;
 
 export type CompanyInfo = {
-  /** Statutory name as registered in the Handelsregister. */
+  /** Registered name in the Handelsregister. */
   statutoryName: string;
   /** Legal form. Note: this is the FORM, not the name. */
   legalForm: string;
@@ -23,7 +23,10 @@ export type CompanyInfo = {
   /** Parent trade name / umbrella business. */
   umbrellaTradeName: string;
   kvk: string;
-  vatId: string;
+  /** Vestigingsnummer (establishment number) from the Handelsregister. */
+  establishmentNumber: string | null;
+  /** BTW-identificatienummer. Legally required on a consumer webshop. */
+  vatId: string | null;
   address: {
     street: string;
     postcode: string;
@@ -41,12 +44,18 @@ export type CompanyInfo = {
 };
 
 export const company: CompanyInfo = {
-  statutoryName: "Slegers import vof",
-  legalForm: "Vennootschap onder firma (vof)",
+  // Seller of record changed to the eenmanszaak "Spinecollection" (confirmed by
+  // the operator). The previous entity was Slegers import vof, KVK 64942708.
+  statutoryName: "Spinecollection",
+  legalForm: "Eenmanszaak",
   tradeName: "Magic Halloween Props",
-  umbrellaTradeName: "All Season Toys",
-  kvk: "64942708",
-  vatId: "NL855913770B01",
+  umbrellaTradeName: "Spinecollection",
+  kvk: "97264180",
+  establishmentNumber: "000062518372",
+
+  // TODO (build-blocking): a consumer webshop must display a
+  // BTW-identificatienummer. Not supplied with the new KVK details.
+  vatId: TODO,
   address: {
     street: "Pannenweg 306",
     postcode: "6031 RK",
@@ -70,8 +79,21 @@ export const addressLine = `${company.address.street}, ${company.address.postcod
 /** Full postal address including country. */
 export const addressLineFull = `${addressLine}, ${company.address.country}`;
 
-/** "All Season Toys · Slegers import vof" */
-export const entityLine = `${company.umbrellaTradeName} · ${company.statutoryName}`;
+/**
+ * Entity line for footers/legal headers. When the webshop trade name and the
+ * registered name are the same (typical for an eenmanszaak) we show it once
+ * rather than repeating it.
+ */
+export const entityLine =
+  company.umbrellaTradeName === company.statutoryName
+    ? `${company.statutoryName} (${company.legalForm})`
+    : `${company.umbrellaTradeName} · ${company.statutoryName}`;
+
+/** Full sentence identifying the seller, used at the top of legal pages. */
+export const identitySentence =
+  company.tradeName === company.statutoryName
+    ? `${company.statutoryName} (${company.legalForm}), ingeschreven bij de KvK onder nummer ${company.kvk}.`
+    : `${company.tradeName} is een handelsnaam van ${company.statutoryName} (${company.legalForm}), ingeschreven bij de KvK onder nummer ${company.kvk}.`;
 
 /**
  * Fields still outstanding. Rendered into the pre-launch checklist and used by
@@ -79,6 +101,9 @@ export const entityLine = `${company.umbrellaTradeName} · ${company.statutoryNa
  * shipping a blank.
  */
 export const missingCompanyFields: { field: string; why: string }[] = [
+  ...(company.vatId === null
+    ? [{ field: "company.vatId", why: "BTW-identificatienummer must be displayed before a consumer orders." }]
+    : []),
   ...(company.phone === null
     ? [{ field: "company.phone", why: "Second contact channel is legally required alongside email." }]
     : []),

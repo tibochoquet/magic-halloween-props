@@ -174,7 +174,7 @@ export default function RetournerenPage() {
           title: "8. Vragen over een retour",
           content:
             `Neem contact op via ${company.email}${company.phone ? ` of ${company.phone}` : ""}. Vermeld je bestelnummer, dan handelen we het zo snel mogelijk af.\n\n` +
-            `${company.umbrellaTradeName} · ${company.statutoryName}\n${addressLineFull}\nKvK ${company.kvk} · BTW ${company.vatId}`,
+            `${company.umbrellaTradeName}\n${addressLineFull}\nKvK ${company.kvk} · BTW ${company.vatId ?? "TODO — nog aan te leveren"}`,
         },
       ]}
     >

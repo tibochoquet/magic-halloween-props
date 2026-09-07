@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LegalPageLayout from "@/components/pages/LegalPageLayout";
-import { company, addressLineFull } from "@/lib/companyInfo";
+import { company, addressLineFull, identitySentence } from "@/lib/companyInfo";
 
 export const metadata: Metadata = {
   title: "Privacybeleid",
@@ -39,11 +39,11 @@ const sections = [
   {
     title: "1. Verwerkingsverantwoordelijke",
     content:
-      `${company.tradeName} is een handelsnaam van ${company.statutoryName} (${company.legalForm}), handelend onder ${company.umbrellaTradeName}.\n\n` +
+      `${identitySentence}\n\n` +
       `Adres: ${addressLineFull}\n` +
       `E-mail: ${company.email}\n` +
       (company.phone ? `Telefoon: ${company.phone}\n` : "Telefoon: TODO — nog aan te leveren\n") +
-      `KvK: ${company.kvk} · BTW: ${company.vatId}`,
+      `KvK: ${company.kvk} · BTW: ${company.vatId ?? "TODO — nog aan te leveren"}`,
   },
   {
     title: "2. Welke gegevens wij verwerken",

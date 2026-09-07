@@ -91,7 +91,7 @@ export default function ContactPageContent() {
             </div>
             <div className="flex flex-col md:flex-row gap-6 text-xs text-horror-text-muted">
               <span>{c.kvk} <span className="text-horror-text-secondary">{company.kvk}</span></span>
-              <span>{c.btw} <span className="text-horror-text-secondary">{company.vatId}</span></span>
+              {company.vatId && <span>{c.btw} <span className="text-horror-text-secondary">{company.vatId}</span></span>}
               <a href={`mailto:${company.email}`} className="text-horror-orange hover:underline">{company.email}</a>
               {company.phone && (
                 <a href={`tel:${company.phone.replace(/\s/g, "")}`} className="text-horror-orange hover:underline">{company.phone}</a>

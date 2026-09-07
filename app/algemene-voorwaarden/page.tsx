@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LegalPageLayout from "@/components/pages/LegalPageLayout";
-import { company, addressLineFull } from "@/lib/companyInfo";
+import { company, addressLineFull, identitySentence } from "@/lib/companyInfo";
 import {
   WITHDRAWAL_DAYS,
   RETURN_WINDOW_DAYS,
@@ -33,13 +33,13 @@ const articles = [
   {
     title: "Artikel 1 – Identiteit van de ondernemer",
     content:
-      `${company.tradeName} is een handelsnaam van ${company.statutoryName} ` +
-      `(${company.legalForm}), handelend onder ${company.umbrellaTradeName}, ` +
-      `gevestigd te ${addressLineFull}.\n\n` +
+      `${identitySentence}\n` +
+      `Gevestigd te ${addressLineFull}.\n\n` +
       `E-mail: ${company.email}\n` +
       (company.phone ? `Telefoon: ${company.phone}\n` : `Telefoon: TODO — nog aan te leveren\n`) +
       `KvK-nummer: ${company.kvk}\n` +
-      `BTW-identificatienummer: ${company.vatId}`,
+      (company.establishmentNumber ? `Vestigingsnummer: ${company.establishmentNumber}\n` : "") +
+      `BTW-identificatienummer: ${company.vatId ?? "TODO — nog aan te leveren"}`,
   },
   {
     title: "Artikel 2 – Toepasselijkheid",

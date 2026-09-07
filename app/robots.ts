@@ -8,7 +8,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         // The cart/checkout carry no unique content and should not be indexed.
-        disallow: ["/checkout"],
+        // Personal order pages must never be crawled or indexed.
+        disallow: ["/checkout", "/mijn-bestelling", "/api/"],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,

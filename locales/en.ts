@@ -96,6 +96,7 @@ export const en: Translations = {
       wholesale: "Wholesale",
       contact: "Contact",
       faq: "FAQ",
+      myOrder: "Where is my order?",
       shipping: "Shipping & Delivery",
       returns: "Returns",
       warranty: "Warranty",

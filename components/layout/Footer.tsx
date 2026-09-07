@@ -53,6 +53,7 @@ export default function Footer() {
       { label: f.links.contact,   href: "/contact" },
     ],
     [f.sections.klantenservice]: [
+      { label: f.links.myOrder,  href: "/mijn-bestelling" },
       { label: f.links.faq,      href: "/faq" },
       { label: f.links.shipping, href: "/verzending" },
       { label: f.links.returns,  href: "/retourneren" },
@@ -99,7 +100,8 @@ export default function Footer() {
               {f.brandDesc}
             </p>
             <p className="text-horror-text-muted/60 text-xs mb-6">
-              {f.opBehalf} <span className="text-horror-text-muted">{company.umbrellaTradeName}</span> ({company.statutoryName})
+              {f.opBehalf} <span className="text-horror-text-muted">{company.statutoryName}</span>
+              {company.umbrellaTradeName !== company.statutoryName && ` (${company.umbrellaTradeName})`}
             </p>
             <div className="flex items-center gap-3">
               {socials.map((s) => (
@@ -136,7 +138,7 @@ export default function Footer() {
               © {new Date().getFullYear()} {company.tradeName} — {entityLine}
             </p>
             <p className="text-horror-text-muted/50 text-xs mt-1">
-              KvK {company.kvk} · BTW {company.vatId} · {addressLine}
+              KvK {company.kvk}{company.vatId ? ` · BTW ${company.vatId}` : ""} · {addressLine}
               {company.phone && ` · ${company.phone}`}
             </p>
           </div>

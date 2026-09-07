@@ -94,6 +94,7 @@ export const nl = {
       wholesale: "Groothandel",
       contact: "Contact",
       faq: "Veelgestelde vragen",
+      myOrder: "Waar is mijn bestelling?",
       shipping: "Verzending & levering",
       returns: "Retourneren",
       warranty: "Garantie",

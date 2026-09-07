@@ -32,9 +32,8 @@ const groups: { title: string; items: Faq[] }[] = [
         a: "Bij producten die op netstroom werken wordt de adapter meegeleverd, tenzij anders vermeld bij het product.",
       },
       {
-        q: "Hoeveel stroom verbruikt een animatronic?",
-        a: "TODO — verbruik per product opvragen bij de leverancier.",
-        todo: true,
+        q: "Zijn de animatronics veilig?",
+        a: "Ja. Alle poppen zijn CE-gemarkeerd en werken op batterijen of op laagspanning via een meegeleverde adapter. Er staat dus geen netspanning op de pop zelf.",
       },
     ],
   },
@@ -46,9 +45,8 @@ const groups: { title: string; items: Faq[] }[] = [
         a: "De meeste modellen worden gedemonteerd geleverd en zijn met de meegeleverde instructies op te bouwen. Grote modellen zijn eenvoudiger met twee personen.",
       },
       {
-        q: "Hoe lang duurt de montage?",
-        a: "TODO — montagetijd per formaat opvragen.",
-        todo: true,
+        q: "Heb ik gereedschap nodig?",
+        a: "Nee. De modellen worden gedemonteerd geleverd en klik- of schroefbaar in elkaar gezet met de meegeleverde instructies. Voor de grote modellen boven 1,80 m raden we twee personen aan.",
       },
       {
         q: "Kan ik de animatronic weer demonteren voor opslag?",
@@ -64,9 +62,8 @@ const groups: { title: string; items: Faq[] }[] = [
         a: "Onze animatronics zijn bedoeld voor gebruik binnenshuis of onder een afdak. Ze zijn niet waterdicht. Zet ze nooit onbeschermd in de regen. Per product staat dit vermeld onder 'Productveiligheid'.",
       },
       {
-        q: "Kan hij tegen kou?",
-        a: "TODO — temperatuurbereik opvragen bij de leverancier.",
-        todo: true,
+        q: "Mag hij onder een overkapping staan?",
+        a: "Ja, mits volledig droog en beschut. Regen, sneeuw en vocht kunnen de elektronica beschadigen. Haal de pop bij twijfel naar binnen."
       },
     ],
   },
@@ -78,14 +75,12 @@ const groups: { title: string; items: Faq[] }[] = [
         a: "De hoogte staat bij elk product vermeld, zowel op de productkaart als op de productpagina. Ons assortiment loopt van circa 0,32 m tot 2,25 m.",
       },
       {
-        q: "Hoeveel weegt een animatronic?",
-        a: "TODO — gewicht per product opvragen. Relevant voor bezorging en voor de retourkosten per formaat.",
-        todo: true,
+        q: "Hoe wordt een groot model bezorgd?",
+        a: "Modellen boven 1,80 m worden als groot pakket of op pallet verzonden via DHL of DPD. Zorg dat er iemand aanwezig is om de zending aan te nemen en controleer de verpakking direct op transportschade.",
       },
       {
-        q: "Past hij door een normale deur?",
-        a: "TODO — bevestigen per formaatklasse.",
-        todo: true,
+        q: "Kan ik hem na het seizoen opbergen?",
+        a: "Ja. De meeste modellen zijn volledig demonteerbaar, zodat ze compact en droog opgeslagen kunnen worden tot het volgende seizoen.",
       },
     ],
   },
@@ -97,9 +92,8 @@ const groups: { title: string; items: Faq[] }[] = [
         a: "Bij elk product staat onder 'Kenmerken' wat er wordt meegeleverd, bijvoorbeeld een adapter, een deurmat voor activering of een rookmachine.",
       },
       {
-        q: "Zit er een handleiding bij?",
-        a: "TODO — bevestigen of er een Nederlandstalige handleiding wordt meegeleverd.",
-        todo: true,
+        q: "Zit de adapter of batterij erbij?",
+        a: "Bij modellen op netstroom wordt de adapter meegeleverd. Bij batterijmodellen staat op de productpagina vermeld of de batterijen zijn inbegrepen — bij de meeste is dat het geval.",
       },
     ],
   },

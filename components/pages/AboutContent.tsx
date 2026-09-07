@@ -15,7 +15,7 @@ export default function AboutContent() {
     { label: cl.statutoryName, value: company.statutoryName },
     { label: cl.legalForm, value: company.legalForm },
     { label: cl.kvk, value: company.kvk },
-    { label: cl.vat, value: company.vatId },
+    { label: cl.vat, value: company.vatId ?? `TODO — ${cl.todo}` },
     { label: cl.address, value: addressLineFull },
     { label: cl.email, value: company.email },
     { label: cl.phone, value: company.phone ?? `TODO — ${cl.todo}` },

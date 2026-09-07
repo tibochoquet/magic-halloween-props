@@ -45,20 +45,17 @@ export const returnPolicy = {
   ] as SizeClassCost[],
 
   /**
-   * TODO (build-blocking): the address goods must be returned to.
-   * Do NOT assume this equals the visiting address.
+   * Return address. Confirmed by the operator. Deliberately NOT shown on the
+   * public returns page — it is revealed only after a return is registered.
    */
-  returnAddress: TODO as string | null,
+  returnAddress: "Pannenweg 306\n6031 RK Nederweert\nNederland" as string | null,
 };
 
 export const deliveryTerms = {
-  /**
-   * TODO (build-blocking): delivery term for in-stock items, e.g. "1-3 werkdagen".
-   * Shown on every product page before ordering.
-   */
-  inStock: TODO as string | null,
-  /** TODO: term for pickup-by-appointment orders. */
-  pickup: TODO as string | null,
+  /** Delivery term for in-stock items. Shown before ordering. */
+  inStock: "1-3 werkdagen" as string | null,
+  /** Term for pickup-by-appointment orders. */
+  pickup: "Op afspraak, meestal binnen 1-2 werkdagen" as string | null,
   /** Carriers used. Already stated elsewhere on the site. */
   carriers: "DHL / DPD",
 };

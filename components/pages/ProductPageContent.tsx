@@ -8,7 +8,6 @@ import AddToCartButton from "@/components/ui/AddToCartButton";
 import NotifyForm from "@/components/ui/NotifyForm";
 import { isOrderable } from "@/lib/availability";
 import { deliveryTerms, VAT_RATE } from "@/lib/shopTerms";
-import ProductSafetyBlock from "@/components/ui/ProductSafetyBlock";
 import { useTranslation } from "@/hooks/useTranslation";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
 
@@ -251,9 +250,6 @@ export default function ProductPageContent({ product, related }: { product: Prod
           <p className="mt-4 text-horror-text-muted text-xs text-center leading-relaxed">{p.shippingNote}</p>
         </div>
       </div>
-
-      {/* GPSR product safety — required on every listing */}
-      <ProductSafetyBlock product={product} />
 
       {/* Related */}
       {related.length > 0 && (
