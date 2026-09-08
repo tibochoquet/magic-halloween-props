@@ -228,7 +228,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
             <div className="text-sm">
               <p className="text-horror-text-primary font-medium">
                 {orderable
-                  ? deliveryTerms.inStock ?? "TODO — levertijd nog aan te leveren"
+                  ? deliveryTerms.inStock ?? "Levertijd in overleg"
                   : product.availabilityNote ?? "Niet leverbaar"}
               </p>
               <p className="text-horror-text-muted text-xs mt-0.5">

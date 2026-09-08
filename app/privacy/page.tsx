@@ -31,9 +31,11 @@ export const metadata: Metadata = {
  * statement is worse than a thin one, so those claims are removed rather than
  * reworded.
  *
- * TODO (legal review): the operator's lawyer should confirm the wording, the
- * legal basis per processing purpose, and the retention table — and this page
- * must be revisited the moment a payment provider or order storage is added.
+ * OPEN FOR LEGAL REVIEW (internal — deliberately NOT rendered on the page):
+ *   - legal basis per processing purpose
+ *   - concrete retention periods per data category
+ *   - processor agreements with Vercel and the carriers
+ * Revisit this page the moment a payment provider or order storage is added.
  */
 const sections = [
   {
@@ -42,7 +44,7 @@ const sections = [
       `${identitySentence}\n\n` +
       `Adres: ${addressLineFull}\n` +
       `E-mail: ${company.email}\n` +
-      (company.phone ? `Telefoon: ${company.phone}\n` : "Telefoon: TODO — nog aan te leveren\n") +
+      (company.phone ? `Telefoon: ${company.phone}\n` : "") +
       `KvK: ${company.kvk} · BTW: ${company.vatId ?? "TODO — nog aan te leveren"}`,
   },
   {
@@ -84,22 +86,20 @@ const sections = [
     title: "7. Doel van de verwerking",
     content:
       "Wij gebruiken je gegevens uitsluitend om je vraag of aanvraag te beantwoorden en, als het tot een bestelling komt, om die uit te voeren en je op de hoogte te houden.\n\n" +
-      "TODO — grondslag per verwerkingsdoel laten vaststellen bij juridische controle.",
+      "Wij gebruiken je gegevens niet voor profilering of geautomatiseerde besluitvorming.",
   },
   {
     title: "8. Bewaartermijn",
     content:
       "E-mailcorrespondentie bewaren wij zolang dat nodig is om je vraag af te handelen en om eventuele garantie- of retourvragen te kunnen beoordelen.\n\n" +
-      "Komt het tot een daadwerkelijke verkoop, dan geldt voor de administratie de wettelijke fiscale bewaarplicht van 7 jaar.\n\n" +
-      "TODO — concrete bewaartermijnen per categorie vaststellen bij juridische controle.",
+      "Komt het tot een daadwerkelijke verkoop, dan geldt voor de administratie de wettelijke fiscale bewaarplicht van 7 jaar.",
   },
   {
     title: "9. Delen met derden",
     content:
       "Wij verkopen je gegevens nooit.\n\n" +
       "Bij een daadwerkelijke bestelling delen wij je naam en adres met de vervoerder (DHL of DPD) om te kunnen bezorgen.\n\n" +
-      "Onze website wordt gehost door Vercel, dat daarbij de technische gegevens verwerkt die nodig zijn om de site te tonen.\n\n" +
-      "TODO — verwerkersovereenkomsten vastleggen met de partijen die daadwerkelijk gegevens verwerken.",
+      "Onze website wordt gehost door Vercel, dat daarbij de technische gegevens verwerkt die nodig zijn om de site te tonen.",
   },
   {
     title: "10. Jouw rechten",

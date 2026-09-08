@@ -18,7 +18,6 @@ export default function AboutContent() {
     { label: cl.vat, value: company.vatId ?? `TODO — ${cl.todo}` },
     { label: cl.address, value: addressLineFull },
     { label: cl.email, value: company.email },
-    { label: cl.phone, value: company.phone ?? `TODO — ${cl.todo}` },
   ];
 
   return (

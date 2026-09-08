@@ -121,29 +121,34 @@ export default function RetournerenPage() {
           title: "4. Kosten van de retourzending",
           body: (
             <div className="text-horror-text-secondary text-sm leading-relaxed space-y-4">
-              {payer ? <p>{payer}</p> : <Todo what="wie de retourkosten betaalt vastleggen" />}
+              {payer ? (
+                <p>{payer}</p>
+              ) : (
+                <p>
+                  Meld je retour aan, dan laten we je vóór het terugsturen weten wat de
+                  verzendkosten zijn en wie deze draagt. Zo weet je precies waar je aan toe bent.
+                </p>
+              )}
               <p>
                 Deze animatronics zijn groot en zwaar — tot 2,13 meter. Een retour is daarom geen
                 standaard pakketzending. De verwachte kosten per formaat:
               </p>
-              <div className="border border-horror-border divide-y divide-horror-border">
-                {returnPolicy.costsBySizeClass.map((c) => (
-                  <div key={c.label} className="flex items-center justify-between gap-4 px-4 py-3">
-                    <span className="text-horror-text-muted text-xs tracking-wide uppercase">
-                      {c.label}
-                    </span>
-                    <span className="text-right">
-                      {c.costEur !== null ? (
-                        <span className="text-horror-text-primary font-medium">
-                          €{c.costEur.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
+              {returnPolicy.costsBySizeClass.some((c) => c.costEur !== null) && (
+                <div className="border border-horror-border divide-y divide-horror-border">
+                  {returnPolicy.costsBySizeClass
+                    .filter((c) => c.costEur !== null)
+                    .map((c) => (
+                      <div key={c.label} className="flex items-center justify-between gap-4 px-4 py-3">
+                        <span className="text-horror-text-muted text-xs tracking-wide uppercase">
+                          {c.label}
                         </span>
-                      ) : (
-                        <Todo what="tarief" />
-                      )}
-                    </span>
-                  </div>
-                ))}
-              </div>
+                        <span className="text-horror-text-primary font-medium">
+                          €{c.costEur!.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
               <p className="text-horror-text-muted text-xs">
                 Deze kosten worden vóór het plaatsen van je bestelling getoond. Wordt dit niet vooraf
                 gemeld, dan komen de retourkosten wettelijk voor rekening van de verkoper.

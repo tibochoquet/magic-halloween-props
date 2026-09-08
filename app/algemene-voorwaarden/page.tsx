@@ -27,7 +27,7 @@ const returnCostSentence =
     ? "De rechtstreekse kosten van het terugzenden zijn voor rekening van de consument. Deze kosten worden vóór het plaatsen van de bestelling vermeld."
     : returnPolicy.paidBy === "seller"
       ? "De rechtstreekse kosten van het terugzenden komen voor rekening van de ondernemer."
-      : "TODO — vastleggen wie de rechtstreekse kosten van het terugzenden draagt. Wordt dit niet vóór de bestelling vermeld, dan komen deze kosten wettelijk voor rekening van de ondernemer.";
+      : "De ondernemer laat de consument bij het aanmelden van de retour weten wat de rechtstreekse kosten van het terugzenden zijn en voor wiens rekening deze komen. Wordt dit niet vóór het sluiten van de overeenkomst vermeld, dan komen deze kosten voor rekening van de ondernemer.";
 
 const articles = [
   {
@@ -36,7 +36,7 @@ const articles = [
       `${identitySentence}\n` +
       `Gevestigd te ${addressLineFull}.\n\n` +
       `E-mail: ${company.email}\n` +
-      (company.phone ? `Telefoon: ${company.phone}\n` : `Telefoon: TODO — nog aan te leveren\n`) +
+      (company.phone ? `Telefoon: ${company.phone}\n` : "") +
       `KvK-nummer: ${company.kvk}\n` +
       (company.establishmentNumber ? `Vestigingsnummer: ${company.establishmentNumber}\n` : "") +
       `BTW-identificatienummer: ${company.vatId ?? "TODO — nog aan te leveren"}`,
@@ -70,7 +70,7 @@ const articles = [
     title: "Artikel 6 – Levering en uitvoering",
     content:
       `De ondernemer neemt de grootst mogelijke zorgvuldigheid in acht bij de uitvoering van bestellingen. Als plaats van levering geldt het adres dat de consument heeft opgegeven.\n\n` +
-      `Levertermijn voor producten op voorraad: ${deliveryTerms.inStock ?? "TODO — levertermijn nog aan te leveren"}.\n` +
+      `Levertermijn voor producten op voorraad: ${deliveryTerms.inStock ?? "in overleg"}.\n` +
       `Verzending geschiedt via ${deliveryTerms.carriers}. Afhalen op afspraak is mogelijk.\n\n` +
       `Producten die niet leverbaar zijn kunnen niet worden besteld. Bij het product staat vermeld wanneer het naar verwachting weer beschikbaar is.\n\n` +
       `Wordt een bestelling onverhoopt niet of slechts gedeeltelijk uitgevoerd, dan ontvangt de consument uiterlijk 30 dagen na plaatsing van de bestelling bericht en heeft hij het recht de overeenkomst kosteloos te ontbinden.\n\n` +

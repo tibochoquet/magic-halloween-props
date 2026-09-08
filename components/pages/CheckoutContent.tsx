@@ -324,7 +324,7 @@ export default function CheckoutContent() {
                 <p>{form.email}{form.phone ? ` · ${form.phone}` : ""}</p>
                 <p className="text-horror-text-muted text-xs pt-2">
                   {nl ? "Levertijd" : "Delivery"}:{" "}
-                  {deliveryTerms.inStock ?? (nl ? "TODO — levertijd nog aan te leveren" : "TODO — delivery term pending")}
+                  {deliveryTerms.inStock ?? (nl ? "in overleg" : "to be confirmed")}
                 </p>
               </div>
 
