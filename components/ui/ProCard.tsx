@@ -1,33 +1,31 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Product } from "@/types";
 import { isOrderable } from "@/lib/availability";
+import { useCardVideo } from "@/hooks/useCardVideo";
 
 export default function ProCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
   const { language } = useLanguage();
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const { containerRef, videoProps, showVideo, onPointerEnter, onPointerLeave } =
+    useCardVideo(Boolean(product.video));
   const unavailable = !isOrderable(product);
   const unavailableShortLabel = language === "nl" ? "Niet beschikbaar" : "Unavailable";
   const unavailableLabel = product.availabilityNote ?? unavailableShortLabel;
 
   return (
-    <article id={`product-${product.id}`} className={`group card-horror flex flex-col overflow-hidden w-full scroll-mt-28${unavailable ? " opacity-60" : ""}`}>
+    <article
+      ref={containerRef as React.RefObject<HTMLElement>}
+      id={`product-${product.id}`} className={`group card-horror flex flex-col overflow-hidden w-full scroll-mt-28${unavailable ? " opacity-60" : ""}`}>
       <Link
         href={`/products/${product.id}`}
         className="block"
-        onMouseEnter={() => videoRef.current?.play()}
-        onMouseLeave={() => {
-          if (videoRef.current) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-          }
-        }}
+        onPointerEnter={onPointerEnter}
+        onPointerLeave={onPointerLeave}
       >
         <div className="relative h-64 bg-gradient-to-br from-[#1c0e0a] to-[#0a0505] overflow-hidden flex items-center justify-center">
           <div
@@ -40,17 +38,15 @@ export default function ProCard({ product }: { product: Product }) {
             src={product.image!}
             alt={product.name}
             fill
-            className={`object-contain object-center p-4 relative z-10 transition-transform duration-500 group-hover:scale-[1.04] ${product.video ? "group-hover:opacity-0 transition-opacity" : ""}`}
+            className={`object-contain object-center p-4 relative z-10 transition-all duration-500 group-hover:scale-[1.04] ${showVideo ? "opacity-0" : "opacity-100"}`}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
           {product.video && (
             <video
-              ref={videoRef}
+              {...videoProps}
               src={product.video}
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-contain object-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+              aria-hidden="true"
+              className={`absolute inset-0 w-full h-full object-contain object-center p-4 transition-opacity duration-300 z-10 ${showVideo ? "opacity-100" : "opacity-0"}`}
             />
           )}
 
