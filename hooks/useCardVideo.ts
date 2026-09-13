@@ -18,9 +18,68 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * So: the image is only faded out once the video is genuinely playing, and the
  * activation trigger differs per input type —
  *   • pointer devices  → hover, as before
- *   • touch devices    → the card being centred in the viewport, which is what
- *                        "play when it's in the middle of the screen" means.
+ *   • touch devices    → the card nearest the middle of the viewport, chosen by
+ *                        the coordinator below so exactly ONE video plays at a
+ *                        time. Several cards can straddle the centre at once,
+ *                        and decoding three or four together is rough on older
+ *                        phones and on mobile data.
  */
+
+/* ── Single-video coordinator (touch devices only) ─────────────────────────
+   One scroll listener for the whole page rather than one per card. On each
+   animation frame it picks the visible card whose centre sits closest to the
+   viewport centre, and activates only that one.                             */
+
+type Registration = { el: HTMLElement; setActive: (v: boolean) => void };
+
+const registry = new Set<Registration>();
+let frame = 0;
+let listening = false;
+
+function pickCentreCard() {
+  frame = 0;
+  const middle = window.innerHeight / 2;
+  let winner: Registration | null = null;
+  let bestDistance = Infinity;
+
+  // Array.from: the project targets ES5, where Sets are not directly iterable.
+  for (const entry of Array.from(registry)) {
+    const r = entry.el.getBoundingClientRect();
+    // The card must actually straddle the horizontal centre line.
+    if (r.top > middle || r.bottom < middle) continue;
+    const distance = Math.abs(r.top + r.height / 2 - middle);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      winner = entry;
+    }
+  }
+
+  for (const entry of Array.from(registry)) entry.setActive(entry === winner);
+}
+
+function schedule() {
+  if (frame) return;
+  frame = requestAnimationFrame(pickCentreCard);
+}
+
+function startListening() {
+  if (listening) return;
+  listening = true;
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule, { passive: true });
+}
+
+function stopListening() {
+  if (!listening || registry.size > 0) return;
+  listening = false;
+  window.removeEventListener("scroll", schedule);
+  window.removeEventListener("resize", schedule);
+  if (frame) {
+    cancelAnimationFrame(frame);
+    frame = 0;
+  }
+}
+
 export function useCardVideo(hasVideo: boolean) {
   const containerRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -30,27 +89,29 @@ export function useCardVideo(hasVideo: boolean) {
   /** Is the video actually rendering frames? Only then may we hide the image. */
   const [playing, setPlaying] = useState(false);
 
-  // Attach/detach the intersection observer on touch devices only.
+  // Register with the coordinator on touch devices.
   useEffect(() => {
-    if (!hasVideo) return;
-    if (typeof window === "undefined") return;
+    if (!hasVideo || typeof window === "undefined") return;
 
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     if (canHover) return; // pointer devices use the hover handlers below
 
-    const el = containerRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return; // never auto-play looping video for these users
 
-    // A horizontal band across the middle of the viewport. A card counts as
-    // "in the middle" when it overlaps that band.
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) setActive(entry.isIntersecting);
-      },
-      { rootMargin: "-38% 0px -38% 0px", threshold: 0 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const el = containerRef.current;
+    if (!el) return;
+
+    const registration: Registration = { el, setActive };
+    registry.add(registration);
+    startListening();
+    schedule(); // evaluate immediately, don't wait for the first scroll
+
+    return () => {
+      registry.delete(registration);
+      setActive(false);
+      stopListening();
+    };
   }, [hasVideo]);
 
   // Start/stop playback when activation changes.
@@ -68,15 +129,10 @@ export function useCardVideo(hasVideo: boolean) {
     }
   }, [active]);
 
-  // Respect reduced-motion: never auto-play looping video for those users.
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) setActive(false);
-  }, []);
-
   const onPointerEnter = useCallback((e: React.PointerEvent) => {
-    if (e.pointerType === "mouse") setActive(true);
+    if (e.pointerType !== "mouse") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setActive(true);
   }, []);
 
   const onPointerLeave = useCallback((e: React.PointerEvent) => {
