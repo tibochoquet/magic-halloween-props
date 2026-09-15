@@ -5,9 +5,8 @@ import Footer from "@/components/layout/Footer";
 import CheckoutContent from "@/components/pages/CheckoutContent";
 
 export const metadata: Metadata = {
-  title: "Bestelaanvraag",
-  description:
-    "Rond je bestelaanvraag af. Online betalen is nog niet mogelijk; wij nemen contact op om bestelling, levertijd en betaling te bevestigen.",
+  title: "Afrekenen",
+  description: "Reken je bestelling veilig af via Stripe (iDEAL, creditcard en meer).",
   robots: { index: false, follow: true },
 };
 
