@@ -4,8 +4,8 @@ const G = "from-[#1c0e0a] to-[#0a0505]";
 const AC = "rgba(180,55,0,0.28)";
 
 // EDITABLE PLACEHOLDER: real price not yet provided by the supplier for
-// "Evil Witch Cooking the Little Bear". Update this value once confirmed.
-const PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR = 799;
+// "Evil Witch Cooking the Little Cat". Update this value once confirmed.
+const PRICE_EVIL_WITCH_COOKING_LITTLE_CAT = 799;
 
 export const professionalProducts: Product[] = [
   {
@@ -351,18 +351,18 @@ export const professionalProducts: Product[] = [
     bgGradient: G, accentColor: AC, iconEmoji: "💀",
   },
   {
-    id: "pro-evil-witch-cooking-little-bear",
+    id: "pro-evil-witch-cooking-little-cat",
     powerSource: "230V via meegeleverde adapter",
     availability: "unavailable",
     availabilityNote: "Leverbaar vanaf januari 2027",
     notifyOnRestock: true,
     badge: "NEW",
-    name: "Evil Witch Cooking the Little Bear",
+    name: "Evil Witch Cooking the Little Cat",
     category: "witch",
     // PLACEHOLDER — exact price not yet provided by the supplier for this specific variant.
-    // Update PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR below once confirmed.
-    price: PRICE_EVIL_WITCH_COOKING_LITTLE_BEAR,
-    description: "Deze meedogenloze heks laat het kleine berenwelpje niet ontsnappen aan haar kokende ketel. Griezelige groene lichteffecten begeleiden het kronkelende diertje boven het vuur.",
+    // Update PRICE_EVIL_WITCH_COOKING_LITTLE_CAT below once confirmed.
+    price: PRICE_EVIL_WITCH_COOKING_LITTLE_CAT,
+    description: "Deze meedogenloze heks laat het kleine katje niet ontsnappen aan haar kokende ketel. Griezelige groene lichteffecten begeleiden het kronkelende diertje boven het vuur.",
     features: ["3 activeringsmodi: continu, bewegingsmelder of voetmat", "Inclusief vloermat met activeringsfunctie", "Licht-, beweeg- en geluidseffecten", "Inclusief rookmachine"],
     height: "2,03 m",
     image: "/products/Evil%20Witch%20cooking%20the%20little%20bear.png",

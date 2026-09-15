@@ -179,7 +179,10 @@ async function sendOwnerNotificationEmail(session: Stripe.Checkout.Session, line
 
   await sendResendEmail({
     from: `${company.tradeName} <${company.orderConfirmationFrom}>`,
-    to: company.email,
+    // company.email is the legal/customer-facing contact; the second address
+    // is the operator's own inbox, added purely so they get notified that an
+    // order came in.
+    to: [company.email, "lifegoods.daily@gmail.com"],
     replyTo: customer?.email ?? undefined,
     subject: `Betaalde bestelling ${orderRef}, €${total.toFixed(2)}`,
     html,
