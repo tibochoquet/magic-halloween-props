@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bestelling bevestigd</title>
+</head>
+<body style="margin:0; padding:0; background-color:#0A0A0A; -webkit-font-smoothing:antialiased;">
+
+<!-- Preheader -->
+<div style="display:none; max-height:0; overflow:hidden; opacity:0;">
+  Je bestelling bij Magic Halloween Props is bevestigd. &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#0A0A0A;">
+<tr>
+<td align="center" style="padding:28px 12px;">
+
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:100%; background-color:#111111; border:1px solid rgba(255,107,0,0.18);">
+
+    <!-- Logo -->
+    <tr>
+      <td align="center" style="padding:34px 24px 26px 24px;">
+        <div style="font-family:Georgia,'Times New Roman',serif; font-size:20px; letter-spacing:2px;">
+          <span style="color:#E8E8E8;">&#128128; MAGIC HALLOWEEN</span>
+          <span style="color:#FF6B00;"> PROPS</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- Kop + intro -->
+    <tr>
+      <td style="padding:8px 44px 0 44px;">
+        <h1 style="margin:0; font-family:Georgia,'Times New Roman',serif; font-size:26px; line-height:1.3; font-weight:400; color:#E8E8E8;">
+          Bedankt voor je bestelling
+        </h1>
+        <p style="margin:18px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:15px; line-height:1.7; color:#9CA3AF;">
+          Hoi {{voornaam}}, we hebben je betaling ontvangen en gaan je bestelling inpakken. Hieronder vind je je bestelgegevens.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Bestelnummer + levering -->
+    <tr>
+      <td style="padding:26px 44px 0 44px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid rgba(255,107,0,0.18);">
+          <tr>
+            <td style="padding:20px 22px; font-family:Helvetica,Arial,sans-serif; font-size:14px; line-height:1.6;">
+              <span style="color:#6B7280;">Bestelnummer</span><br>
+              <span style="color:#E8E8E8;">{{bestelnummer}}</span>
+              <div style="height:12px; line-height:12px;">&nbsp;</div>
+              <span style="color:#6B7280;">Verwachte levertijd</span><br>
+              <span style="color:#E8E8E8;">{{leverdatum}}</span>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Producten -->
+    <tr>
+      <td style="padding:26px 44px 0 44px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:0 0 10px 0; font-family:Helvetica,Arial,sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6B7280; border-bottom:1px solid rgba(255,107,0,0.18);">Product</td>
+            <td align="center" style="padding:0 0 10px 0; font-family:Helvetica,Arial,sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6B7280; border-bottom:1px solid rgba(255,107,0,0.18);">Aantal</td>
+            <td align="right" style="padding:0 0 10px 0; font-family:Helvetica,Arial,sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6B7280; border-bottom:1px solid rgba(255,107,0,0.18);">Prijs</td>
+          </tr>
+          {{items_rows}}
+        </table>
+      </td>
+    </tr>
+
+    <!-- Totaal -->
+    <tr>
+      <td style="padding:14px 44px 0 44px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:8px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:13px; color:#9CA3AF;">Verzending</td>
+            <td align="right" style="padding:8px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:13px; color:#FF6B00;">Gratis</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:16px; font-weight:bold; color:#E8E8E8; border-top:1px solid rgba(255,107,0,0.18);">Totaal (incl. btw)</td>
+            <td align="right" style="padding:10px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:16px; font-weight:bold; color:#E8E8E8; border-top:1px solid rgba(255,107,0,0.18);">{{totaal}}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <!-- Verzendadres -->
+    <tr>
+      <td style="padding:26px 44px 0 44px;">
+        <p style="margin:0 0 6px 0; font-family:Helvetica,Arial,sans-serif; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#6B7280;">Verzendadres</p>
+        <p style="margin:0; font-family:Helvetica,Arial,sans-serif; font-size:14px; line-height:1.7; color:#9CA3AF; white-space:pre-line;">{{verzendadres}}</p>
+      </td>
+    </tr>
+
+    <!-- Hulp -->
+    <tr>
+      <td align="center" style="padding:34px 44px 0 44px;">
+        <p style="margin:0; font-family:Helvetica,Arial,sans-serif; font-size:13px; line-height:1.8; color:#6B7280;">
+          Klopt er iets niet aan je bestelling? Mail ons op
+          <a href="mailto:{{contact_email}}" style="color:#FF6B00; text-decoration:none;">{{contact_email}}</a>.
+        </p>
+      </td>
+    </tr>
+
+    <!-- Herroepingsrecht + bedrijfsgegevens -->
+    <tr>
+      <td align="center" style="padding:22px 44px 34px 44px;">
+        <p style="margin:0; font-family:Helvetica,Arial,sans-serif; font-size:11px; line-height:1.8; color:#6B7280;">
+          Je hebt het recht om deze bestelling binnen {{herroepingsrecht_dagen}} dagen na ontvangst zonder
+          opgaaf van reden te herroepen. Bekijk het volledige retourbeleid op
+          <a href="{{retourneren_url}}" style="color:#6B7280; text-decoration:underline;">{{retourneren_host}}/retourneren</a>.
+        </p>
+        <p style="margin:12px 0 0 0; font-family:Helvetica,Arial,sans-serif; font-size:10px; line-height:1.8; color:#4B5563;">
+          {{entiteit}} &middot; {{adres}} &middot; KVK {{kvk}} &middot; BTW {{btw}}
+        </p>
+      </td>
+    </tr>
+
+    <!-- Footer -->
+    <tr>
+      <td align="center" style="background-color:#0A0A0A; padding:26px 44px; border-top:1px solid rgba(255,107,0,0.18);">
+        <p style="margin:0; font-family:Helvetica,Arial,sans-serif; font-size:12px; line-height:1.9; color:#6B7280;">
+          <a href="{{site_url}}" style="color:#9CA3AF; text-decoration:none;">{{retourneren_host}}</a> &nbsp;|&nbsp;
+          <a href="mailto:{{contact_email}}" style="color:#9CA3AF; text-decoration:none;">{{contact_email}}</a>
+        </p>
+      </td>
+    </tr>
+
+  </table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

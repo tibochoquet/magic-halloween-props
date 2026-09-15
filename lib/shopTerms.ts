@@ -27,16 +27,15 @@ export type SizeClassCost = {
 
 export const returnPolicy = {
   /**
-   * TODO (build-blocking): who pays return shipping?
-   * If the customer pays, it MUST be disclosed before the order is placed, or
-   * the seller carries the cost by default. For a 213 cm animatronic this is a
-   * freight cost, not a €7 parcel.
+   * Confirmed by the operator: the customer arranges and pays for the
+   * return shipment themselves (no seller-quoted freight fee).
    */
-  paidBy: TODO as ReturnShippingPayer | null,
+  paidBy: "customer" as ReturnShippingPayer | null,
 
   /**
-   * TODO (build-blocking): actual return shipping cost per size class.
-   * Supply real carrier quotes — these appear before checkout.
+   * Deliberately empty: the operator does not quote a fixed return-shipping
+   * fee per size class (see `paidBy` above — the customer arranges their own
+   * carrier), so there is no figure to disclose here.
    */
   costsBySizeClass: [
     { label: "Tot 1,20 m", costEur: TODO },
@@ -73,9 +72,6 @@ export const PRICES_INCLUDE_VAT = true;
 export const missingShopTerms: { field: string; why: string }[] = [
   ...(returnPolicy.paidBy === null
     ? [{ field: "returnPolicy.paidBy", why: "Who pays return shipping must be disclosed before ordering." }]
-    : []),
-  ...(returnPolicy.costsBySizeClass.some((c) => c.costEur === null)
-    ? [{ field: "returnPolicy.costsBySizeClass", why: "Return shipping cost per size class must be disclosed before ordering." }]
     : []),
   ...(returnPolicy.returnAddress === null
     ? [{ field: "returnPolicy.returnAddress", why: "Consumer must be told where to return goods." }]

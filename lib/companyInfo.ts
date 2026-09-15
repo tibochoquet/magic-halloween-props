@@ -73,9 +73,10 @@ export const company: CompanyInfo = {
   // alongside email. Supply a phone number reachable during business hours.
   phone: TODO,
 
-  // TODO (build-blocking): the address order confirmations are sent from.
-  // Cannot be finalised until a payment provider and mail sender are wired.
-  orderConfirmationFrom: TODO,
+  // Sending address for order confirmations (Resend), matching the
+  // magichalloweenprops.nl domain. Requires that domain to be verified in
+  // Resend before it can actually send — see lib/mailTemplate.ts.
+  orderConfirmationFrom: "orders@magichalloweenprops.nl",
 };
 
 /** One-line postal address. */
