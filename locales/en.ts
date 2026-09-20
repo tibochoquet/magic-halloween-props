@@ -454,5 +454,10 @@ export const en: Translations = {
       features: [],
       longDescription: `<p>This standing The Creepy Wizard from Magic Halloween Props is a must-have at every Halloween party. With an impressive height of approximately 1.80 m, this dark wizard is a dominant presence in any Halloween display.</p><p>The switch has two settings: Off for activation via the front push button, On for automatic activation via sound detection. Battery-powered – place it anywhere, even at locations without a power supply.</p><h4>Features</h4><ul><li>Height: approx. 1.80 m</li><li>Off: activation via front push button</li><li>On: automatic activation via sound detection</li><li>Runs on 3× AA batteries (included)</li><li>Fully dismountable – easy to store</li><li>Can be placed anywhere – no power supply needed</li></ul><p>A dark wizard that completes any Halloween display.</p>`,
     },
+    "grim-portrait": {
+      description: "Moving portrait animatronic in a classic oval frame with a grim face, 45 × 35 × 7 cm.",
+      features: [],
+      longDescription: `<p>A grim portrait that comes to life. At first glance the Grim Portrait looks like a classic, dark painting — but looks deceive. This moving portrait is an animatronic that instantly gives your Halloween decoration a creepy, unexpected edge. Perfect to hang on the wall and catch visitors off guard.</p><p>The classic design combined with the terrifying face makes the Grim Portrait a natural fit among other Halloween decorations and animatronics. A compact but striking addition for anyone who wants to make their Halloween setting just that bit scarier.</p><h4>Features</h4><ul><li>Moving portrait – animatronic in a classic oval frame</li><li>Grim, monstrous face for an unexpected effect</li><li>Dimensions: 45 × 35 × 7 cm</li><li>Easy to hang on the wall</li><li>Runs on 3× AAA batteries (included)</li></ul><p>A compact eye-catcher that puts your visitors on the wrong foot.</p>`,
+    },
   } as Record<string, { description: string; features: string[]; longDescription?: string } | undefined>,
 };

@@ -452,6 +452,11 @@ export const nl = {
       features: [],
       longDescription: `<p>Deze staande The Creepy Wizard van Magic Halloween Props is een must-have op elk Halloween feest. Met een indrukwekkende hoogte van circa 1 meter 80 is deze duistere tovenaar een dominante verschijning in elke Halloween-opstelling.</p><p>De schakelaar heeft twee standen: stand Off voor activatie via de drukknop aan de voorzijde, stand On voor automatische activatie bij geluidsdetectie. Dankzij batterijvoeding is hij overal in te zetten, ook op locaties zonder stroomaansluiting.</p><h4>Kenmerken</h4><ul><li>Hoogte: circa 1 meter 80</li><li>Stand Off: activatie via drukknop aan de voorzijde</li><li>Stand On: automatische activatie bij geluidsdetectie</li><li>Werkt op 3× AA batterijen (inclusief)</li><li>Geheel demonteerbaar – eenvoudig op te slaan</li><li>Te plaatsen overal – ook zonder stroomaansluiting</li></ul><p>Een duistere tovenaar die elke Halloween-opstelling compleet maakt.</p>`,
     },
+    "grim-portrait": {
+      description: "Bewegend schilderij-animatronic in een klassieke ovale lijst met grimmig gezicht, 45 × 35 × 7 cm.",
+      features: [],
+      longDescription: `<p>Een grimmig portret dat tot leven komt. Het Grim Portrait lijkt op het eerste gezicht een klassiek, donker schilderij, maar schijn bedriegt. Dit bewegende schilderij is een animatronic die jouw Halloween-decoratie direct een creepy en onverwachte uitstraling geeft. Perfect om aan de muur te hangen en bezoekers op het verkeerde been te zetten.</p><p>Door het klassieke ontwerp in combinatie met het angstaanjagende gezicht past het Grim Portrait perfect tussen andere Halloween-decoratie en animatronics. Een compacte maar opvallende toevoeging voor iedereen die zijn Halloween-setting net dat beetje enger wil maken.</p><h4>Kenmerken</h4><ul><li>Bewegend schilderij – animatronic in een klassieke ovale lijst</li><li>Grimmig, monsterachtig gezicht voor een onverwacht effect</li><li>Afmetingen: 45 × 35 × 7 cm</li><li>Eenvoudig aan de muur te hangen</li><li>Werkt op 3× AAA batterijen (meegeleverd)</li></ul><p>Een compacte blikvanger die je bezoekers op het verkeerde been zet.</p>`,
+    },
   } as Record<string, { description: string; features: string[]; longDescription?: string } | undefined>,
 };
 

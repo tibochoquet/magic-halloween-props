@@ -6,7 +6,9 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import CategoryIcon from "@/components/ui/CategoryIcon";
+import FreeGiftNotice from "@/components/ui/FreeGiftNotice";
 import { deliveryTerms, WITHDRAWAL_DAYS, VAT_RATE } from "@/lib/shopTerms";
+import { cartSubtotalCents } from "@/lib/promotions";
 
 /**
  * REAL PAYMENT FLOW via Stripe Checkout.
@@ -124,6 +126,14 @@ export default function CheckoutContent() {
               </li>
             ))}
           </ul>
+
+          <div className="mb-8">
+            <FreeGiftNotice
+              subtotalCents={cartSubtotalCents(
+                items.map(({ product, quantity }) => ({ price: product.price, quantity }))
+              )}
+            />
+          </div>
 
           <p className="text-horror-text-muted text-xs leading-relaxed mb-6">
             {nl

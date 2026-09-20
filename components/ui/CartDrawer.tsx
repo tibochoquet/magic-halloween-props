@@ -5,7 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import CategoryIcon from "@/components/ui/CategoryIcon";
+import FreeGiftNotice from "@/components/ui/FreeGiftNotice";
 import { useTranslation } from "@/hooks/useTranslation";
+import { cartSubtotalCents } from "@/lib/promotions";
 
 function CloseIcon() {
   return (
@@ -172,6 +174,12 @@ export default function CartDrawer() {
             </div>
 
             <p className="text-horror-text-muted text-xs">{t.shippingNote}</p>
+
+            <FreeGiftNotice
+              subtotalCents={cartSubtotalCents(
+                items.map(({ product, quantity }) => ({ price: product.price, quantity }))
+              )}
+            />
 
             {/* CTA */}
             {/* Must be a client-side Link: a plain <a> triggers a full reload,

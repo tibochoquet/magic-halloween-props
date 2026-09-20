@@ -4,6 +4,12 @@ import { randomBytes } from "crypto";
 import { getStripe } from "@/lib/stripe";
 import { getProductById } from "@/lib/products";
 import { isOrderable } from "@/lib/availability";
+import {
+  cartSubtotalCents,
+  getFreeGiftProduct,
+  priceToCents,
+  qualifiesForFreeGift,
+} from "@/lib/promotions";
 
 /**
  * Creates a Stripe Checkout Session for a one-time order and returns its
@@ -36,6 +42,7 @@ export async function POST(req: NextRequest) {
   }
 
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
+  const paidLines: { price: number; quantity: number }[] = [];
   const origin = req.nextUrl.origin;
 
   for (const item of items) {
@@ -57,15 +64,38 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    paidLines.push({ price: product.price, quantity: item.quantity });
+
     line_items.push({
       quantity: item.quantity,
       price_data: {
         currency: "eur",
-        unit_amount: Math.round(product.price * 100),
+        unit_amount: priceToCents(product.price),
         product_data: {
           name: product.name,
           ...(product.image ? { images: [new URL(product.image, origin).toString()] } : {}),
           metadata: { productId: product.id },
+        },
+      },
+    });
+  }
+
+  // The €300 gift is decided here, never by the client: the cart that arrives
+  // is only ids + quantities, and the subtotal is recomputed from catalogue
+  // prices above. The shop UI shows the same outcome via lib/promotions.ts.
+  const subtotalCents = cartSubtotalCents(paidLines);
+  const freeGift = qualifiesForFreeGift(subtotalCents) ? getFreeGiftProduct() : undefined;
+
+  if (freeGift) {
+    line_items.push({
+      quantity: 1,
+      price_data: {
+        currency: "eur",
+        unit_amount: 0,
+        product_data: {
+          name: `${freeGift.name} — gratis cadeau`,
+          ...(freeGift.image ? { images: [new URL(freeGift.image, origin).toString()] } : {}),
+          metadata: { productId: freeGift.id, freeGift: "true" },
         },
       },
     });
@@ -105,7 +135,7 @@ export async function POST(req: NextRequest) {
       // bedrag berekend te worden. Zie lib/shopTerms.ts (VAT_RATE).
       success_url: `${origin}/checkout/succes?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/checkout/geannuleerd`,
-      metadata: { orderRef },
+      metadata: { orderRef, ...(freeGift ? { freeGift: freeGift.id } : {}) },
     });
 
     if (!session.url) {

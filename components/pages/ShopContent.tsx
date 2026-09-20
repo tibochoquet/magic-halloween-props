@@ -6,6 +6,7 @@ import ProductCard from "@/components/ui/ProductCard";
 import ProCard from "@/components/ui/ProCard";
 import ScareCard from "@/components/ui/ScareCard";
 import UpcomingProducts from "@/components/sections/UpcomingProducts";
+import FreeGiftBanner from "@/components/ui/FreeGiftBanner";
 import { products, categories } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import { scareEffectProducts } from "@/data/scareEffectProducts";
@@ -168,6 +169,10 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
       {/* Products */}
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-5 md:px-8">
+
+          <div className="mb-10">
+            <FreeGiftBanner />
+          </div>
 
           {/* Category filter */}
           <div className="flex flex-wrap gap-2 mb-10">

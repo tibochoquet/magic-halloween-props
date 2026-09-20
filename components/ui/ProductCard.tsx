@@ -9,6 +9,7 @@ import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
 import CategoryIcon from "@/components/ui/CategoryIcon";
+import { FREE_GIFT_PRODUCT_ID, FREE_GIFT_THRESHOLD_EUR } from "@/lib/promotions";
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useCart();
@@ -88,6 +89,12 @@ export default function ProductCard({ product }: { product: Product }) {
             </h3>
           </Link>
         </div>
+
+        {product.id === FREE_GIFT_PRODUCT_ID && !unavailable && (
+          <span className="self-start mb-3 px-2 py-1 bg-horror-orange/10 border border-horror-orange/30 text-horror-orange text-[10px] font-bold tracking-[0.12em] uppercase">
+            🎃 {language === "nl" ? "Gratis vanaf" : "Free from"} €{FREE_GIFT_THRESHOLD_EUR}
+          </span>
+        )}
 
         <div className="mt-auto pt-4 border-t border-horror-border flex items-end justify-between">
           <div>

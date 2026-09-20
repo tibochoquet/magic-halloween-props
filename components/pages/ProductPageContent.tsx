@@ -9,12 +9,16 @@ import NotifyForm from "@/components/ui/NotifyForm";
 import { isOrderable } from "@/lib/availability";
 import { deliveryTerms, VAT_RATE } from "@/lib/shopTerms";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
 import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
+import { FREE_GIFT_PRODUCT_ID, FREE_GIFT_THRESHOLD_EUR } from "@/lib/promotions";
 
 type MediaItem = { type: "image"; src: string } | { type: "video"; src: string };
 
 export default function ProductPageContent({ product, related }: { product: Product; related: Product[] }) {
   const t = useTranslation();
+  const { language } = useLanguage();
+  const nl = language === "nl";
   const p = t.product;
   type PD = { description: string; features: string[]; longDescription?: string };
   const pd = (t.productData as Record<string, PD | undefined>)[product.id];
@@ -180,6 +184,34 @@ export default function ProductPageContent({ product, related }: { product: Prod
             <p className="text-horror-text-muted text-xs mt-2">
               Inclusief {VAT_RATE * 100}% btw · Gratis verzending binnen Nederland
             </p>
+
+            {product.id === FREE_GIFT_PRODUCT_ID && (
+              <div className="mt-5 flex items-start gap-3 p-4 border border-horror-orange/35 bg-horror-orange/[0.06]">
+                <span className="text-lg leading-none mt-0.5">🎃</span>
+                <div>
+                  <p className="font-cinzel text-sm font-bold text-horror-orange tracking-wide">
+                    {nl
+                      ? `GRATIS bij besteding vanaf €${FREE_GIFT_THRESHOLD_EUR}`
+                      : `FREE on orders from €${FREE_GIFT_THRESHOLD_EUR}`}
+                  </p>
+                  <p className="text-horror-text-secondary text-sm leading-relaxed mt-1">
+                    {nl ? (
+                      <>
+                        Normaal €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}. Bestel je voor
+                        €{FREE_GIFT_THRESHOLD_EUR} of meer? Dan voegen we dit schilderij automatisch gratis toe aan je
+                        bestelling — je hoeft er niets voor te doen.
+                      </>
+                    ) : (
+                      <>
+                        Normally €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}. Order €
+                        {FREE_GIFT_THRESHOLD_EUR} or more and we add this portrait to your order for free —
+                        automatically, no code needed.
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
 
           {longDescription ? (
