@@ -56,6 +56,7 @@ export const nl = {
     title: "Stemmen uit",
     titleAccent: "het Donker",
     subtitle: "Van professionele haunted houses tot thuisdisplays — zij kozen Magic Halloween Props.",
+    verified: "Geverifieerde aankoop",
   },
 
   newsletter: {

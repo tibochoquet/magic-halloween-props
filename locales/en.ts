@@ -58,6 +58,7 @@ export const en: Translations = {
     title: "Voices from",
     titleAccent: "the Dark",
     subtitle: "From professional haunted houses to home displays — they chose Magic Halloween Props.",
+    verified: "Verified purchase",
   },
 
   newsletter: {

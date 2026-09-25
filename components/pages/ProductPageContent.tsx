@@ -10,7 +10,7 @@ import { isOrderable } from "@/lib/availability";
 import { deliveryTerms, VAT_RATE } from "@/lib/shopTerms";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
-import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
+import { BADGE_STYLES } from "@/components/ui/badgeStyles";
 import { FREE_GIFT_PRODUCT_ID, FREE_GIFT_THRESHOLD_EUR } from "@/lib/promotions";
 
 type MediaItem = { type: "image"; src: string } | { type: "video"; src: string };
@@ -153,15 +153,6 @@ export default function ProductPageContent({ product, related }: { product: Prod
         <div className="flex flex-col">
           <span className="text-horror-orange-dark text-xs font-semibold tracking-[0.2em] uppercase mb-2">{product.category}</span>
           <h1 className="font-cinzel text-4xl md:text-5xl font-black text-horror-text-primary leading-tight mb-4">{product.name}</h1>
-
-          {product.rating != null && (
-            <div className="flex items-center gap-3 mb-6">
-              <StarRating rating={product.rating} size="md" />
-              <span className="text-horror-text-muted text-sm">
-                {product.rating.toFixed(1)}{product.reviews != null ? ` (${product.reviews} reviews)` : ""}
-              </span>
-            </div>
-          )}
 
           <div className="mb-8 pb-8 border-b border-horror-border">
             <div className="flex items-baseline gap-3">

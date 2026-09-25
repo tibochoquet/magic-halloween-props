@@ -7,7 +7,7 @@ import { isOrderable } from "@/lib/availability";
 import { useCardVideo } from "@/hooks/useCardVideo";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
-import { StarRating, BADGE_STYLES } from "@/components/ui/StarRating";
+import { BADGE_STYLES } from "@/components/ui/badgeStyles";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 import { FREE_GIFT_PRODUCT_ID, FREE_GIFT_THRESHOLD_EUR } from "@/lib/promotions";
 
@@ -98,14 +98,6 @@ export default function ProductCard({ product }: { product: Product }) {
 
         <div className="mt-auto pt-4 border-t border-horror-border flex items-end justify-between">
           <div>
-            {product.rating != null && (
-              <div className="flex items-center gap-2 mb-1">
-                <StarRating rating={product.rating} />
-                {product.reviews != null && (
-                  <span className="text-horror-text-muted text-xs">({product.reviews})</span>
-                )}
-              </div>
-            )}
             <div className="flex items-baseline gap-2">
               <span className="text-horror-text-primary font-bold text-lg md:text-xl">
                 €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}

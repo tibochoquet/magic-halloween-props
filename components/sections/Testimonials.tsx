@@ -8,6 +8,10 @@ import { useTranslation } from "@/hooks/useTranslation";
 export default function Testimonials() {
   const t = useTranslation();
 
+  // No reviews, no section: an empty "what they say" block would only invite
+  // filling it with something nobody said. See data/index.ts.
+  if (testimonials.length === 0) return null;
+
   return (
     <section
       className="relative py-16 md:py-24 lg:py-32 overflow-hidden -mt-px"

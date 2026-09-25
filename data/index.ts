@@ -521,44 +521,15 @@ export const categories: Category[] = [
 ];
 
 
-export const testimonials: Testimonial[] = [
-  {
-    id: "t1",
-    name: "Marcus Holloway",
-    role: "Haunted Trail Owner",
-    content: "The Grim Reaper is the single best investment I've made in 14 years of running haunted trails. Guests are screaming before they even reach the scene. We sold out every night this October.",
-    rating: 5,
-    location: "Eindhoven, Nederland",
-    initials: "MH",
-  },
-  {
-    id: "t2",
-    name: "Vivienne Cross",
-    role: "Escape Room Designer",
-    content: "I've outfitted four rooms with Magic Halloween Props. Build quality is unmatched — the Terror Clown alone caused three guests to request mid-game evacuations. Exactly what I needed.",
-    rating: 5,
-    location: "Antwerpen, België",
-    initials: "VC",
-  },
-  {
-    id: "t3",
-    name: "Derek Ashmore",
-    role: "Halloween Enthusiast",
-    content: "Neighbours drive from across the city for my display. The Screaming Dead and Sneaky Clown together created the most terrifying entrance I've ever set up. Absolutely worth every cent.",
-    rating: 5,
-    location: "Rotterdam, Nederland",
-    initials: "DA",
-  },
-  {
-    id: "t4",
-    name: "Sandra Voss",
-    role: "Event & Party Organiser",
-    content: "After testing several vendors, Magic Halloween Props is the only one whose products survive a full evening at 500+ visitors. Zero mechanical failures. Fast delivery from their Dutch warehouse.",
-    rating: 5,
-    location: "Utrecht, Nederland",
-    initials: "SV",
-  },
-];
+/**
+ * Real customer reviews only — see the Testimonial type in types/index.ts.
+ *
+ * Empty on purpose: the four entries that used to live here were written
+ * during the build and never came from a customer. The testimonials section
+ * renders nothing while this array is empty. Add an entry only when you have
+ * the customer's own words, with the source and the date they gave it.
+ */
+export const testimonials: Testimonial[] = [];
 
 
 export const navLinks: NavLink[] = [
