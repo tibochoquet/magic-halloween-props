@@ -55,23 +55,6 @@ export const nl = {
     verified: "Geverifieerde aankoop",
   },
 
-  newsletter: {
-    eyebrow: "Word lid van de club",
-    title: "Ontvang",
-    titleAccent: "Exclusieve Toegang",
-    body: "Vroege toegang, behind-the-scenes builds, 10% korting op je eerste bestelling en de beste deals van het seizoen — rechtstreeks in je inbox.",
-    placeholder: "jouw@email.nl",
-    button: "Aanmelden",
-    successTitle: "Je bent erbij.",
-    successBody: "Controleer je inbox voor je 10% kortingscode.",
-    perks: {
-      early: "Vroege toegang",
-      discount: "10% eerste bestelling",
-      deals: "Seizoensdeals",
-    },
-    nospam: "Geen spam. Op elk moment afmelden. Wij sturen alleen wat de moeite waard is.",
-  },
-
   footer: {
     brandDesc: "Premium animatronics voor haunted houses, escape rooms en professionele Halloween-displays. Direct geïmporteerd, opgeslagen en verzonden vanuit Nederweert, Nederland.",
     opBehalf: "Een merk van",

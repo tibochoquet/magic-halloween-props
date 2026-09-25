@@ -6,7 +6,6 @@ import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import SoulLedgerHero from "@/components/sections/SoulLedgerHero";
 import Categories from "@/components/sections/Categories";
 import Testimonials from "@/components/sections/Testimonials";
-import Newsletter from "@/components/sections/Newsletter";
 import { professionalProducts } from "@/data/professionalProducts";
 
 export const metadata: Metadata = {
@@ -27,7 +26,6 @@ export default function Home() {
       {soulLedgerProduct && <SoulLedgerHero product={soulLedgerProduct} underFixedHeader={false} />}
       <Categories />
       <Testimonials />
-      <Newsletter />
       <Footer />
     </main>
   );

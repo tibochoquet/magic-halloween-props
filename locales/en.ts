@@ -57,23 +57,6 @@ export const en: Translations = {
     verified: "Verified purchase",
   },
 
-  newsletter: {
-    eyebrow: "Join the Cult",
-    title: "Get",
-    titleAccent: "Exclusive Access",
-    body: "Early drops, behind-the-scenes builds, 10% off your first order, and the darkest deals of the season — delivered straight to your crypt.",
-    placeholder: "your@email.com",
-    button: "Enter the Crypt",
-    successTitle: "You're in the crypt.",
-    successBody: "Check your inbox for your 10% discount code.",
-    perks: {
-      early: "Early Access Drops",
-      discount: "10% First Order",
-      deals: "Season-Only Deals",
-    },
-    nospam: "No spam. Unsubscribe anytime. We only send things worth fearing.",
-  },
-
   footer: {
     brandDesc: "Premium animatronics for haunted houses, escape rooms, and professional Halloween displays. Directly imported, warehouse-stocked, and shipped from Nederweert, Netherlands.",
     opBehalf: "A brand of",
