@@ -35,7 +35,7 @@ export const en: Translations = {
     eyebrow: "Featured",
     title: "Featured",
     titleAccent: "Horrors",
-    subtitle: "Handcrafted animatronics built for maximum impact. Every prop is load-tested for 500+ triggers per night.",
+    subtitle: "Animatronics from 30 centimetres to over two metres, shipped from our own stock in Nederweert.",
     viewAll: "View Full Collection",
   },
 
@@ -43,7 +43,7 @@ export const en: Translations = {
     eyebrow: "Browse By Type",
     title: "Shop by",
     titleAccent: "Category",
-    subtitle: "From slow-moving shambling corpses to lightning-fast vampiric strikes — every creature, every nightmare, one place.",
+    subtitle: "From zombies and witches to clowns, ghosts, reapers and mummies — every creature in one place.",
     all: "All",
     prop: "prop",
     props: "props",
@@ -85,7 +85,6 @@ export const en: Translations = {
     links: {
       zombies: "Zombies",
       ghosts: "Ghosts & Spirits",
-      vampires: "Vampires",
       monsters: "Monsters",
       witches: "Witches",
       skeletons: "Skeletons",
@@ -163,7 +162,7 @@ export const en: Translations = {
     stock: {
       warehouse: "In stock in Nederweert, Netherlands",
       delivery: "Free shipping via DHL / DPD",
-      returns: "Largest collection in NL",
+      returns: "14-day withdrawal period",
       email: "jorgen0207@gmail.com",
     },
   },

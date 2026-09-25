@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { Building2, Package, Star, Mail } from "lucide-react";
+import { Building2, Package, RotateCcw, Mail } from "lucide-react";
 import ProductCard from "@/components/ui/ProductCard";
 import ProCard from "@/components/ui/ProCard";
 import ScareCard from "@/components/ui/ScareCard";
@@ -237,7 +237,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
             {[
               { Icon: Building2, text: s.stock.warehouse },
               { Icon: Package, text: s.stock.delivery },
-              { Icon: Star, text: s.stock.returns },
+              { Icon: RotateCcw, text: s.stock.returns },
               { Icon: Mail, text: s.stock.email },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-2">

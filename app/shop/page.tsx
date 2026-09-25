@@ -9,7 +9,7 @@ import { wholeHeroSpots } from "@/lib/collectionHeroSpots";
 export const metadata: Metadata = {
   title: "Assortiment — alle animatronics",
   alternates: { canonical: "/shop" },
-  description: "Alle premium animatronic horror props op voorraad in Nederland. Skeletten, zombies, vampieren, geesten en meer.",
+  description: "Alle premium animatronic horror props op voorraad in Nederland. Skeletten, zombies, heksen, geesten, clowns en meer.",
 };
 
 export default function ShopPage() {

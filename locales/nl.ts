@@ -33,7 +33,7 @@ export const nl = {
     eyebrow: "Uitgelicht",
     title: "Uitgelichte",
     titleAccent: "Horrors",
-    subtitle: "Handgemaakte animatronics gebouwd voor maximale impact. Elk prop getest op 500+ activaties per nacht.",
+    subtitle: "Animatronics van 30 centimeter tot ruim twee meter, direct uit eigen voorraad in Nederweert.",
     viewAll: "Bekijk de volledige collectie",
   },
 
@@ -41,7 +41,7 @@ export const nl = {
     eyebrow: "Zoek op type",
     title: "Winkel per",
     titleAccent: "Categorie",
-    subtitle: "Van langzaam voortschuifelende lijken tot bliksemsnel toeslaande vampiers — elk wezen, elke nachtmerrie, één plek.",
+    subtitle: "Van zombies en heksen tot clowns, geesten, reapers en mummies — elk wezen op één plek.",
     all: "Alles",
     prop: "prop",
     props: "props",
@@ -83,7 +83,6 @@ export const nl = {
     links: {
       zombies: "Zombies",
       ghosts: "Geesten & Spoken",
-      vampires: "Vampieren",
       monsters: "Monsters",
       witches: "Heksen",
       skeletons: "Skeletten",
@@ -161,7 +160,7 @@ export const nl = {
     stock: {
       warehouse: "Op voorraad in Nederweert, Nederland",
       delivery: "Gratis verzending via DHL / DPD",
-      returns: "Grootste collectie van NL",
+      returns: "14 dagen bedenktijd",
       email: "jorgen0207@gmail.com",
     },
   },
