@@ -47,6 +47,17 @@ export type CompanyInfo = {
   phone: string | null;
   /** Where order confirmations are sent from/to. TODO once a PSP is wired. */
   orderConfirmationFrom: string | null;
+  /**
+   * Public profiles. Only a full URL to a profile that actually exists; the
+   * footer renders an icon per filled-in entry and hides the whole row while
+   * they are all null. An icon linking to "#" suggests a following that isn't
+   * there and leads the visitor nowhere.
+   */
+  socials: {
+    instagram: string | null;
+    youtube: string | null;
+    tiktok: string | null;
+  };
 };
 
 export const company: CompanyInfo = {
@@ -77,6 +88,14 @@ export const company: CompanyInfo = {
   // magichalloweenprops.nl domain. Requires that domain to be verified in
   // Resend before it can actually send — see lib/mailTemplate.ts.
   orderConfirmationFrom: "orders@magichalloweenprops.nl",
+
+  // TODO — supply the real profile URLs, or leave them null. The footer shows
+  // an icon only for the ones filled in here.
+  socials: {
+    instagram: TODO,
+    youtube: TODO,
+    tiktok: TODO,
+  },
 };
 
 /** One-line postal address. */
