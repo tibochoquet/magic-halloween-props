@@ -33,7 +33,8 @@ export interface Category {
   id: string;
   name: string;
   description: string;
-  itemCount: number;
+  // No `itemCount` here: how many products a category holds is derived from
+  // the product data in lib/catalogue.ts, so it can never drift from reality.
   bgGradient: string;
   accentColor: string;
   icon: string;

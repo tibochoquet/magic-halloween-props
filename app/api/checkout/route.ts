@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { randomBytes } from "crypto";
 import { getStripe } from "@/lib/stripe";
-import { getProductById } from "@/lib/products";
+import { getProductById } from "@/lib/catalogue";
 import { isOrderable } from "@/lib/availability";
 import {
   cartSubtotalCents,
@@ -14,7 +14,7 @@ import {
 /**
  * Creates a Stripe Checkout Session for a one-time order and returns its
  * URL. The client only ever sends product ids + quantities — prices are
- * always resolved server-side from lib/products.ts, never trusted from the
+ * always resolved server-side from lib/catalogue.ts, never trusted from the
  * request body. This is what stops someone from tampering with the price in
  * devtools before checking out. Availability is re-checked here too, since a
  * disabled "add to cart" button only stops the normal UI path, not a direct

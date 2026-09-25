@@ -503,21 +503,16 @@ export const products: Product[] = [
   },
 ];
 
-const categoryItemCounts = products.reduce<Record<string, number>>((acc, p) => {
-  acc[p.category] = (acc[p.category] ?? 0) + 1;
-  return acc;
-}, {});
-
 export const categories: Category[] = [
-  { id: "zombie",   name: "Zombies",         description: "The walking dead",         itemCount: categoryItemCounts.zombie   ?? 0, bgGradient: style.zombie.bgGradient,   accentColor: style.zombie.accentColor,   icon: style.zombie.iconEmoji },
-  { id: "witch",    name: "Witches",          description: "Masters of dark magic",    itemCount: categoryItemCounts.witch    ?? 0, bgGradient: style.witch.bgGradient,    accentColor: style.witch.accentColor,    icon: style.witch.iconEmoji },
-  { id: "clown",    name: "Clowns",           description: "Twisted and terrifying",   itemCount: categoryItemCounts.clown    ?? 0, bgGradient: style.clown.bgGradient,    accentColor: style.clown.accentColor,    icon: style.clown.iconEmoji },
-  { id: "ghost",    name: "Ghosts & Spirits", description: "Ethereal terrors",         itemCount: categoryItemCounts.ghost    ?? 0, bgGradient: style.ghost.bgGradient,    accentColor: style.ghost.accentColor,    icon: style.ghost.iconEmoji },
-  { id: "monster",  name: "Monsters",         description: "Classic horror icons",     itemCount: categoryItemCounts.monster  ?? 0, bgGradient: style.monster.bgGradient,  accentColor: style.monster.accentColor,  icon: style.monster.iconEmoji },
-  { id: "reaper",   name: "Reapers",          description: "Harbingers of death",      itemCount: categoryItemCounts.reaper   ?? 0, bgGradient: style.reaper.bgGradient,   accentColor: style.reaper.accentColor,   icon: style.reaper.iconEmoji },
-  { id: "skeleton", name: "Skeletons",        description: "Bone-chilling displays",   itemCount: categoryItemCounts.skeleton ?? 0, bgGradient: style.skeleton.bgGradient, accentColor: style.skeleton.accentColor, icon: style.skeleton.iconEmoji },
-  { id: "wizard",   name: "Wizards",          description: "Masters of dark arts",     itemCount: categoryItemCounts.wizard   ?? 0, bgGradient: style.wizard.bgGradient,   accentColor: style.wizard.accentColor,   icon: style.wizard.iconEmoji },
-  { id: "mummy",    name: "Mummies",          description: "Ancient cursed horrors",   itemCount: categoryItemCounts.mummy    ?? 0, bgGradient: style.mummy.bgGradient,    accentColor: style.mummy.accentColor,    icon: style.mummy.iconEmoji },
+  { id: "zombie",   name: "Zombies",         description: "The walking dead",         bgGradient: style.zombie.bgGradient,   accentColor: style.zombie.accentColor,   icon: style.zombie.iconEmoji },
+  { id: "witch",    name: "Witches",          description: "Masters of dark magic",    bgGradient: style.witch.bgGradient,    accentColor: style.witch.accentColor,    icon: style.witch.iconEmoji },
+  { id: "clown",    name: "Clowns",           description: "Twisted and terrifying",   bgGradient: style.clown.bgGradient,    accentColor: style.clown.accentColor,    icon: style.clown.iconEmoji },
+  { id: "ghost",    name: "Ghosts & Spirits", description: "Ethereal terrors",         bgGradient: style.ghost.bgGradient,    accentColor: style.ghost.accentColor,    icon: style.ghost.iconEmoji },
+  { id: "monster",  name: "Monsters",         description: "Classic horror icons",     bgGradient: style.monster.bgGradient,  accentColor: style.monster.accentColor,  icon: style.monster.iconEmoji },
+  { id: "reaper",   name: "Reapers",          description: "Harbingers of death",      bgGradient: style.reaper.bgGradient,   accentColor: style.reaper.accentColor,   icon: style.reaper.iconEmoji },
+  { id: "skeleton", name: "Skeletons",        description: "Bone-chilling displays",   bgGradient: style.skeleton.bgGradient, accentColor: style.skeleton.accentColor, icon: style.skeleton.iconEmoji },
+  { id: "wizard",   name: "Wizards",          description: "Masters of dark arts",     bgGradient: style.wizard.bgGradient,   accentColor: style.wizard.accentColor,   icon: style.wizard.iconEmoji },
+  { id: "mummy",    name: "Mummies",          description: "Ancient cursed horrors",   bgGradient: style.mummy.bgGradient,    accentColor: style.mummy.accentColor,    icon: style.mummy.iconEmoji },
 ];
 
 

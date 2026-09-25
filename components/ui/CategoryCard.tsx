@@ -3,6 +3,7 @@
 import Link from "next/link";
 import type { Category } from "@/types";
 import { useTranslation } from "@/hooks/useTranslation";
+import { productCountByCategory } from "@/lib/catalogue";
 
 type CategoryId = "zombie" | "witch" | "clown" | "ghost" | "monster" | "reaper" | "skeleton" | "wizard" | "mummy";
 
@@ -11,6 +12,7 @@ export default function CategoryCard({ category }: { category: Category }) {
   const data = t.categoryData[category.id as CategoryId];
   const name = data?.name ?? category.name;
   const description = data?.description ?? category.description;
+  const itemCount = productCountByCategory[category.id] ?? 0;
 
   return (
     <Link
@@ -38,7 +40,9 @@ export default function CategoryCard({ category }: { category: Category }) {
         </div>
 
         <div className="flex flex-col items-end gap-1 flex-shrink-0">
-          <span className="text-horror-text-muted text-xs whitespace-nowrap">{category.itemCount} props</span>
+          <span className="text-horror-text-muted text-xs whitespace-nowrap">
+            {itemCount} {itemCount === 1 ? t.categories.prop : t.categories.props}
+          </span>
           <div className="w-6 h-6 rounded-full border border-horror-border flex items-center justify-center group-hover:border-horror-orange/50 group-hover:bg-horror-orange/10 transition-all duration-300">
             <svg className="w-3 h-3 text-horror-text-muted group-hover:text-horror-orange transition-colors duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

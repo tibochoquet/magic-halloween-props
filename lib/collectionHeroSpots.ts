@@ -1,13 +1,9 @@
-import { products } from "@/data";
-import { professionalProducts } from "@/data/professionalProducts";
-import { scareEffectProducts } from "@/data/scareEffectProducts";
+import { allProducts } from "@/lib/catalogue";
 import type { CollectionHeroSpot } from "@/components/ui/CollectionHero";
-
-const allProductsFlat = [...products, ...professionalProducts, ...scareEffectProducts];
 
 function resolve(defs: { id: string; xPct: number; yPct: number }[]): CollectionHeroSpot[] {
   return defs.flatMap(({ id, xPct, yPct }) => {
-    const p = allProductsFlat.find((pp) => pp.id === id);
+    const p = allProducts.find((pp) => pp.id === id);
     return p ? [{ id, xPct, yPct, name: p.name, price: p.price }] : [];
   });
 }

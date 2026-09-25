@@ -19,7 +19,7 @@ export const en: Translations = {
     cta1: "Shop the Collection",
     cta2: "Browse Categories",
     stats: {
-      propsSoldVal: "28",
+      // Count comes from lib/catalogue.ts, not from this file.
       propsSold: "Unique Props",
       ratingVal: "NL",
       rating: "Own Stock",
@@ -45,12 +45,8 @@ export const en: Translations = {
     titleAccent: "Category",
     subtitle: "From slow-moving shambling corpses to lightning-fast vampiric strikes — every creature, every nightmare, one place.",
     all: "All",
-    stats: {
-      propsVal: "135+", props: "Unique Props",
-      catsVal: "6", cats: "Horror Categories",
-      satVal: "98%", sat: "Customer Satisfaction",
-      expVal: "15yr", exp: "Industry Experience",
-    },
+    prop: "prop",
+    props: "props",
   },
 
   testimonials: {

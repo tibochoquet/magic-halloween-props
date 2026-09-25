@@ -17,7 +17,7 @@ export const nl = {
     cta1: "Bekijk de collectie",
     cta2: "Alle categorieën",
     stats: {
-      propsSoldVal: "28",
+      // Aantal komt uit lib/catalogue.ts, niet uit dit bestand.
       propsSold: "Unieke Props",
       ratingVal: "NL",
       rating: "Eigen Voorraad",
@@ -43,12 +43,8 @@ export const nl = {
     titleAccent: "Categorie",
     subtitle: "Van langzaam voortschuifelende lijken tot bliksemsnel toeslaande vampiers — elk wezen, elke nachtmerrie, één plek.",
     all: "Alles",
-    stats: {
-      propsVal: "135+", props: "Unieke Props",
-      catsVal: "6", cats: "Horror Categorieën",
-      satVal: "98%", sat: "Klanttevredenheid",
-      expVal: "15jr", exp: "Branche-ervaring",
-    },
+    prop: "prop",
+    props: "props",
   },
 
   testimonials: {

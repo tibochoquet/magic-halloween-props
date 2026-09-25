@@ -1,8 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import type { Metadata } from "next";
-import { products } from "@/data";
-import { professionalProducts } from "@/data/professionalProducts";
-import { scareEffectProducts } from "@/data/scareEffectProducts";
+import { allProducts } from "@/lib/catalogue";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductPageContent from "@/components/pages/ProductPageContent";
@@ -10,8 +8,6 @@ import { isOrderable } from "@/lib/availability";
 import { company } from "@/lib/companyInfo";
 import { SITE_URL } from "@/lib/site";
 import { productMetaDescription } from "@/lib/productMeta";
-
-const allProducts = [...products, ...professionalProducts, ...scareEffectProducts];
 
 // Products discontinued and removed from the catalog. Their old URLs redirect
 // to the category they used to belong to, rather than a plain 404.

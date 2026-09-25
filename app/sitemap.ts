@@ -1,7 +1,5 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/data";
-import { professionalProducts } from "@/data/professionalProducts";
-import { scareEffectProducts } from "@/data/scareEffectProducts";
+import { allProducts } from "@/lib/catalogue";
 import { SITE_URL } from "@/lib/site";
 
 /**
@@ -27,8 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/algemene-voorwaarden", priority: 0.3, freq: "yearly" },
     { path: "/privacy", priority: 0.3, freq: "yearly" },
   ];
-
-  const allProducts = [...products, ...professionalProducts, ...scareEffectProducts];
 
   return [
     ...staticRoutes.map((r) => ({

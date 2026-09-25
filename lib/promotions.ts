@@ -1,5 +1,5 @@
 import type { Product } from "@/types";
-import { getProductById } from "./products";
+import { getProductById } from "./catalogue";
 import { isOrderable } from "./availability";
 
 /**

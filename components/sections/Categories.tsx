@@ -1,9 +1,8 @@
 "use client";
 
-import { categories } from "@/data";
 import CategoryCard from "@/components/ui/CategoryCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { Package2, LayoutGrid, Star, Shield } from "lucide-react";
+import { activeCategories } from "@/lib/catalogue";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export default function Categories() {
@@ -27,26 +26,18 @@ export default function Categories() {
           subtitle={s.subtitle}
         />
 
+        {/* Only categories that actually hold a product — see lib/catalogue.ts. */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {categories.map((cat) => (
+          {activeCategories.map((cat) => (
             <CategoryCard key={cat.id} category={cat} />
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: s.stats.propsVal, label: s.stats.props, Icon: Package2 },
-            { value: s.stats.catsVal, label: s.stats.cats, Icon: LayoutGrid },
-            { value: s.stats.satVal, label: s.stats.sat, Icon: Star },
-            { value: s.stats.expVal, label: s.stats.exp, Icon: Shield },
-          ].map((stat) => (
-            <div key={stat.label} className="bg-horror-card border border-horror-border p-6 text-center hover:border-horror-orange/30 transition-colors duration-300">
-              <stat.Icon size={26} strokeWidth={1.25} className="mx-auto mb-3 text-horror-orange/60" />
-              <div className="font-cinzel text-2xl font-bold text-horror-orange mb-1">{stat.value}</div>
-              <div className="text-horror-text-muted text-xs tracking-wider uppercase">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        {/* The four stat tiles that stood here are gone: two of them ("98%
+            klanttevredenheid", "15jr branche-ervaring") were never verified,
+            and the two real numbers left over — product count and category
+            count — are already on the page, in the hero and on these very
+            tiles. See lib/claims.ts before putting anything back. */}
       </div>
     </section>
   );

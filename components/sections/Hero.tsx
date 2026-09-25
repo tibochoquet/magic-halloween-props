@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/hooks/useTranslation";
+import { productCount } from "@/lib/catalogue";
 
 function EmberParticle({ style }: { style: React.CSSProperties }) {
   return (
@@ -33,7 +34,8 @@ export default function Hero() {
   ];
 
   const statsData = [
-    { value: t.hero.stats.propsSoldVal, label: t.hero.stats.propsSold },
+    // Counted from the catalogue, so it can't drift from what the shop lists.
+    { value: String(productCount), label: t.hero.stats.propsSold },
     { value: t.hero.stats.ratingVal, label: t.hero.stats.rating },
     { value: t.hero.stats.shipVal, label: t.hero.stats.ship },
     { value: t.hero.stats.warrantyVal, label: t.hero.stats.warranty },
