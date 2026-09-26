@@ -2,23 +2,52 @@
 
 import { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
+import { useLanguage } from "@/context/LanguageContext";
+import { company } from "@/lib/companyInfo";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [website, setWebsite] = useState(""); // honeypot
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const t = useTranslation().contact.form;
+  const { language } = useLanguage();
+  const nl = language === "nl";
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  const fallbackError = nl
+    ? `Verzenden is mislukt. Mail ons rechtstreeks op ${company.email}.`
+    : `Sending failed. Please email us directly at ${company.email}.`;
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
     setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 900);
+    setError(null);
+    try {
+      const res = await fetch("/api/forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "contact", language, website, ...form }),
+      });
+      // Success only on a 2xx — never claim a message arrived that didn't.
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? fallbackError);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError(fallbackError);
+    } finally {
+      setLoading(false);
+    }
   }
+
 
   if (submitted) {
     return (
@@ -31,7 +60,7 @@ export default function ContactForm() {
         <p className="font-cinzel font-bold text-xl text-horror-text-primary">{t.successTitle}</p>
         <p className="text-horror-text-muted text-sm max-w-xs">
           {t.successBody}{" "}
-          <span className="text-horror-orange">jorgen0207@gmail.com</span>.
+          <span className="text-horror-orange">{company.email}</span>.
         </p>
       </div>
     );
@@ -64,6 +93,24 @@ export default function ContactForm() {
         <label className="text-horror-text-muted text-xs tracking-widest uppercase">{t.message}</label>
         <textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder={t.messagePlaceholder} className="input-horror resize-none" />
       </div>
+
+      {/* Honeypot: hidden from people, filled in by bots. */}
+      <input
+        type="text"
+        name="website"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
+
+      {error && (
+        <p role="alert" className="text-sm text-red-400 bg-red-950/30 border border-red-700/50 px-4 py-3">
+          {error}
+        </p>
+      )}
 
       <button type="submit" disabled={loading} className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed justify-center">
         {loading ? (

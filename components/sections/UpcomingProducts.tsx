@@ -56,7 +56,7 @@ export default function UpcomingProducts() {
                 </p>
 
                 <div className="mt-auto pt-4 border-t border-horror-border">
-                  <NotifyForm productName={product.name} />
+                  <NotifyForm product={product} />
                 </div>
               </div>
             </article>

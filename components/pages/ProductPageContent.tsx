@@ -266,7 +266,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
           </div>
 
           {product.notifyOnRestock ? (
-            <NotifyForm productName={product.name} />
+            <NotifyForm product={product} />
           ) : (
             <AddToCartButton product={product} />
           )}

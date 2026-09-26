@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { Resend } from "resend";
 import { getStripe } from "@/lib/stripe";
+import { sendEmail } from "@/lib/email";
 import { company } from "@/lib/companyInfo";
 import { renderOrderConfirmation, estimateDeliveryRange } from "@/lib/mailTemplate";
 
@@ -99,23 +99,6 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ received: true });
 }
 
-async function sendResendEmail(payload: Parameters<Resend["emails"]["send"]>[0]) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("Stripe webhook: RESEND_API_KEY ontbreekt, e-mail niet verstuurd.");
-    return;
-  }
-  const resend = new Resend(apiKey);
-  // resend.emails.send() does NOT throw on failure — it resolves with
-  // { data: null, error } (e.g. an invalid API key just comes back as a
-  // normal, non-throwing response). A try/catch around the call alone
-  // would silently miss that, so the error has to be checked explicitly.
-  const { error } = await resend.emails.send(payload);
-  if (error) {
-    throw new Error(`Resend gaf een fout terug: ${error.message}`);
-  }
-}
-
 function formatShippingAddress(session: Stripe.Checkout.Session): string {
   const shipping = session.collected_information?.shipping_details;
   if (!shipping?.address) return "Geen verzendadres ontvangen";
@@ -177,7 +160,7 @@ async function sendOwnerNotificationEmail(session: Stripe.Checkout.Session, line
     </div>
   `;
 
-  await sendResendEmail({
+  await sendEmail({
     from: `${company.tradeName} <${company.orderConfirmationFrom}>`,
     // company.email is the legal/customer-facing contact; the second address
     // is the operator's own inbox, added purely so they get notified that an
@@ -216,7 +199,7 @@ async function sendCustomerConfirmationEmail(session: Stripe.Checkout.Session, l
     verzendadres: formatShippingAddress(session),
   });
 
-  await sendResendEmail({
+  await sendEmail({
     from: `${company.tradeName} <${company.orderConfirmationFrom}>`,
     to: customerEmail,
     replyTo: company.email,

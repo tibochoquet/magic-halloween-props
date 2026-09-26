@@ -2,11 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { Product } from "@/types";
+import { useLanguage } from "@/context/LanguageContext";
+import { company } from "@/lib/companyInfo";
 
 export default function PreOrderModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  const { language } = useLanguage();
+  const nl = language === "nl";
   const [form, setForm] = useState({ quantity: 1, name: "", email: "", phone: "" });
+  const [website, setWebsite] = useState(""); // honeypot
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
@@ -48,14 +54,34 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
     setForm((prev) => ({ ...prev, [name]: name === "quantity" ? Math.max(1, Number(value) || 1) : value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  const fallbackError = nl
+    ? `Verzenden is mislukt. Mail ons rechtstreeks op ${company.email}.`
+    : `Sending failed. Please email us directly at ${company.email}.`;
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.email) return;
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError(null);
+    try {
+      const res = await fetch("/api/forms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "preorder", language, website, productId: product.id, ...form }),
+      });
+      // Success only on a 2xx. "Pre-order ontvangen" while nothing was sent is
+      // exactly the lie this rewrite exists to remove.
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error ?? fallbackError);
+        return;
+      }
       setSubmitted(true);
-    }, 900);
+    } catch {
+      setError(fallbackError);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const total = product.price * form.quantity;
@@ -103,9 +129,10 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="font-cinzel font-bold text-xl text-horror-text-primary">Pre-order ontvangen</p>
+            <p className="font-cinzel font-bold text-xl text-horror-text-primary">Reservering genoteerd</p>
             <p className="text-horror-text-muted text-sm max-w-xs">
-              Bedankt, {form.name}. We nemen contact met je op via {form.email} zodra {product.name} verzendklaar is.
+              Bedankt, {form.name}. Je reservering is bij ons binnen en je krijgt een bevestiging op {form.email}.
+              Dit is een reservering, geen betaling — we nemen contact op zodra {product.name} leverbaar is.
             </p>
             <button type="button" onClick={onClose} className="btn-outline mt-2">Sluiten</button>
           </div>
@@ -183,6 +210,24 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 €{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
               </span>
             </div>
+
+            {/* Honeypot: hidden from people, filled in by bots. */}
+            <input
+              type="text"
+              name="website"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
+
+            {error && (
+              <p role="alert" className="text-sm text-red-400 bg-red-950/30 border border-red-700/50 px-4 py-3">
+                {error}
+              </p>
+            )}
 
             <button type="submit" disabled={loading} className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed justify-center mt-1">
               {loading ? (
