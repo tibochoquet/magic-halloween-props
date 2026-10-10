@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
     return fail(nl ? "Vul je naam in." : "Fill in your name.", 400);
   }
 
-  const from = company.orderConfirmationFrom;
+  const from = company.mailFrom;
   if (!from) {
     console.error("Formulier: company.orderConfirmationFrom ontbreekt, kan niets versturen.");
     return fail(nl ? "Verzenden is nu niet mogelijk." : "Sending is not possible right now.", 500);

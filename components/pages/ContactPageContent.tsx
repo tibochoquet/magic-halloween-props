@@ -57,7 +57,7 @@ export default function ContactPageContent() {
               </h2>
               <p className="text-horror-text-muted text-sm mb-8">
                 {c.formIntro}{" "}
-                <a href="mailto:jorgen0207@gmail.com" className="text-horror-orange hover:underline">jorgen0207@gmail.com</a>
+                <a href={`mailto:${company.email}`} className="text-horror-orange hover:underline">{company.email}</a>
               </p>
               <ContactForm />
             </div>

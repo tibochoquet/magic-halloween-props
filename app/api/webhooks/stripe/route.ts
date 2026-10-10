@@ -161,7 +161,7 @@ async function sendOwnerNotificationEmail(session: Stripe.Checkout.Session, line
   `;
 
   await sendEmail({
-    from: `${company.tradeName} <${company.orderConfirmationFrom}>`,
+    from: `${company.tradeName} <${company.mailFrom}>`,
     // company.email is the legal/customer-facing contact; the second address
     // is the operator's own inbox, added purely so they get notified that an
     // order came in.
@@ -200,7 +200,7 @@ async function sendCustomerConfirmationEmail(session: Stripe.Checkout.Session, l
   });
 
   await sendEmail({
-    from: `${company.tradeName} <${company.orderConfirmationFrom}>`,
+    from: `${company.tradeName} <${company.mailFrom}>`,
     to: customerEmail,
     replyTo: company.email,
     subject: `Je bestelling bij ${company.tradeName} — ${orderRef}`,

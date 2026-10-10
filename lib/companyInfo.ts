@@ -45,8 +45,12 @@ export type CompanyInfo = {
    * single email address. TODO — supply a phone or WhatsApp number.
    */
   phone: string | null;
-  /** Where order confirmations are sent from/to. TODO once a PSP is wired. */
-  orderConfirmationFrom: string | null;
+  /**
+   * Sender for every automated mail the site sends through Resend (order
+   * confirmations, contact form, pre-orders, stock alerts). A no-reply-style
+   * address on the verified domain; replies are steered to `email` instead.
+   */
+  mailFrom: string | null;
   /**
    * Public profiles. Only a full URL to a profile that actually exists; the
    * footer renders an icon per filled-in entry and hides the whole row while
@@ -78,16 +82,17 @@ export const company: CompanyInfo = {
     city: "Nederweert",
     country: "Nederland",
   },
-  email: "jorgen0207@gmail.com",
+  email: "info@magichalloweenprops.nl",
 
   // TODO (build-blocking): a second contact channel is legally required
   // alongside email. Supply a phone number reachable during business hours.
   phone: TODO,
 
-  // Sending address for order confirmations (Resend), matching the
-  // magichalloweenprops.nl domain. Requires that domain to be verified in
-  // Resend before it can actually send — see lib/mailTemplate.ts.
-  orderConfirmationFrom: "orders@magichalloweenprops.nl",
+  // Sender for all automated mail (Resend). The domain is verified in Resend
+  // (DKIM on resend._domainkey), so any address on it can send. Customer-facing
+  // mail sets reply-to to `email` above, which is the address people can
+  // actually reach a human at.
+  mailFrom: "bestellingen@magichalloweenprops.nl",
 
   // TODO — supply the real profile URLs, or leave them null. The footer shows
   // an icon only for the ones filled in here.
@@ -129,7 +134,7 @@ export const missingCompanyFields: { field: string; why: string }[] = [
   ...(company.phone === null
     ? [{ field: "company.phone", why: "Second contact channel is legally required alongside email." }]
     : []),
-  ...(company.orderConfirmationFrom === null
-    ? [{ field: "company.orderConfirmationFrom", why: "Consumer must be told where the order confirmation is sent." }]
+  ...(company.mailFrom === null
+    ? [{ field: "company.mailFrom", why: "Automated mail needs a sender on the verified domain." }]
     : []),
 ];

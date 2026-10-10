@@ -11,6 +11,7 @@ import { products, categories } from "@/data";
 import { professionalProducts } from "@/data/professionalProducts";
 import { scareEffectProducts } from "@/data/scareEffectProducts";
 import { useTranslation } from "@/hooks/useTranslation";
+import { company } from "@/lib/companyInfo";
 
 type ShopVariant = "all" | "standard" | "premium" | "scare";
 
@@ -238,7 +239,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
               { Icon: Building2, text: s.stock.warehouse },
               { Icon: Package, text: s.stock.delivery },
               { Icon: RotateCcw, text: s.stock.returns },
-              { Icon: Mail, text: s.stock.email },
+              { Icon: Mail, text: company.email },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-2">
                 <item.Icon size={14} strokeWidth={1.5} className="text-horror-orange/65 flex-shrink-0" />
