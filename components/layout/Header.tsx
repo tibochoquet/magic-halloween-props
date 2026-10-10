@@ -1,18 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { navLinks } from "@/data";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTranslation } from "@/hooks/useTranslation";
-
-function SkullIcon() {
-  return (
-    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2a9 9 0 00-9 9c0 3.07 1.54 5.78 3.9 7.44V21a1 1 0 001 1h8a1 1 0 001-1v-2.56A9 9 0 0012 2zm-2 14H8v-2h2v2zm6 0h-2v-2h2v2zM9 13a2 2 0 110-4 2 2 0 010 4zm6 0a2 2 0 110-4 2 2 0 010 4z" />
-    </svg>
-  );
-}
 
 function CartIcon({ count }: { count: number }) {
   return (
@@ -52,18 +45,25 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between h-18 py-4">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5 group">
-          <div className="text-horror-orange animate-flicker group-hover:text-horror-orange-light transition-colors duration-300">
-            <SkullIcon />
-          </div>
-          <div className="font-cinzel font-bold tracking-wider">
-            <span className="text-horror-text-primary text-base">MAGIC HALLOWEEN</span>
-            <span className="text-horror-orange text-glow-sm text-base"> PROPS</span>
-          </div>
+        <a href="/" className="flex items-center shrink-0 group">
+          {/* Intrinsieke breedte/hoogte staan vast op de verhouding van de SVG
+              (1390×395), zodat de header geen sprong maakt tijdens het laden.
+              `unoptimized`: een SVG heeft geen rasteroptimalisatie nodig en
+              Next weigert die zonder dangerouslyAllowSVG. */}
+          <Image
+            src="/brand/wordmark-light.svg"
+            alt="Magic Halloween Props"
+            width={169}
+            height={48}
+            priority
+            unoptimized
+            className="h-10 lg:h-12 w-auto max-w-none transition-opacity duration-300 group-hover:opacity-80"
+          />
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Nav pas vanaf lg: tussen 768 en 1023 px is er geen ruimte voor de
+            links én de "Nu kopen"-knop, en die knop weegt zwaarder. */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.id}
@@ -111,7 +111,7 @@ export default function Header() {
 
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-horror-text-secondary hover:text-horror-orange transition-colors duration-300 p-1"
+            className="lg:hidden text-horror-text-secondary hover:text-horror-orange transition-colors duration-300 p-1"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label={t.nav.openMenu}
           >
@@ -126,7 +126,7 @@ export default function Header() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-400 ease-out ${
+        className={`lg:hidden overflow-hidden transition-all duration-400 ease-out ${
           mobileOpen ? "max-h-96 border-t border-horror-border" : "max-h-0"
         } bg-horror-black/95 backdrop-blur-md`}
       >
