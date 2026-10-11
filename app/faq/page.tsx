@@ -102,7 +102,7 @@ const groups: { title: string; items: Faq[] }[] = [
     items: [
       {
         q: "Kan ik online betalen?",
-        a: "Op dit moment nog niet. Je kunt via de site een bestelaanvraag doen; wij nemen daarna contact op om de bestelling, levertijd en betaling te bevestigen.",
+        a: "Ja. Je rekent je bestelling direct af via de beveiligde betaalpagina van Stripe — met creditcard of debitcard, Bancontact of Klarna. Je betaalt inclusief btw en verzending, en krijgt daarna een bevestiging per e-mail.",
       },
       {
         q: "Wat is de levertijd?",

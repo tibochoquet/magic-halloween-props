@@ -5,6 +5,7 @@ import Hero from "@/components/sections/Hero";
 import FeaturedProducts from "@/components/sections/FeaturedProducts";
 import SoulLedgerHero from "@/components/sections/SoulLedgerHero";
 import Categories from "@/components/sections/Categories";
+import FreeGiftBanner from "@/components/ui/FreeGiftBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import { professionalProducts } from "@/data/professionalProducts";
 
@@ -22,6 +23,11 @@ export default function Home() {
     <main id="main" className="relative min-h-screen bg-horror-black overflow-x-hidden">
       <Header />
       <Hero />
+      {/* Zelfde banner als op /shop en de collectiepagina's — één component,
+          zodat drempel en cadeau op één plek staan (lib/promotions.ts). */}
+      <div className="max-w-7xl mx-auto px-5 md:px-8 pt-12 md:pt-16">
+        <FreeGiftBanner />
+      </div>
       <FeaturedProducts />
       {soulLedgerProduct && <SoulLedgerHero product={soulLedgerProduct} underFixedHeader={false} />}
       <Categories />
