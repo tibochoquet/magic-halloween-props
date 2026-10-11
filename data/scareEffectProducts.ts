@@ -5,8 +5,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-angel-of-dead",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Angel Of Dead",
     category: "reaper",
     price: 179.95,
@@ -20,8 +19,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-nun-from-hell",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Nun From Hell",
     category: "ghost",
     price: 179.95,
@@ -35,8 +33,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-popping-pumpkin-man",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Popping Pumpkin Man",
     category: "monster",
     price: 184.95,
@@ -50,8 +47,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-possessed-saint",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Possessed Saint",
     category: "monster",
     price: 179.95,
@@ -65,8 +61,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-rising-spirit",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Rising Spirit",
     category: "ghost",
     price: 195.00,
@@ -80,8 +75,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-screaming-little-girl",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Screaming Little Girl",
     category: "ghost",
     price: 179.95,
@@ -95,8 +89,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-two-faced-ghost",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Two-Faced Ghost",
     category: "ghost",
     price: 179.95,
@@ -110,8 +103,7 @@ export const scareEffectProducts: Product[] = [
   {
     id: "scare-wolf-woman",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Wolf Woman",
     category: "monster",
     price: 189.95,

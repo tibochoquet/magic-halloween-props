@@ -385,8 +385,7 @@ export const products: Product[] = [
   {
     id: "halloween-pop-zombie-vrouw",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Halloween pop Zombie Vrouw",
     category: "zombie",
     price: 175.00,
@@ -431,8 +430,7 @@ export const products: Product[] = [
   {
     id: "evil-pirate",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Evil Pirate",
     category: "skeleton",
     price: 159.95,
@@ -446,8 +444,7 @@ export const products: Product[] = [
   {
     id: "flying-skeleton-creep",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Flying Skeleton Creep",
     category: "skeleton",
     price: 149.95,
@@ -460,8 +457,7 @@ export const products: Product[] = [
   {
     id: "horror-clown",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Horror Clown",
     category: "clown",
     price: 159.95,
@@ -475,8 +471,7 @@ export const products: Product[] = [
   {
     id: "poison-apple-witch",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Poison Apple Witch",
     category: "witch",
     price: 149.95,
@@ -489,8 +484,7 @@ export const products: Product[] = [
   {
     id: "swamp-ghost",
     powerSource: "Werkt op batterijen (meegeleverd)",
-    availability: "unavailable",
-    availabilityNote: "Te bestellen vanaf 8 oktober 2026",
+    availability: "in_stock",
     name: "Swamp Ghost",
     category: "ghost",
     price: 159.95,
