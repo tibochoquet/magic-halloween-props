@@ -8,6 +8,8 @@ import Categories from "@/components/sections/Categories";
 import FreeGiftBanner from "@/components/ui/FreeGiftBanner";
 import Testimonials from "@/components/sections/Testimonials";
 import { professionalProducts } from "@/data/professionalProducts";
+import { company } from "@/lib/companyInfo";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Premium Halloween animatronics op voorraad in Nederland",
@@ -16,11 +18,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Zodat Google de merknaam kan tonen in plaats van het kale domein. Alleen
+// gegevens die ook op de site staan (lib/companyInfo.ts).
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: company.tradeName,
+    url: SITE_URL,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: company.tradeName,
+    url: SITE_URL,
+    logo: `${SITE_URL}/brand/wordmark-light.svg`,
+    email: company.email,
+  },
+];
+
 export default function Home() {
   const soulLedgerProduct = professionalProducts.find((p) => p.id === "the-collector-of-souls");
 
   return (
     <main id="main" className="relative min-h-screen bg-horror-black overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <Hero />
       {/* Zelfde banner als op /shop en de collectiepagina's — één component,

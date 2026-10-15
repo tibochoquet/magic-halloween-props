@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductPageContent from "@/components/pages/ProductPageContent";
 import { isOrderable } from "@/lib/availability";
+import { deliveryTerms, returnPolicy, WITHDRAWAL_DAYS } from "@/lib/shopTerms";
 import { company } from "@/lib/companyInfo";
 import { SITE_URL } from "@/lib/site";
 import { productMetaDescription } from "@/lib/productMeta";
@@ -53,6 +54,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
       ? "https://schema.org/PreOrder"
       : "https://schema.org/OutOfStock";
 
+  // "1-3 werkdagen" → [1, 3]. Wijkt de tekst af, dan laten we deliveryTime weg
+  // in plaats van een getal te verzinnen.
+  const transitMatch = (deliveryTerms.inStock ?? "").match(/(\d+)\s*[-–]\s*(\d+)/);
+  const transitDagen = transitMatch ? [Number(transitMatch[1]), Number(transitMatch[2])] : null;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -72,7 +78,42 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         "@type": "Organization",
         name: company.umbrellaTradeName,
       },
+      // Alleen wat de site zelf zegt: gratis verzending binnen Nederland en
+      // de levertijd uit lib/shopTerms.ts.
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "EUR" },
+        shippingDestination: { "@type": "DefinedRegion", addressCountry: "NL" },
+        ...(transitDagen
+          ? {
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                transitTime: {
+                  "@type": "QuantitativeValue",
+                  minValue: transitDagen[0],
+                  maxValue: transitDagen[1],
+                  unitCode: "DAY",
+                },
+              },
+            }
+          : {}),
+      },
+      // 14 dagen bedenktijd; de klant regelt en betaalt de retourzending
+      // zelf (lib/shopTerms.ts returnPolicy.paidBy). Er wordt geen bedrag
+      // genoemd, want dat quoten wij niet.
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "NL",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: WITHDRAWAL_DAYS,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees:
+          returnPolicy.paidBy === "customer"
+            ? "https://schema.org/ReturnFeesCustomerResponsibility"
+            : "https://schema.org/FreeReturn",
+      },
     },
+    sku: product.id,
   };
 
   return (
