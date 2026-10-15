@@ -14,12 +14,15 @@ import { cartSubtotalCents } from "@/lib/promotions";
  * REAL PAYMENT FLOW via Stripe Checkout.
  *
  * Replaces the earlier "order request via mailto" flow now that a payment
- * provider is wired up (see app/api/checkout/route.ts). The final button
- * must read "Bestellen met betalingsverplichting" (or equally unambiguous
- * wording) per art. 6:230v BW, since clicking it starts the real payment
- * flow. Name, address and payment details are collected on Stripe's own
- * hosted Checkout page (shipping_address_collection in the API route) —
- * deliberately not duplicated here.
+ * provider is wired up (see app/api/checkout/route.ts). Name, address and
+ * payment details are collected on Stripe's own hosted Checkout page
+ * (shipping_address_collection in the API route) — deliberately not
+ * duplicated here.
+ *
+ * De knop hieronder plaatst de bestelling niet: hij stuurt door naar de
+ * betaalpagina van Stripe, en dáár staat de knop die de betalingsverplichting
+ * aangaat (art. 6:230v BW). Vandaar "Doorgaan naar betalen" — dat beschrijft
+ * precies wat er gebeurt.
  */
 export default function CheckoutContent() {
   const { items, totalPrice, totalItems, blockedItems } = useCart();
@@ -177,7 +180,7 @@ export default function CheckoutContent() {
           >
             {loading
               ? (nl ? "Bezig..." : "Loading...")
-              : (nl ? "Bestellen met betalingsverplichting" : "Order with obligation to pay")}
+              : (nl ? "Doorgaan naar betalen" : "Continue to payment")}
             {!loading && (
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
