@@ -132,6 +132,12 @@ export const nl = {
     relatedAccent: "Arsenaal",
     shippingNote: "Op voorraad in ons magazijn in Nederweert · Gratis verzending via DHL/DPD · Afhalen op afspraak mogelijk",
     discount: "korting",
+    vatShipping: "Inclusief {vat}% btw · Gratis verzending binnen Nederland",
+    deliveryFallback: "Levertijd in overleg",
+    notAvailable: "Niet leverbaar",
+    deliveryVia: "Verzending via {carriers} · Afhalen op afspraak mogelijk",
+    notOrderable: "Dit product kan op dit moment niet besteld worden.",
+    shippingLink: "Verzending en levering",
   },
 
   shop: {
@@ -140,6 +146,37 @@ export const nl = {
     titleAccent: "Collectie",
     subtitle: "Alle animatronics op voorraad in ons magazijn in Nederweert. Direct leverbaar of afhalen op afspraak.",
     filterAll: "Alles",
+    heroes: {
+      all: { eyebrow: "Volledige Collectie", title: "Horror", titleAccent: "Collectie", subtitle: "Alle animatronics op voorraad in ons magazijn in Nederweert. Direct leverbaar of afhalen op afspraak." },
+      standard: { eyebrow: "Halloween Collectie", title: "Standaard", titleAccent: "Halloween Props", subtitle: "Premium animatronics voor thuisdecoratie, feesten en seizoensevenementen." },
+      pro: { eyebrow: "Professionele Collectie", title: "Professionele", titleAccent: "Animatronics", subtitle: "High-end cinematische animatronics voor haunted houses, escaperooms en professionele horrorattracties." },
+      scare: { eyebrow: "Scare Effect Collectie", title: "Scare Effect", titleAccent: "Animatronics", subtitle: "Poppen met een ingebouwd schrikeffect, voor het ultieme jumpscare-moment op je Halloween-feest." },
+      back: "Terug naar gehele assortiment",
+      viewProduct: "Bekijk product →",
+    },
+    productSingular: "product",
+    productPlural: "producten",
+    empty: "Geen producten gevonden in deze categorie.",
+    collections: {
+      standard: {
+        eyebrow: "Halloween Collectie",
+        title: "Standaard Halloween Props",
+        body: "Premium animatronics voor thuisdecoratie, feesten en seizoensevenementen.",
+        cta: "Bekijk de collectie",
+      },
+      pro: {
+        eyebrow: "Professionele Klasse",
+        title: "Professionele Animatronics",
+        body: "High-end animatronics voor haunted houses, escaperooms en professionele horrorattracties.",
+        cta: "Ontdek de collectie",
+      },
+      scare: {
+        eyebrow: "Jumpscare-lijn",
+        title: "Scare Effect Animatronics",
+        body: "Poppen met ingebouwd schrikeffect voor het ultieme jumpscare-moment.",
+        cta: "Ontdek de collectie",
+      },
+    },
     stock: {
       warehouse: "Op voorraad in Nederweert, Nederland",
       delivery: "Gratis verzending via DHL / DPD",

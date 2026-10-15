@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 import Link from "next/link";
 import { professionalProducts } from "@/data/professionalProducts";
 import NotifyForm from "@/components/ui/NotifyForm";
 import CategoryIcon from "@/components/ui/CategoryIcon";
 
 export default function UpcomingProducts() {
+  const nl = useLanguage().language === "nl";
   const upcomingProducts = professionalProducts.filter((p) => p.notifyOnRestock);
   if (upcomingProducts.length === 0) return null;
 
@@ -15,10 +17,13 @@ export default function UpcomingProducts() {
       <div className="max-w-7xl mx-auto px-5 md:px-8">
         <div className="w-full h-px mb-12" style={{ background: "linear-gradient(to right, transparent, rgba(255,107,0,0.25), transparent)" }} />
         <h2 className="font-cinzel text-2xl font-bold text-horror-text-primary tracking-wider mb-2 text-center">
-          Binnenkort <span className="text-horror-orange">Verwachte Producten</span>
+          {nl ? "Binnenkort " : "Coming "}
+          <span className="text-horror-orange">{nl ? "Verwachte Producten" : "Soon"}</span>
         </h2>
         <p className="text-horror-text-muted text-sm text-center mb-10 max-w-xl mx-auto">
-          Deze animatronics komen er nog aan. Laat je e-mailadres achter en we laten het je weten zodra ze binnen zijn.
+          {nl
+            ? "Deze animatronics komen er nog aan. Laat je e-mailadres achter en we laten het je weten zodra ze binnen zijn."
+            : "These animatronics are on their way. Leave your email address and we will let you know as soon as they arrive."}
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">

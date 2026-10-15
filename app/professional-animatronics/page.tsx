@@ -20,11 +20,7 @@ export default function ProfessionalAnimatronicsPage() {
         src="/pro%20collection%20hero-bloodwerewolf-ridingdead-smoderingscarecrow.png"
         alt="Professional Animatronics collectie — Bloodthirsty Werewolf, Riding Dead en Pumpkin Hollow Smoldering Ghoul Scarecrow"
         spots={professionalHeroSpots}
-        eyebrow="Professional Collection"
-        title="Professional"
-        titleAccent="Animatronics"
-        subtitle="High-end cinematic animatronics for haunted attractions, escape rooms and professional horror experiences."
-        backLink={{ href: "/shop", label: "Terug naar gehele assortiment" }}
+        heroKey="pro"
       />
       <ProfessionalCollection pageMode />
       <Footer />

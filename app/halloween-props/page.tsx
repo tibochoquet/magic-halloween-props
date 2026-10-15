@@ -21,11 +21,7 @@ export default function HalloweenPropsPage() {
         src="/standaard%20collection%20hero-psychoclown-horrible%20pumpkin-evilwitch.png"
         alt="Standaard Halloween Props — Halloween pop Horrible Pumpkin, Halloween pop Evil Witch en Halloween pop Psycho Clown"
         spots={standardHeroSpots}
-        eyebrow="Halloween Collection"
-        title="Standaard"
-        titleAccent="Halloween Props"
-        subtitle="Premium animatronics voor thuisdecoratie, feesten en seizoensevenementen."
-        backLink={{ href: "/shop", label: "Terug naar gehele assortiment" }}
+        heroKey="standard"
       />
       <Suspense>
         <ShopContent variant="standard" />

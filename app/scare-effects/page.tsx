@@ -20,11 +20,7 @@ export default function ScareEffectsPage() {
         src="/scare%20collection%20hero-screaminggirl-angelofdead-risingspirit.png"
         alt="Scare Effect collectie — Screaming Little Girl, Angel Of Dead en Rising Spirit"
         spots={scareHeroSpots}
-        eyebrow="Scare Effect Collection"
-        title="Scare Effect"
-        titleAccent="Animatronics"
-        subtitle="Poppen met een ingebouwd schrikeffect, voor het ultieme jumpscare-moment op je Halloween-feest."
-        backLink={{ href: "/shop", label: "Terug naar gehele assortiment" }}
+        heroKey="scare"
       />
       <ScareEffectCollection pageMode />
       <Footer />

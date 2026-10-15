@@ -173,7 +173,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
             {/* Consumer prices must be shown inclusive of VAT and labelled as such,
                 and the shipping cost must be visible before the payment step. */}
             <p className="text-horror-text-muted text-xs mt-2">
-              Inclusief {VAT_RATE * 100}% btw · Gratis verzending binnen Nederland
+              {p.vatShipping.replace("{vat}", String(VAT_RATE * 100))}
             </p>
 
             {product.id === FREE_GIFT_PRODUCT_ID && (
@@ -251,16 +251,16 @@ export default function ProductPageContent({ product, related }: { product: Prod
             <div className="text-sm">
               <p className="text-horror-text-primary font-medium">
                 {orderable
-                  ? deliveryTerms.inStock ?? "Levertijd in overleg"
-                  : product.availabilityNote ?? "Niet leverbaar"}
+                  ? deliveryTerms.inStock ?? p.deliveryFallback
+                  : product.availabilityNote ?? p.notAvailable}
               </p>
               <p className="text-horror-text-muted text-xs mt-0.5">
                 {orderable
-                  ? `Verzending via ${deliveryTerms.carriers} · Afhalen op afspraak mogelijk`
-                  : "Dit product kan op dit moment niet besteld worden."}
+                  ? p.deliveryVia.replace("{carriers}", deliveryTerms.carriers)
+                  : p.notOrderable}
               </p>
               <Link href="/verzending" className="text-horror-orange text-xs hover:underline mt-1 inline-block">
-                Verzending en levering
+                {p.shippingLink}
               </Link>
             </div>
           </div>

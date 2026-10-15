@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "@/hooks/useTranslation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -32,6 +33,7 @@ export default function CollectionHero({
   src,
   alt,
   spots,
+  heroKey,
   eyebrow,
   title,
   titleAccent,
@@ -41,6 +43,12 @@ export default function CollectionHero({
   src: string;
   alt: string;
   spots: CollectionHeroSpot[];
+  /**
+   * Haalt kop en subtitel uit de vertalingen (shop.heroes). De pagina's zijn
+   * server components en kunnen de taalhook niet gebruiken, dus geven ze een
+   * sleutel door in plaats van kant-en-klare tekst.
+   */
+  heroKey?: "all" | "standard" | "pro" | "scare";
   /** Overlaid section title, rendered on top of the image instead of in a separate block. */
   eyebrow?: string;
   title?: string;
@@ -48,6 +56,15 @@ export default function CollectionHero({
   subtitle?: string;
   backLink?: CollectionHeroBackLink;
 }) {
+  const t = useTranslation();
+  // heroKey wint van losse props: de pagina's geven alleen nog een sleutel door.
+  const hero = heroKey ? t.shop.heroes[heroKey] : undefined;
+  const heroEyebrow = hero?.eyebrow ?? eyebrow;
+  const heroTitle = hero?.title ?? title;
+  const heroTitleAccent = hero?.titleAccent ?? titleAccent;
+  const heroSubtitle = hero?.subtitle ?? subtitle;
+  const heroBackLink = backLink ?? (heroKey && heroKey !== "all" ? { href: "/shop", label: t.shop.heroes.back } : undefined);
+
   const [openId, setOpenId] = useState<string | null>(null);
   const [box, setBox] = useState<{ w: number; h: number } | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -121,7 +138,7 @@ export default function CollectionHero({
   return (
     <div ref={rootRef} className="relative w-full overflow-hidden bg-horror-black">
       {/* Mobile: text-only box, no photo/hotspots — keeps things fast and legible on small screens */}
-      {title && (
+      {heroTitle && (
         <div
           className="md:hidden relative px-6 pt-24 pb-16 text-center overflow-hidden"
           style={{ background: "linear-gradient(160deg, #1c0e0a 0%, #0a0505 60%, #0A0A0A 100%)" }}
@@ -130,29 +147,29 @@ export default function CollectionHero({
             className="absolute top-0 left-1/2 -translate-x-1/2 w-[420px] h-[280px] pointer-events-none"
             style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,107,0,0.14) 0%, transparent 68%)" }}
           />
-          {backLink && (
+          {heroBackLink && (
             <Link
-              href={backLink.href}
+              href={heroBackLink.href}
               className="relative z-10 inline-flex items-center gap-1.5 mb-8 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              {backLink.label}
+              {heroBackLink.label}
             </Link>
           )}
           <div className="relative z-10">
-            {eyebrow && (
+            {heroEyebrow && (
               <div className="inline-flex items-center gap-3 mb-4 justify-center">
                 <div className="h-px w-8 bg-horror-orange/60" />
-                <span className="text-horror-orange text-xs font-semibold tracking-[0.25em] uppercase">{eyebrow}</span>
+                <span className="text-horror-orange text-xs font-semibold tracking-[0.25em] uppercase">{heroEyebrow}</span>
                 <div className="h-px w-8 bg-horror-orange/60" />
               </div>
             )}
             <h2 className="font-cinzel text-4xl font-bold text-white leading-tight">
-              {title} {titleAccent && <span className="text-horror-orange">{titleAccent}</span>}
+              {heroTitle} {heroTitleAccent && <span className="text-horror-orange">{heroTitleAccent}</span>}
             </h2>
-            {subtitle && <p className="mt-4 text-white/85 text-base max-w-sm mx-auto leading-relaxed">{subtitle}</p>}
+            {heroSubtitle && <p className="mt-4 text-white/85 text-base max-w-sm mx-auto leading-relaxed">{heroSubtitle}</p>}
           </div>
 
           <div className="relative z-10 flex flex-col items-center pt-10 gap-2 text-white/50 text-[10px] tracking-[0.32em] uppercase">
@@ -180,26 +197,26 @@ export default function CollectionHero({
         {/* Bottom seam blend into the next section */}
         <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none bg-gradient-to-t from-horror-black to-transparent" />
 
-        {backLink && (
+        {heroBackLink && (
           <Link
-            href={backLink.href}
+            href={heroBackLink.href}
             className="absolute top-20 left-4 lg:top-24 lg:left-6 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 bg-black/60 border border-white/15 text-horror-text-secondary text-[10px] sm:text-xs font-semibold tracking-wide uppercase hover:text-horror-orange hover:border-horror-orange/40 transition-colors duration-200"
           >
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
-            {backLink.label}
+            {heroBackLink.label}
           </Link>
         )}
 
-        {title && (
+        {heroTitle && (
           <div className="absolute inset-x-0 top-0 z-10 pt-24 md:pt-28 lg:pt-32 px-5 text-center pointer-events-none">
             <div className="max-w-3xl mx-auto">
-              {eyebrow && (
+              {heroEyebrow && (
                 <div className="inline-flex items-center gap-3 mb-3 lg:mb-4 justify-center">
                   <div className="h-px w-8 lg:w-10 bg-horror-orange/60" />
                   <span className="text-horror-orange text-[10px] lg:text-sm font-semibold tracking-[0.25em] uppercase" style={{ textShadow: "0 2px 10px rgba(0,0,0,0.9)" }}>
-                    {eyebrow}
+                    {heroEyebrow}
                   </span>
                   <div className="h-px w-8 lg:w-10 bg-horror-orange/60" />
                 </div>
@@ -208,14 +225,14 @@ export default function CollectionHero({
                 className="font-cinzel text-3xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
                 style={{ textShadow: "0 4px 22px rgba(0,0,0,0.95), 0 2px 8px rgba(0,0,0,0.9)" }}
               >
-                {title} {titleAccent && <span className="text-horror-orange">{titleAccent}</span>}
+                {heroTitle} {heroTitleAccent && <span className="text-horror-orange">{heroTitleAccent}</span>}
               </h2>
-              {subtitle && (
+              {heroSubtitle && (
                 <p
                   className="hidden lg:block mt-5 text-white/85 text-base lg:text-lg max-w-xl mx-auto leading-relaxed"
                   style={{ textShadow: "0 2px 10px rgba(0,0,0,0.95)" }}
                 >
-                  {subtitle}
+                  {heroSubtitle}
                 </p>
               )}
             </div>
@@ -280,7 +297,7 @@ export default function CollectionHero({
                   <p className="text-horror-orange text-xs font-semibold mt-1">
                     €{spot.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
                   </p>
-                  <p className="text-horror-text-muted text-[10px] tracking-wider uppercase mt-1.5">Bekijk product →</p>
+                  <p className="text-horror-text-muted text-[10px] tracking-wider uppercase mt-1.5">{t.shop.heroes.viewProduct}</p>
                 </button>
                 <div className="w-2 h-2 bg-black/92 border-b border-r border-horror-orange/35 rotate-45 mx-auto -mt-1" />
               </div>

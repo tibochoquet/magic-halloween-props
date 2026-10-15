@@ -113,7 +113,7 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
           <button
             type="button"
             onClick={onClose}
-            aria-label="Sluiten"
+            aria-label={nl ? "Sluiten" : "Close"}
             className="flex-shrink-0 w-9 h-9 flex items-center justify-center text-horror-text-muted hover:text-horror-orange border border-horror-border hover:border-horror-orange/40 transition-colors duration-200"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -129,28 +129,31 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="font-cinzel font-bold text-xl text-horror-text-primary">Reservering genoteerd</p>
+            <p className="font-cinzel font-bold text-xl text-horror-text-primary">{nl ? "Reservering genoteerd" : "Reservation noted"}</p>
             <p className="text-horror-text-muted text-sm max-w-xs">
-              Bedankt, {form.name}. Je reservering is bij ons binnen en je krijgt een bevestiging op {form.email}.
-              Dit is een reservering, geen betaling — we nemen contact op zodra {product.name} leverbaar is.
+              {nl
+                ? `Bedankt, ${form.name}. Je reservering is bij ons binnen en je krijgt een bevestiging op ${form.email}. Dit is een reservering, geen betaling — we nemen contact op zodra ${product.name} leverbaar is.`
+                : `Thanks, ${form.name}. Your reservation has reached us and a confirmation is on its way to ${form.email}. This is a reservation, not a payment — we will contact you as soon as ${product.name} is available.`}
             </p>
-            <button type="button" onClick={onClose} className="btn-outline mt-2">Sluiten</button>
+            <button type="button" onClick={onClose} className="btn-outline mt-2">{nl ? "Sluiten" : "Close"}</button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 py-6">
             <p className="text-horror-text-secondary text-sm leading-relaxed">
-              Reserveer nu je {product.name} met een vrijblijvende pre-order. {product.availabilityNote ?? "We nemen na registratie contact met je op."}
+              {nl
+                ? `Reserveer nu je ${product.name} met een vrijblijvende pre-order. ${product.availabilityNote ?? "We nemen na registratie contact met je op."}`
+                : `Reserve your ${product.name} now with a no-obligation pre-order. ${product.availabilityNote ?? "We will contact you after you register."}`}
             </p>
 
             <div className="flex items-baseline justify-between py-3 border-y border-horror-border">
-              <span className="text-horror-text-muted text-xs tracking-widest uppercase">Prijs</span>
+              <span className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Prijs" : "Price"}</span>
               <span className="font-cinzel text-lg font-bold text-horror-text-primary">
                 €{product.price.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
               </span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="preorder-name" className="text-horror-text-muted text-xs tracking-widest uppercase">Naam</label>
+              <label htmlFor="preorder-name" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Naam" : "Name"}</label>
               <input
                 ref={firstFieldRef}
                 id="preorder-name"
@@ -158,13 +161,13 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 value={form.name}
                 onChange={handleChange}
                 required
-                placeholder="Je volledige naam"
+                placeholder={nl ? "Je volledige naam" : "Your full name"}
                 className="input-horror"
               />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="preorder-email" className="text-horror-text-muted text-xs tracking-widest uppercase">E-mail</label>
+              <label htmlFor="preorder-email" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "E-mail" : "Email"}</label>
               <input
                 id="preorder-email"
                 name="email"
@@ -172,14 +175,14 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 value={form.email}
                 onChange={handleChange}
                 required
-                placeholder="jouw@email.nl"
+                placeholder={nl ? "jouw@email.nl" : "you@email.com"}
                 className="input-horror"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="preorder-phone" className="text-horror-text-muted text-xs tracking-widest uppercase">Telefoon</label>
+                <label htmlFor="preorder-phone" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Telefoon" : "Phone"}</label>
                 <input
                   id="preorder-phone"
                   name="phone"
@@ -191,7 +194,7 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="preorder-quantity" className="text-horror-text-muted text-xs tracking-widest uppercase">Aantal</label>
+                <label htmlFor="preorder-quantity" className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Aantal" : "Quantity"}</label>
                 <input
                   id="preorder-quantity"
                   name="quantity"
@@ -205,7 +208,7 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
             </div>
 
             <div className="flex items-baseline justify-between pt-1">
-              <span className="text-horror-text-muted text-xs tracking-widest uppercase">Totaal</span>
+              <span className="text-horror-text-muted text-xs tracking-widest uppercase">{nl ? "Totaal" : "Total"}</span>
               <span className="font-cinzel text-base font-bold text-horror-orange">
                 €{total.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
               </span>
@@ -237,7 +240,7 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
                 </svg>
               ) : (
                 <>
-                  Bevestig pre-order
+                  {nl ? "Bevestig pre-order" : "Confirm pre-order"}
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -245,7 +248,9 @@ export default function PreOrderModal({ product, onClose }: { product: Product; 
               )}
             </button>
             <p className="text-horror-text-muted text-[11px] text-center leading-relaxed">
-              Vrijblijvend, geen betaling nu. We nemen contact op zodra het product beschikbaar is.
+              {nl
+                ? "Vrijblijvend, geen betaling nu. We nemen contact op zodra het product beschikbaar is."
+                : "No obligation, no payment now. We will get in touch as soon as the product is available."}
             </p>
           </form>
         )}

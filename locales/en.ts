@@ -134,6 +134,12 @@ export const en: Translations = {
     relatedAccent: "Arsenal",
     shippingNote: "In stock at our warehouse in Nederweert · Free shipping via DHL/DPD · Pickup by appointment available",
     discount: "off",
+    vatShipping: "Including {vat}% VAT · Free shipping within the Netherlands",
+    deliveryFallback: "Delivery time to be confirmed",
+    notAvailable: "Not available",
+    deliveryVia: "Shipping via {carriers} · Pickup by appointment available",
+    notOrderable: "This product cannot be ordered at the moment.",
+    shippingLink: "Shipping and delivery",
   },
 
   shop: {
@@ -142,6 +148,37 @@ export const en: Translations = {
     titleAccent: "Collection",
     subtitle: "All animatronics in stock at our warehouse in Nederweert. Available for immediate delivery or pickup by appointment.",
     filterAll: "All",
+    heroes: {
+      all: { eyebrow: "Full Collection", title: "Horror", titleAccent: "Collection", subtitle: "All animatronics in stock at our warehouse in Nederweert. Available for immediate delivery or pickup by appointment." },
+      standard: { eyebrow: "Halloween Collection", title: "Standard", titleAccent: "Halloween Props", subtitle: "Premium animatronics for home decorations, parties and seasonal events." },
+      pro: { eyebrow: "Professional Collection", title: "Professional", titleAccent: "Animatronics", subtitle: "High-end cinematic animatronics for haunted attractions, escape rooms and professional horror experiences." },
+      scare: { eyebrow: "Scare Effect Collection", title: "Scare Effect", titleAccent: "Animatronics", subtitle: "Figures with a built-in scare effect, for the ultimate jumpscare moment at your Halloween party." },
+      back: "Back to the full range",
+      viewProduct: "View product →",
+    },
+    productSingular: "product",
+    productPlural: "products",
+    empty: "No products found in this category.",
+    collections: {
+      standard: {
+        eyebrow: "Halloween Collection",
+        title: "Standard Halloween Props",
+        body: "Premium animatronics for home decorations, parties and seasonal events.",
+        cta: "Browse Collection",
+      },
+      pro: {
+        eyebrow: "Professional Grade",
+        title: "Professional Animatronics",
+        body: "High-end animatronics for haunted attractions, escape rooms and professional horror experiences.",
+        cta: "Explore Collection",
+      },
+      scare: {
+        eyebrow: "Jumpscare Line",
+        title: "Scare Effect Animatronics",
+        body: "Figures with a built-in scare effect for the ultimate jumpscare moment.",
+        cta: "Explore Collection",
+      },
+    },
     stock: {
       warehouse: "In stock in Nederweert, Netherlands",
       delivery: "Free shipping via DHL / DPD",

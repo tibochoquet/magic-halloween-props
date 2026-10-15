@@ -20,10 +20,7 @@ export default function ShopPage() {
         src="/whole%20collection%20hero-wolfgirl-terrorclown-nun-poppingpumpkin.png"
         alt="Het Gehele Assortiment — Wolf Woman, Halloween pop Terror Clown, Nun From Hell en Popping Pumpkin Man"
         spots={wholeHeroSpots}
-        eyebrow="Volledige Collectie"
-        title="Horror"
-        titleAccent="Collectie"
-        subtitle="Alle animatronics op voorraad in ons magazijn in Nederweert. Direct leverbaar of afhalen op afspraak."
+        heroKey="all"
       />
       <Suspense><ShopContent /></Suspense>
       <Footer />

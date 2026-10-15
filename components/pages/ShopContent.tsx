@@ -72,15 +72,15 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
               <div className="absolute inset-0 border border-horror-border group-hover:border-horror-orange/35 transition-colors duration-500" />
               <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-horror-orange/50 text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2">Halloween Collection</span>
+                  <span className="text-horror-orange/50 text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2">{s.collections.standard.eyebrow}</span>
                   <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
-                    Standard Halloween Props
+                    {s.collections.standard.title}
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
-                    Premium animatronics for home decorations, parties and seasonal events.
+                    {s.collections.standard.body}
                   </p>
                   <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border border-horror-orange/35 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/10 transition-colors duration-300">
-                    Browse Collection
+                    {s.collections.standard.cta}
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -107,15 +107,15 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
               <div className="absolute inset-0 border border-[rgba(200,150,30,0.18)] group-hover:border-[rgba(200,150,30,0.42)] transition-colors duration-500" />
               <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>Professional Grade</span>
+                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(200,148,28,0.58)" }}>{s.collections.pro.eyebrow}</span>
                   <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
-                    Professional Animatronics
+                    {s.collections.pro.title}
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
-                    High-end animatronics for haunted attractions, escape rooms and professional horror experiences.
+                    {s.collections.pro.body}
                   </p>
                   <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-horror-orange/10 border border-horror-orange/30 text-horror-orange text-xs font-bold tracking-wider uppercase group-hover:bg-horror-orange/20 transition-colors duration-300">
-                    Explore Collection
+                    {s.collections.pro.cta}
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -142,15 +142,15 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
               <div className="absolute inset-0 border border-[rgba(168,85,247,0.18)] group-hover:border-[rgba(168,85,247,0.42)] transition-colors duration-500" />
               <div className="relative z-10 flex flex-col justify-end p-5 md:p-8 h-full">
                 <div className="mt-auto">
-                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(192,132,252,0.58)" }}>Jumpscare Line</span>
+                  <span className="text-xs md:text-xs tracking-[0.28em] uppercase block mb-2 md:mb-2" style={{ color: "rgba(192,132,252,0.58)" }}>{s.collections.scare.eyebrow}</span>
                   <h3 className="font-cinzel text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold text-white mb-2 md:mb-3 leading-snug group-hover:text-horror-orange transition-colors duration-300">
-                    Scare Effect Animatronics
+                    {s.collections.scare.title}
                   </h3>
                   <p className="hidden md:block text-horror-text-muted text-sm mb-6 max-w-xs leading-relaxed">
-                    Poppen met ingebouwd schrikeffect voor het ultieme jumpscare-moment.
+                    {s.collections.scare.body}
                   </p>
                   <span className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 border border-[rgba(168,85,247,0.35)] text-[rgba(192,132,252,0.9)] text-xs font-bold tracking-wider uppercase group-hover:bg-[rgba(168,85,247,0.1)] transition-colors duration-300">
-                    Explore Collection
+                    {s.collections.scare.cta}
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -204,7 +204,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
 
           {/* Product count */}
           <p className="text-horror-text-muted text-xs tracking-wider mb-6">
-            {totalCount} {totalCount === 1 ? "product" : "producten"}
+            {totalCount} {totalCount === 1 ? s.productSingular : s.productPlural}
             {(filteredPro.length > 0 || filteredScare.length > 0) && (
               <span className="ml-2 opacity-60">
                 (incl.
@@ -229,7 +229,7 @@ export default function ShopContent({ variant = "all" }: { variant?: ShopVariant
             </div>
           ) : (
             <div className="py-24 text-center text-horror-text-muted">
-              <p className="text-sm tracking-wide">Geen producten gevonden in deze categorie.</p>
+              <p className="text-sm tracking-wide">{s.empty}</p>
             </div>
           )}
 
