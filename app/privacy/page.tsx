@@ -51,9 +51,11 @@ const sections = [
     title: "2. Welke gegevens wij verwerken",
     content:
       "Contactformulier — naam, e-mailadres, onderwerp en de inhoud van je bericht.\n\n" +
-      "Bestelaanvraag — naam, e-mailadres, telefoonnummer, adres en eventuele opmerkingen. Belangrijk: deze gegevens worden door deze website niet opgeslagen en niet automatisch naar ons verstuurd. Je eigen e-mailprogramma wordt geopend met de gegevens erin; pas als jij die e-mail zelf verstuurt, ontvangen wij ze.\n\n" +
+      "Pre-order — naam, e-mailadres, telefoonnummer en het product dat je reserveert.\n\n" +
       "Voorraadmelding — je e-mailadres, als je wilt weten wanneer een product weer leverbaar is.\n\n" +
-      "Wij verwerken géén betaalgegevens. Er is op dit moment geen betaalprovider aan deze website gekoppeld en er kan via de website niet worden betaald.",
+      "Deze drie formulieren worden per e-mail naar ons verstuurd en verder nergens op deze website opgeslagen. Er is geen klantenbestand en geen mailinglijst: je gegevens staan in onze mailbox, nergens anders.\n\n" +
+      "Bestelling — naam, e-mailadres, verzendadres en eventueel telefoonnummer. Deze vul je in op de betaalpagina van Stripe; wij ontvangen ze daarna om je bestelling te kunnen uitvoeren.\n\n" +
+      "Betaalgegevens verwerken wij zelf niet en zien wij niet. Je kaart- of bankgegevens vul je rechtstreeks bij Stripe in; wij krijgen alleen te horen of de betaling is gelukt.",
   },
   {
     title: "3. Cookies",
@@ -70,22 +72,24 @@ const sections = [
       "Je kunt deze op elk moment wissen via de instellingen van je browser.",
   },
   {
-    title: "5. Statistieken",
+    title: "5. Statistieken en partijen die gegevens voor ons verwerken",
     content:
-      "Wij gebruiken Vercel Analytics om te zien hoeveel bezoekers de site heeft en welke pagina's worden bekeken.\n\n" +
-      "Vercel Analytics werkt zonder cookies, volgt je niet over andere websites en bouwt geen profiel van je op.\n\n" +
-      "Hiervoor wordt verbinding gemaakt met va.vercel-scripts.com.",
+      "Vercel Web Analytics — om te zien hoeveel bezoekers de site heeft en welke pagina's worden bekeken. Werkt zonder cookies, volgt je niet over andere websites en bouwt geen profiel van je op. Hiervoor wordt verbinding gemaakt met va.vercel-scripts.com. Vercel host deze website ook.\n\n" +
+      "Stripe — de betaalpagina. Je rekent af in de omgeving van Stripe; daar vul je je betaal- en verzendgegevens in. Stripe verwerkt die als zelfstandige partij onder zijn eigen privacybeleid.\n\n" +
+      "Resend — de verzending van onze e-mails: de bevestiging van je bestelling en de berichten die via de formulieren binnenkomen. Resend verwerkt daarbij je e-mailadres en de inhoud van dat bericht.",
   },
   {
     title: "6. Lettertypen en externe bronnen",
     content:
       "De lettertypen worden vanaf onze eigen server geladen. Er wordt geen verbinding gemaakt met Google Fonts of een ander extern lettertype-netwerk.\n\n" +
-      "Behalve Vercel Analytics laadt deze website geen bronnen van derden.",
+      "Deze website zelf laadt verder geen bronnen van derden. Ga je afrekenen, dan word je doorgestuurd naar de betaalpagina van Stripe; dat is een omgeving van Stripe met een eigen privacybeleid.",
   },
   {
     title: "7. Doel van de verwerking",
     content:
       "Wij gebruiken je gegevens uitsluitend om je vraag of aanvraag te beantwoorden en, als het tot een bestelling komt, om die uit te voeren en je op de hoogte te houden.\n\n" +
+      "Daarnaast benaderen wij bedrijven en organisaties — denk aan spookhuizen, escaperooms en evenementenbureaus — op hun zakelijke contactgegevens, om ons assortiment onder de aandacht te brengen. Dat doen wij op grond van ons gerechtvaardigd belang.\n\n" +
+      `Wil je zulke berichten niet ontvangen, dan meld je je op elk moment af met een mail naar ${company.email}. Wij halen je dan uit onze lijst en nemen geen contact meer op.\n\n` +
       "Wij gebruiken je gegevens niet voor profilering of geautomatiseerde besluitvorming.",
   },
   {
