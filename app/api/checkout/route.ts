@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  // The €300 gift is decided here, never by the client: the cart that arrives
+  // The €295 gift is decided here, never by the client: the cart that arrives
   // is only ids + quantities, and the subtotal is recomputed from catalogue
   // prices above. The shop UI shows the same outcome via lib/promotions.ts.
   const subtotalCents = cartSubtotalCents(paidLines);

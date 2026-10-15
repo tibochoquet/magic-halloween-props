@@ -3,7 +3,7 @@ import { getProductById } from "./catalogue";
 import { isOrderable } from "./availability";
 
 /**
- * "GRATIS bij besteding vanaf €300" — the Grim Portrait is added to the order
+ * "GRATIS bij besteding vanaf €295" — the Grim Portrait is added to the order
  * at no cost once the cart reaches the threshold.
  *
  * Single source of truth for the promotion. The shop UI only ever *shows* what
@@ -14,7 +14,7 @@ import { isOrderable } from "./availability";
 export const FREE_GIFT_PRODUCT_ID = "grim-portrait";
 /** Short label for tight spots (cart row, badge) where the full name doesn't fit. */
 export const FREE_GIFT_SHORT_NAME = "Grim Portrait";
-export const FREE_GIFT_THRESHOLD_CENTS = 30_000;
+export const FREE_GIFT_THRESHOLD_CENTS = 29_500;
 export const FREE_GIFT_THRESHOLD_EUR = FREE_GIFT_THRESHOLD_CENTS / 100;
 
 /**

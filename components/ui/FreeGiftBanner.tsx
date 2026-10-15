@@ -12,7 +12,7 @@ import {
 
 const euro = (amount: number) => `€${amount.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}`;
 
-/** Collection-level promo strip for the €300 gift. Hidden when the gift can't be shipped. */
+/** Collection-level promo strip for the €295 gift. Hidden when the gift can't be shipped. */
 export default function FreeGiftBanner() {
   const { language } = useLanguage();
   const nl = language === "nl";

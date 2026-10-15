@@ -12,7 +12,7 @@ import {
 const euro = (amount: number) => `€${amount.toLocaleString("nl-NL", { minimumFractionDigits: 2 })}`;
 
 /**
- * The €300 gift, as the customer sees it in the cart and at checkout: how much
+ * The €295 gift, as the customer sees it in the cart and at checkout: how much
  * is still missing, or the gift itself once it has been earned. Mirrors exactly
  * what app/api/checkout/route.ts will put in the Stripe session.
  */
