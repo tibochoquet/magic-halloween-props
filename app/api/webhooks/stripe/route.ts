@@ -4,6 +4,7 @@ import { getStripe } from "@/lib/stripe";
 import { sendEmail } from "@/lib/email";
 import { company } from "@/lib/companyInfo";
 import { renderOrderConfirmation, estimateDeliveryRange } from "@/lib/mailTemplate";
+import { FREE_GIFT_SHORT_NAME, FREE_GIFT_THRESHOLD_EUR } from "@/lib/promotions";
 
 /**
  * Stripe webhook endpoint. This is the ONLY place an order is considered
@@ -14,23 +15,58 @@ import { renderOrderConfirmation, estimateDeliveryRange } from "@/lib/mailTempla
  * acting on it.
  */
 
-// Best-effort idempotency: skip an event id we've already processed, so a
-// duplicate webhook delivery (Stripe retries on anything but a fast 2xx, and
-// can occasionally double-deliver even on success) doesn't send two order
-// emails. In-memory only — resets on a cold start and isn't shared across
-// instances. There's no database in this project yet; if that becomes a
-// problem, move this to something like Vercel KV/Upstash.
-const processedEventIds = new Map<string, true>();
-const MAX_TRACKED_EVENTS = 500;
+// Best-effort idempotency, keyed on the SESSION, not the event.
+//
+// One order can arrive as two different events: with iDEAL and other
+// asynchronous methods Stripe sends checkout.session.completed while the
+// payment is still processing, and checkout.session.async_payment_succeeded
+// once the bank confirms. Both carry the same session. Deduplicating on the
+// event id would let that pair through as two orders — two confirmation mails
+// for one purchase. Deduplicating on the session id also still absorbs
+// Stripe's retries, which is what the event-id version was for.
+//
+// In-memory only: resets on a cold start and isn't shared across instances.
+// There's no database in this project yet; if duplicates ever show up in
+// practice, move this to something like Vercel KV/Upstash.
+const fulfilledSessionIds = new Map<string, true>();
+const MAX_TRACKED_SESSIONS = 500;
 
-function alreadyProcessed(eventId: string): boolean {
-  if (processedEventIds.has(eventId)) return true;
-  processedEventIds.set(eventId, true);
-  if (processedEventIds.size > MAX_TRACKED_EVENTS) {
-    const oldest = processedEventIds.keys().next().value;
-    if (oldest) processedEventIds.delete(oldest);
+function alreadyFulfilled(sessionId: string): boolean {
+  if (fulfilledSessionIds.has(sessionId)) return true;
+  fulfilledSessionIds.set(sessionId, true);
+  if (fulfilledSessionIds.size > MAX_TRACKED_SESSIONS) {
+    const oldest = fulfilledSessionIds.keys().next().value;
+    if (oldest) fulfilledSessionIds.delete(oldest);
   }
   return false;
+}
+
+/**
+ * Sends both order mails. Only ever called for a session Stripe has confirmed
+ * as paid, and only once per session.
+ */
+async function fulfillOrder(stripe: Stripe, session: Stripe.Checkout.Session) {
+  if (alreadyFulfilled(session.id)) {
+    console.log("Stripe webhook: sessie al afgehandeld, geen tweede mail.", session.id);
+    return;
+  }
+
+  const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
+
+  // Two separate emails, both best-effort: a failure in one must not block the
+  // other, and neither may fail the webhook response (Stripe would keep
+  // retrying an already-paid order forever otherwise — the payment itself is
+  // already safely recorded on Stripe's side).
+  try {
+    await sendOwnerNotificationEmail(session, lineItems.data);
+  } catch (err) {
+    console.error("Stripe webhook: interne orderbevestiging versturen mislukt:", err);
+  }
+  try {
+    await sendCustomerConfirmationEmail(session, lineItems.data);
+  } catch (err) {
+    console.error("Stripe webhook: klantbevestiging versturen mislukt:", err);
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -59,29 +95,29 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Ongeldige handtekening" }, { status: 400 });
   }
 
-  if (alreadyProcessed(event.id)) {
-    return NextResponse.json({ received: true, duplicate: true });
-  }
-
   switch (event.type) {
+    // With a card this fires already paid. With iDEAL and other asynchronous
+    // methods it fires while the payment is still processing — fulfilling then
+    // would mail a confirmation for money that may never arrive.
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
-      const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
+      if (session.payment_status !== "paid") {
+        console.log(
+          "Stripe webhook: sessie afgerond maar nog niet betaald, wachten op async_payment_succeeded.",
+          { sessionId: session.id, paymentStatus: session.payment_status }
+        );
+        break;
+      }
+      await fulfillOrder(stripe, session);
+      break;
+    }
 
-      // Two separate emails, both best-effort: a failure in one must not
-      // block the other, and neither may fail the webhook response (Stripe
-      // would keep retrying an already-paid order forever otherwise — the
-      // payment itself is already safely recorded on Stripe's side).
-      try {
-        await sendOwnerNotificationEmail(session, lineItems.data);
-      } catch (err) {
-        console.error("Stripe webhook: interne orderbevestiging versturen mislukt:", err);
-      }
-      try {
-        await sendCustomerConfirmationEmail(session, lineItems.data);
-      } catch (err) {
-        console.error("Stripe webhook: klantbevestiging versturen mislukt:", err);
-      }
+    // The bank confirmed an asynchronous payment (iDEAL, SEPA). On mobile the
+    // customer often never returns to the site, so this event — not the
+    // success page — is what turns the payment into an order.
+    case "checkout.session.async_payment_succeeded": {
+      const session = event.data.object as Stripe.Checkout.Session;
+      await fulfillOrder(stripe, session);
       break;
     }
     case "payment_intent.payment_failed": {
@@ -154,6 +190,13 @@ async function sendOwnerNotificationEmail(session: Stripe.Checkout.Session, line
         </tr>
       </table>
 
+      ${
+        session.metadata?.freeGift
+          ? `<p style="font-size:14px;color:#FF6B00;margin-top:20px;font-weight:600;">
+               &#127875; Gratis ${FREE_GIFT_SHORT_NAME} bijpakken (actie vanaf €${FREE_GIFT_THRESHOLD_EUR})
+             </p>`
+          : ""
+      }
       <p style="font-size:13px;color:#FF6B00;margin-top:20px;">
         Betaling ontvangen via Stripe. Klaar om te verpakken en te verzenden.
       </p>
@@ -190,11 +233,17 @@ async function sendCustomerConfirmationEmail(session: Stripe.Checkout.Session, l
     voornaam: firstName,
     bestelnummer: orderRef,
     leverdatum: estimateDeliveryRange(),
-    items: lineItems.map((li) => ({
-      name: li.description ?? "Product",
-      quantity: li.quantity ?? 1,
-      amountEur: (li.amount_total ?? 0) / 100,
-    })),
+    items: lineItems.map((li) => {
+      // De cadeauregel zet de checkout op €0; session.metadata.freeGift zegt
+      // dat deze bestelling er een heeft (app/api/checkout/route.ts).
+      const isGift = Boolean(session.metadata?.freeGift) && (li.amount_total ?? 0) === 0;
+      return {
+        name: isGift ? `Gratis: ${FREE_GIFT_SHORT_NAME}` : li.description ?? "Product",
+        quantity: li.quantity ?? 1,
+        amountEur: (li.amount_total ?? 0) / 100,
+        gratis: isGift,
+      };
+    }),
     totaalEur: (session.amount_total ?? 0) / 100,
     verzendadres: formatShippingAddress(session),
   });

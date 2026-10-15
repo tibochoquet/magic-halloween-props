@@ -11,6 +11,8 @@ export type OrderConfirmationLine = {
   quantity: number;
   /** Line total in EUR, VAT-inclusive. */
   amountEur: number;
+  /** The €295 gift: shown as "GRATIS" rather than €0,00. */
+  gratis?: boolean;
 };
 
 interface OrderConfirmationValues {
@@ -38,7 +40,7 @@ function itemsRowsHtml(items: OrderConfirmationLine[]): string {
           <tr>
             <td style="padding:12px 0; font-family:Helvetica,Arial,sans-serif; font-size:14px; color:#E8E8E8; border-bottom:1px solid rgba(255,107,0,0.18);">${escapeHtml(item.name)}</td>
             <td align="center" style="padding:12px 0; font-family:Helvetica,Arial,sans-serif; font-size:14px; color:#9CA3AF; border-bottom:1px solid rgba(255,107,0,0.18);">${item.quantity}</td>
-            <td align="right" style="padding:12px 0; font-family:Helvetica,Arial,sans-serif; font-size:14px; color:#E8E8E8; border-bottom:1px solid rgba(255,107,0,0.18);">${euro(item.amountEur)}</td>
+            <td align="right" style="padding:12px 0; font-family:Helvetica,Arial,sans-serif; font-size:14px; color:${item.gratis ? "#FF6B00" : "#E8E8E8"}; border-bottom:1px solid rgba(255,107,0,0.18);">${item.gratis ? "GRATIS" : euro(item.amountEur)}</td>
           </tr>`
     )
     .join("");
