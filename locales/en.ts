@@ -105,6 +105,7 @@ export const en: Translations = {
     subtotal: "Subtotal",
     shippingNote: "VAT included · Free shipping within the Netherlands.",
     decreaseQty: "Decrease quantity",
+    maxReached: "Maximum {n} per order.",
     increaseQty: "Increase quantity",
     removeItem: "Remove",
   },
@@ -139,6 +140,8 @@ export const en: Translations = {
     notAvailable: "Not available",
     deliveryVia: "Shipping via {carriers} · Pickup by appointment available",
     notOrderable: "This product cannot be ordered at the moment.",
+    lowStock: "Only {n} left in stock",
+    lowStockOne: "Last one in stock",
     shippingLink: "Shipping and delivery",
   },
 

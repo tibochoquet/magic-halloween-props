@@ -8,6 +8,7 @@ import CategoryIcon from "@/components/ui/CategoryIcon";
 import FreeGiftNotice from "@/components/ui/FreeGiftNotice";
 import { useTranslation } from "@/hooks/useTranslation";
 import { cartSubtotalCents } from "@/lib/promotions";
+import { maxOrderableQuantity } from "@/lib/availability";
 
 function CloseIcon() {
   return (
@@ -143,7 +144,8 @@ export default function CartDrawer() {
                         </span>
                         <button
                           onClick={() => updateQuantity(product.id, quantity + 1)}
-                          className="w-7 h-7 flex items-center justify-center text-horror-text-muted hover:text-horror-orange hover:bg-horror-orange/10 transition-all duration-200 text-sm"
+                          disabled={quantity >= maxOrderableQuantity(product)}
+                          className="w-7 h-7 flex items-center justify-center text-horror-text-muted hover:text-horror-orange hover:bg-horror-orange/10 transition-all duration-200 text-sm disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-horror-text-muted"
                           aria-label={t.increaseQty}
                         >
                           +
@@ -155,6 +157,12 @@ export default function CartDrawer() {
                         €{(product.price * quantity).toLocaleString("nl-NL", { minimumFractionDigits: 2 })}
                       </span>
                     </div>
+
+                    {quantity >= maxOrderableQuantity(product) && (
+                      <p className="mt-1.5 text-horror-text-muted text-[11px] leading-snug">
+                        {t.maxReached.replace("{n}", String(maxOrderableQuantity(product)))}
+                      </p>
+                    )}
                   </div>
                 </li>
               ))}

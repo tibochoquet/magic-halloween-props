@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useReducer, useCallback, useMemo, useEffect, useRef } from "react";
 import type { Product } from "@/types";
-import { isOrderable } from "@/lib/availability";
+import { isOrderable, maxOrderableQuantity } from "@/lib/availability";
+import { getProductById } from "@/lib/catalogue";
 
 /** localStorage key holding the cart. Declared in the privacy inventory. */
 const CART_STORAGE_KEY = "mhp_cart_v1";
@@ -32,6 +33,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       // Hard guard: an unorderable product must never enter the cart, no matter
       // which UI called this. Disabled buttons are a hint, not a control.
       if (!isOrderable(action.product)) return state;
+      const max = maxOrderableQuantity(action.product);
       const existing = state.items.find((i) => i.product.id === action.product.id);
       if (existing) {
         return {
@@ -39,7 +41,9 @@ function cartReducer(state: CartState, action: CartAction): CartState {
           isOpen: true,
           items: state.items.map((i) =>
             i.product.id === action.product.id
-              ? { ...i, quantity: i.quantity + 1 }
+              // Nooit boven de voorraad: nog een keer op "toevoegen" drukken
+              // opent dan alleen de winkelwagen.
+              ? { ...i, quantity: Math.min(i.quantity + 1, max) }
               : i
           ),
         };
@@ -59,7 +63,9 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         items: state.items.map((i) =>
-          i.product.id === action.id ? { ...i, quantity: action.quantity } : i
+          i.product.id === action.id
+            ? { ...i, quantity: Math.min(action.quantity, maxOrderableQuantity(i.product)) }
+            : i
         ),
       };
     case "HYDRATE":
@@ -107,8 +113,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       const raw = window.localStorage.getItem(CART_STORAGE_KEY);
       if (raw) {
         const parsed: CartItem[] = JSON.parse(raw);
-        // Re-validate on restore: availability may have changed since.
-        const usable = parsed.filter((i) => i?.product && isOrderable(i.product));
+        // Opnieuw valideren tegen de echte catalogus in plaats van tegen de
+        // opgeslagen kopie: prijs, voorraad en leverbaarheid kunnen gewijzigd
+        // zijn sinds deze winkelwagen is opgeslagen, en dan is de kopie fout.
+        const usable = parsed
+          .flatMap((i) => {
+            const product = i?.product?.id ? getProductById(i.product.id) : undefined;
+            if (!product || !isOrderable(product)) return [];
+            const quantity = Math.min(Math.max(1, i.quantity), maxOrderableQuantity(product));
+            return quantity > 0 ? [{ product, quantity }] : [];
+          });
         if (usable.length) dispatch({ type: "HYDRATE", items: usable });
       }
     } catch {

@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { randomBytes } from "crypto";
 import { getStripe } from "@/lib/stripe";
 import { getProductById } from "@/lib/catalogue";
-import { isOrderable } from "@/lib/availability";
+import { MAX_QUANTITY_PER_ITEM, isOrderable, maxOrderableQuantity } from "@/lib/availability";
 import {
   cartSubtotalCents,
   getFreeGiftProduct,
@@ -25,8 +25,6 @@ interface CheckoutItem {
   id: string;
   quantity: number;
 }
-
-const MAX_QUANTITY_PER_ITEM = 10;
 
 export async function POST(req: NextRequest) {
   let body: { items?: CheckoutItem[] };
@@ -60,6 +58,20 @@ export async function POST(req: NextRequest) {
     if (!isOrderable(product)) {
       return NextResponse.json(
         { error: `Niet leverbaar: ${product.name}${product.availabilityNote ? ` — ${product.availabilityNote}` : ""}` },
+        { status: 409 }
+      );
+    }
+    // Voorraadgrens: de knoppen in de winkelwagen houden dit al tegen, maar een
+    // directe POST hierheen niet. We rekenen nooit iets af wat we niet hebben.
+    const maxQuantity = maxOrderableQuantity(product);
+    if (item.quantity > maxQuantity) {
+      return NextResponse.json(
+        {
+          error:
+            maxQuantity === 1
+              ? `Van ${product.name} hebben we nog 1 stuk op voorraad.`
+              : `Van ${product.name} kunnen we er maximaal ${maxQuantity} leveren.`,
+        },
         { status: 409 }
       );
     }

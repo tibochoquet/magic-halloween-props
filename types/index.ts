@@ -10,6 +10,13 @@ export interface Product {
   description: string;
   badge?: "BESTSELLER" | "NEW" | "PREMIUM" | "EXTREME" | "LIMITED";
   availability: "in_stock" | "unavailable";
+  /**
+   * Aantal dat fysiek op voorraad ligt. 0 betekent uitverkocht: isOrderable
+   * weigert het product dan, en winkelwagen noch checkout laat een bestelling
+   * boven dit aantal uitkomen. Verplicht veld, zodat een nieuw product nooit
+   * stilzwijgend "onbeperkt leverbaar" wordt.
+   */
+  stock: number;
   availabilityNote?: string;
   notifyOnRestock?: boolean;
   featured?: boolean;

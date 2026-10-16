@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { Product } from "@/types";
 import AddToCartButton from "@/components/ui/AddToCartButton";
 import NotifyForm from "@/components/ui/NotifyForm";
-import { isOrderable } from "@/lib/availability";
+import { isLowStock, isOrderable } from "@/lib/availability";
 import { deliveryTerms, VAT_RATE } from "@/lib/shopTerms";
 import { useTranslation } from "@/hooks/useTranslation";
 import { useLanguage } from "@/context/LanguageContext";
@@ -27,6 +27,7 @@ export default function ProductPageContent({ product, related }: { product: Prod
   const longDescription = pd?.longDescription;
 
   const orderable = isOrderable(product);
+  const lowStock = isLowStock(product);
 
   const media: MediaItem[] = [
     ...(product.image ? [{ type: "image" as const, src: product.image }] : []),
@@ -264,6 +265,15 @@ export default function ProductPageContent({ product, related }: { product: Prod
               </Link>
             </div>
           </div>
+
+          {/* De laatste exemplaren benoemen we, een volle voorraad niet: een
+              getal van 75 zegt de bezoeker niets. */}
+          {lowStock && (
+            <p className="mb-3 flex items-center gap-2 text-sm text-horror-orange">
+              <span className="w-1.5 h-1.5 rounded-full bg-horror-orange flex-shrink-0" aria-hidden="true" />
+              {product.stock === 1 ? p.lowStockOne : p.lowStock.replace("{n}", String(product.stock))}
+            </p>
+          )}
 
           {product.notifyOnRestock ? (
             <NotifyForm product={product} />

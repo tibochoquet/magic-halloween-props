@@ -103,6 +103,7 @@ export const nl = {
     subtotal: "Subtotaal",
     shippingNote: "Inclusief btw · Gratis verzending binnen Nederland.",
     decreaseQty: "Aantal verlagen",
+    maxReached: "Maximaal {n} per bestelling.",
     increaseQty: "Aantal verhogen",
     removeItem: "verwijderen",
   },
@@ -137,6 +138,8 @@ export const nl = {
     notAvailable: "Niet leverbaar",
     deliveryVia: "Verzending via {carriers} · Afhalen op afspraak mogelijk",
     notOrderable: "Dit product kan op dit moment niet besteld worden.",
+    lowStock: "Nog {n} op voorraad",
+    lowStockOne: "Nog 1 exemplaar op voorraad",
     shippingLink: "Verzending en levering",
   },
 
